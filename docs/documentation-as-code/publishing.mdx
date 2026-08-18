@@ -1,0 +1,700 @@
+# Publishing documentation
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what publishing means in a documentation workflow.
+- Distinguish between publishing, deployment, and hosting.
+- Describe how content moves from source files to a published website.
+- Understand how Docusaurus builds documentation into a production-ready website.
+- Explain the difference between source content and generated build files.
+- Verify that published documentation works as expected after deployment.
+- Identify common publishing problems and understand how to troubleshoot them.
+- Recognize the role technical writers play in documentation publishing workflows.
+
+## What does publishing mean?
+
+Publishing is the process of making your documentation available to readers through its intended delivery channel.
+
+As a technical writer using a docs-as-code workflow, after you have completed the writing process and the content has been reviewed, it needs to be made available to the people who need it.
+
+Publishing occurs after all changes have been merged into the appropriate branch and the documentation site is successfully built.
+
+However, the exact publication process varies between organizations and documentation platforms, but the basic goal remains the same: **make the approved documentation available to its intended audience.**
+
+For a web-based documentation site, this usually means making the generated website available at a URL.
+
+Here's an example of how the publication process flows:
+
+```text
+Documentation files
+        ↓
+Docusaurus build
+        ↓
+Generated website
+        ↓
+Hosting platform
+        ↓
+https://docs.example.com
+```
+
+## Publishing vs. deployment
+
+The terms **publishing** and **deployment** are often used interchangeably, but they can describe slightly different parts of the process.
+
+**Deployment** generally refers to moving the built documentation to the environment where it will be hosted.
+
+**Publishing** refers more broadly to making the documentation available to its intended audience.
+
+For example:
+
+```text
+Build documentation
+       ↓
+Deploy files to hosting platform
+       ↓
+Documentation becomes available online
+       ↓
+Readers access the published site
+```
+
+:::note
+
+As a beginner, you only need to understand how documentation moves from the repository to the reader. In some teams, these activities happen automatically as part of a single process.
+
+:::
+
+## What happens before documentation is published?
+
+Publishing should never be the first time the documentation is checked.
+
+Before a doc reaches its readers, it should go through several stages like:
+
+```text
+Write
+  ↓
+Test
+  ↓
+Preview
+  ↓
+Review
+  ↓
+Revise
+  ↓
+Merge
+  ↓
+Build
+  ↓
+Deploy
+  ↓
+Publish
+```
+
+Each stage helps reduce the likelihood of publishing incorrect or broken documentation.
+
+In some companies, the process before publication include:
+
+- The writer checks the content for accuracy.
+- The writer previews the rendered page.
+- A technical reviewer verifies technical information.
+- Git records the changes.
+- A pull request provides a structured review process.
+- Automated checks identify certain problems.
+- The build process verifies that the site can be generated.
+- Deployment makes the approved documentation available to readers.
+
+:::tip[Working in a small team?]
+
+Not every organization has a dedicated technical reviewer, documentation team, or formal review process. This is especially common in startups and smaller teams where one technical writer may be responsible for most of the documentation.
+
+If you don't have a formal review process, you can still build quality checks into your workflow.
+
+Consider using **peer review** as a practical alternative. Ask another writer, product manager, support team member, or knowledgeable colleague to read the documentation and check whether it is clear, complete, and easy to follow.
+
+You can also ask a developer or subject matter expert to review the technical details when possible. However, developers may not always have the time to review documentation, so it's useful to have a process that doesn't depend entirely on developer availability.
+
+For example, a small team could use a workflow like this:
+
+1. Write and test the documentation yourself.
+2. Preview the rendered page and check the formatting.
+3. Review the content for technical accuracy and completeness.
+4. Ask a peer or knowledgeable colleague to review the content for clarity and usability.
+5. Ask a developer or subject matter expert to verify technical details when available.
+6. Create a pull request so the changes and review comments are recorded.
+7. Run any available automated checks and build the documentation.
+8. Publish the documentation once the necessary checks are complete.
+
+The goal is to have **some form of independent review and verification** process, even when your team and resources are limited.
+
+:::
+
+## What is hosting?
+
+Before a documentation website can be accessed on the internet, its files must be stored on a server that can deliver the website to the users browsers.
+
+This process is known as **hosting**.
+
+A hosting platform stores or serves the files that make up your documentation website and makes them accessible through a URL.
+
+Think of a it as the middleman between your documentation website and your users. It stores the website's files and delivers them to the user's browser when they visit the site, making the documentation accessible over the internet.
+
+Here's how this works in practice:
+
+```text
+Documentation website files
+          ↓
+      Web hosting
+          ↓
+https://docs.example.com
+```
+
+The hosting environment may provide features like:
+
+- Custom domains
+- HTTPS
+- Deployment automation
+- Build environments
+- Access controls
+- Content delivery
+- Logs and monitoring
+
+:::note 
+
+The exact features depend on the hosting platform your organization uses.
+
+:::
+
+### Where can documentation be hosted?
+
+Documentation websites can be hosted using a variety of platforms and infrastructure.
+
+For example, a team might use:
+
+- GitHub Pages
+- Cloud hosting services
+- A company's existing web infrastructure
+- A dedicated documentation platform
+- An internal hosting environment
+
+The choice depends on factors such as:
+
+- Security requirements
+- Cost
+- Deployment requirements
+- Team expertise
+- Product architecture
+- Whether the documentation is public or private
+
+As a technical writer, you may not be responsible for choosing the hosting platform. But, knowing that hosting is the environment where the documentation is served to the users will help you understand the publishing process.
+
+## Static documentation websites
+
+You may have heard about Static Site Generators, popularly known as SSGs, and why as a technical writer, you should know how they work. 
+
+What does SSG mean and how does it work?
+
+An SSG creates a  static website, which consists of pages and other files that are generated in advance and ready to be served to users. Meaning, when a reader visits a page, the server can deliver the existing files from the static website directly to the user instead of generating the page from scratch for each request.
+
+For example, when you run:
+
+```bash
+npm run build
+```
+
+Docusaurus processes your documentation and generates the files required for the website.
+
+The resulting files can then be deployed to a suitable hosting environment.
+
+The process looks like this:
+
+```text
+Markdown / MDX
+      ↓
+  Docusaurus
+      ↓
+  Build process
+      ↓
+Static website files
+      ↓
+     Hosting
+      ↓
+     Readers
+```
+
+This process makes documentation sites relatively straightforward to deploy to many hosting environments.
+
+Besides Docusaurus, there are other SSGs like Hugo, mkDocs, and VitePress. They all work similarly but may use different programming language. For example, Docusaurus is react-based while mkDocs is Python-driven. The choice of generator often depend on the organization. 
+
+## Understanding the build directory
+
+When you run a Docusaurus production build, the generated website files are placed in a build directory.
+
+Here's how this looks in practice:
+
+```text
+my-docs/
+├── docs/
+├── src/
+├── static/
+├── build/
+├── docusaurus.config.js
+├── sidebars.js
+└── package.json
+```
+Notice the `build` directory after `static`. It contains the generated files that represent the production version of the documentation site.
+
+Generally, you do not edit these files directly. Instead, you modify the source documentation and configuration files and then run the build process again.
+
+For example:
+
+```text
+Edit Markdown
+      ↓
+Run build
+      ↓
+New build files generated
+      ↓
+Deploy the build
+```
+
+Put simply, your `docs` directory contains the source content, while the `build` directory contains the generated output.
+
+## Publishing with a hosting platform
+
+The exact process for deploying a Docusaurus site depends on the hosting platform. But, the general process is similar.
+
+First, the documentation is built:
+
+```bash
+npm run build
+```
+
+Then the generated files are deployed to the hosting environment.
+
+Once deployment is complete, readers can access the documentation through its configured URL.
+
+For example:
+
+```text
+https://docs.example.com
+```
+
+The URL may use a company's main domain, a subdomain, or another configured address.
+
+## Understanding domains
+
+A **domain** is the human-readable address people use to access a website.
+
+For example:
+
+```text
+example.com
+```
+
+A documentation site may use a subdomain:
+
+```text
+docs.example.com
+```
+
+Using a dedicated documentation subdomain helps distinguish it from the company's main website.
+
+For example:
+
+```text
+www.example.com
+```
+
+might contain information about the company and its products, while:
+
+```text
+docs.example.com
+```
+
+contains technical documentation.
+
+The exact domain structure depends on the organization.
+
+## Why HTTPS matters
+
+A published documentation site should normally be served over **HTTPS**. HTTPS encrypts communication between the user's browser and the website.
+
+You can recognize an HTTPS website by the URL beginning with:
+
+```text
+https://
+```
+
+For example:
+
+```text
+https://docs.example.com
+```
+
+HTTPS is particularly important when documentation contains authentication information, account-related functionality, or other sensitive content.
+
+Even for public documentation, HTTPS provides a more secure and trustworthy way for readers to access the website.
+
+## Manual publishing
+
+Not every documentation team uses an automated publishing process.
+
+In a manual workflow, someone may build the documentation and then manually deploy the generated files.
+
+For example:
+
+```text
+Write documentation
+        ↓
+Review changes
+        ↓
+Merge changes
+        ↓
+Run production build
+        ↓
+Deploy generated files
+        ↓
+Verify website
+```
+
+This approach can work for smaller projects, but it can also introduce human error.
+
+## Automated publishing
+
+Many modern documentation teams automate the publishing process.
+
+Instead of manually building and deploying the documentation after every approved change, an automated system can perform these steps.
+
+For example:
+
+```text
+Pull request merged
+        ↓
+Automated build starts
+        ↓
+Documentation checks run
+        ↓
+Build succeeds
+        ↓
+Documentation deployed
+        ↓
+Published site updated
+```
+
+This can make publishing faster and more consistent.
+
+Automation also reduces repetitive manual work for the documentation and engineering teams.
+
+## Continuous deployment
+
+You may hear the term **continuous deployment** when discussing automated publishing. It simply means that changes can be automatically deployed after they pass the required checks.
+
+For documentation, a workflow might look like:
+
+```text
+Writer updates documentation
+          ↓
+Pull request opened
+          ↓
+Review completed
+          ↓
+Pull request merged
+          ↓
+Automated build
+          ↓
+Automated deployment
+          ↓
+Published documentation
+```
+
+The exact implementation depends on the organization's CI/CD system.
+
+The important idea is that the publishing process can happen automatically rather than requiring someone to manually upload the documentation each time.
+
+## Preview environments
+
+Some teams use **preview environments** to allow reviewers see they documentation changes before they are published publicly.
+
+Preview environments also allow reviewers to inspect the actual rendered documentation rather than reviewing only the Markdown source.
+
+Preview environments can be particularly useful for checking:
+
+- Page layout
+- Navigation
+- Code examples
+- Images
+- Links
+- Formatting
+- Interactive elements
+
+Not every documentation project has preview environments, but they are useful when working with modern docs-as-code teams.
+
+## Verifying published documentation
+
+Publishing a doc doesn't finialize the process. After deployment, the published site should be checked to make sure everything works as expected.
+
+This is sometimes called **post-deployment verification**.
+
+Check important areas such as:
+
+- The documentation site loads correctly.
+- The expected pages are available.
+- Navigation works.
+- Links work.
+- Images load correctly.
+- Code examples are displayed correctly.
+- Search works if the site provides search.
+- The correct version of the documentation is displayed.
+- The site is accessible over HTTPS.
+
+For example, if you added a new authentication guide, open the published page and verify that everything works as expected.
+
+Checking the published version of your doc is important because sometimes, what worked locally may behave differently after deployment.
+
+
+## Common publishing problems
+
+A documentation deployment can fail for many reasons. Error 404 is something you'll get used to when you start working in a docs-as-code environment. Can be frustrating, but here are some common cause of deployment failure.
+
+### Broken links
+
+A documentation page may contain links to pages that no longer exist.
+
+This can happen when:
+
+- A page is renamed
+- A page is moved
+- A URL changes
+- An old version of a page is removed
+
+Always check important links after reorganizing documentation.
+
+### Missing images
+
+An image may work locally but fail after deployment if the path is incorrect or the image was not included in the project.
+
+For example:
+
+```markdown
+![API workflow](./images/api-workflow.png)
+```
+
+Check that the referenced image exists in the expected location.
+
+### Incorrect configuration
+
+Publishing depends on configuration.
+
+An incorrect site URL, deployment setting, or path configuration can cause the published site to behave unexpectedly.
+
+### Failed builds
+
+A site cannot be published successfully if the production build fails.
+
+If you encounter a build failure, read the error message and identify the file or configuration responsible.
+
+### Incorrect URLs
+
+A documentation site may be published successfully but still use an incorrect URL configuration.
+
+For example, links generated by the site may point to the wrong domain or path.
+
+This is why site configuration should be tested before publishing.
+
+:::tip
+
+When you encounter any of these issues, start by identifying **which stage failed**. For example, if the build failed, investigate the build error. If the build succeeded but deployment failed, investigate the deployment process. If deployment succeeded but the site is not accessible, investigate the hosting or domain configuration.
+Breaking the process into stages makes troubleshooting easier.
+
+:::
+
+## Public vs. private documentation
+
+Not all documentation is public.
+
+Some documentation is intended for:
+
+- Internal employees
+- Customers with active accounts
+- Developers with API access
+- Partners
+- Specific organizations
+
+The publishing process therefore depends partly on who should have access.
+
+Public documentation might be available to anyone, but private documentation may require authentication.
+
+Therefore, as a technical writer, you should understand the intended audience and access requirements for the documentation you are publishing.
+
+Never assume that documentation should automatically be public.
+
+## Versioned documentation
+
+Software changes over time, and documentation may need to reflect different versions of a product.
+
+For example:
+
+```text
+Documentation
+├── Version 3.0
+├── Version 2.0
+└── Version 1.0
+```
+
+Versioning your documentation allows the users to find information that matches the version of the software they are using.
+
+This is especially important for APIs because endpoints, parameters, authentication methods, and response formats can change between versions.
+
+A user working with version 1 of an API may need different instructions from someone using version 3.
+
+The exact versioning approach depends on the documentation platform and the organization's release process.
+
+## The technical writer's role in publishing
+
+The technical writer's involvement in publishing varies between organizations.
+
+In some teams, the writer may be responsible for running builds, opening deployment requests, or triggering publishing workflows.
+
+In other teams, developers or DevOps engineers may manage deployment while technical writers focus on content.
+
+Regardless of who performs the final deployment, technical writers benefit from understanding the process.
+
+You should be able to answer questions such as:
+
+- Where does the documentation live?
+- How is the documentation built?
+- Where is it hosted?
+- How are changes reviewed?
+- What happens after a pull request is merged?
+- Is publishing manual or automated?
+- How can you verify a successful deployment?
+- Who should you contact if publishing fails?
+
+Understanding these questions makes it easier to work effectively within the team.
+
+## A complete documentation publishing workflow
+
+Let's bring everything together.
+
+Suppose you have written a new guide for an API.
+
+The complete process would look like this:
+
+```text
+Research the API
+      ↓
+Write the guide in Markdown
+      ↓
+Test examples with Postman
+      ↓
+Preview with Docusaurus
+      ↓
+Create a Git branch
+      ↓
+Commit changes
+      ↓
+Push to GitHub
+      ↓
+Open pull request
+      ↓
+Technical and editorial review
+      ↓
+Make requested changes
+      ↓
+Merge pull request
+      ↓
+Build documentation
+      ↓
+Deploy documentation
+      ↓
+Verify published site
+      ↓
+Readers access the guide
+```
+
+This process demonstrates how the concepts you've learned throughout Part V connect.
+
+Markdown provides the content.
+
+Git tracks the changes.
+
+GitHub supports collaboration and review.
+
+Docusaurus builds the website.
+
+The hosting environment makes the website available to readers.
+
+:::note
+
+Automation can connect these stages and reduce manual work.
+
+:::
+
+## Publishing is part of the documentation lifecycle
+
+Publishing should not be viewed as the final moment of a documentation project.
+
+Documentation continues to evolve after publication.
+
+A published page may need to go through the following changes:
+
+- Updated when a product changes
+- Corrected when an error is discovered
+- Expanded when users have questions
+- Reviewed when an API changes
+- Archived when a feature is removed
+- Updated for a new software version
+
+The lifecycle therefore continues:
+
+```text
+Plan
+  ↓
+Write
+  ↓
+Review
+  ↓
+Publish
+  ↓
+Monitor
+  ↓
+Update
+  ↓
+Review
+  ↓
+Republish
+```
+
+Good documentation is maintained alongside the product it describes.
+
+## Why publishing matters
+
+A technical writer's responsibility does not end when the words are written.
+
+Documentation only provides value when readers can find it, access it, understand it, and use it successfully.
+
+Understanding publishing helps you see the full journey of documentation. It helps you see that you are not simply creating files. You are helping deliver information to users through a system that needs to work reliably.
+
+## Key takeaways
+
+- Publishing makes approved documentation available to its intended audience.
+- Deployment moves built documentation to the environment where it will be hosted.
+- Hosting provides the environment through which readers access documentation.
+- Docusaurus can generate static documentation websites that can be deployed to different hosting environments.
+- The `build` directory contains generated files and should not be edited directly.
+- Automated publishing can build and deploy documentation after approved changes are merged.
+- Preview environments allow teams to review rendered documentation before production deployment.
+- Post-deployment verification helps identify problems that may not appear during local development.
+- Documentation may be public or private depending on the intended audience and access requirements.
+- Versioned documentation helps users find information that matches the software version they use.
+- Publishing is part of an ongoing documentation lifecycle rather than a one-time final step.
+- Understanding the publishing process helps technical writers work effectively with engineering and documentation teams.
+
+## Next steps
+
+You now understand how documentation moves from a Markdown or MDX file in a repository to a published website that readers can access.
+
+You've also completed the core tools and workflow covered in the documentation-as-code part of this guide.
+
+In the next part of the guide, you'll bring everything you've learned together in a practical project and use your knowledge to document a real API.

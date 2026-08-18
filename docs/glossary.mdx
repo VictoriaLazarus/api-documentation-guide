@@ -1,0 +1,766 @@
+# Glossary
+
+API documentation introduces terminology from several areas, including web development, HTTP, software development, authentication, version control, and documentation tooling. You do not need to memorize every term. Use this glossary as a reference whenever you encounter a concept you are unfamiliar with.
+
+## A
+
+### API
+
+**API** stands for **Application Programming Interface**.
+
+An API provides a defined way for one software application to communicate with another. It specifies how a client can request information or ask the server to perform an action, and how the server should respond.
+
+### API documentation
+
+**API documentation** is technical content explaining how developers can understand and use an API.
+
+It typically describes:
+
+* Available endpoints
+* HTTP methods
+* Parameters
+* Authentication requirements
+* Request formats
+* Response formats
+* Error responses
+* Examples
+* Limitations and requirements
+
+Good API documentation should give developers enough information to successfully make requests and understand the responses they receive.
+
+### API endpoint
+
+An API endpoint is a specific URL that a client uses to access a particular resource or perform a specific operation through an API.
+
+### API key
+
+An **API key** is a credential the API uses to identify or authenticate a client. It is commonly sent through request headers or query parameters, depending on the API.
+
+Treat API keys as sensitive credentials and do not expose in publicly accessible code or documentation.
+
+
+### API reference
+
+An **API reference** is a structured source of technical information about an API's available operations. It commonly documents endpoints, parameters, authentication, requests, responses, status codes, and examples.
+
+Reference documentation is generally intended to help developers quickly find the precise information they need while using an API.
+
+
+### API request
+
+An **API request** is a message sent by a client to an API asking it to perform an operation or return information.
+
+### API response
+
+An **API response** is the message returned by the server after processing an API request.
+
+
+## B
+
+### Base URL
+
+A **base URL** is the beginning portion of an API's URLs.
+
+For example:
+
+```text
+https://api.example.com
+```
+
+Using a base URL helps documentation clearly distinguish the common API address from the individual endpoint path.
+
+
+### Branch
+
+A **branch** in Git is a separate line of development within a repository.
+
+Branches allow contributors to work on changes without immediately modifying the main branch.
+
+As a technical writer, you will most likely create a branch for your API documentation or new content update, and later submit the doc or changes for review.
+
+
+### Build
+
+A **build** is the process of converting source files into the files and assets needed to serve or publish a website.
+
+In a Docusaurus project, the build processes documentation, configuration, styles, and other project files to generate the website that will be deployed.
+
+
+## C
+
+### Cache
+
+A **cache** is temporary storage used to keep previously retrieved data so it can be accessed more quickly the next time it is needed.
+
+Caching can reduce the need to repeatedly request the same information from a server.
+
+
+### Cacheability
+
+**Cacheability** describes whether a response can be stored and reused by a client, proxy, or other caching system.
+
+It is one of the concepts associated with REST architecture and HTTP behavior.
+
+However, whether a response can safely be cached depends on factors such as the nature of the requested data and the caching rules provided by the server.
+
+
+### Client
+
+A **client** is a software application or system that sends requests to a server.
+
+
+### Code block
+
+A **code block** is a section of documentation used to display multiple lines of code or other technical examples.
+
+Markdown uses fenced code blocks:
+
+````markdown
+```json
+{
+  "id": 550
+}
+```
+````
+
+A language identifier such as `json`, `javascript`, or `bash` can be added after the opening backticks to enable syntax highlighting.
+
+
+### Commit
+
+A **commit** is a recorded set of changes in a Git repository.
+
+It creates the history of modifications made to a project and make it possible to understand how it has evolved.
+
+
+### Content type
+
+A **content type** describes the format of data being sent or returned.
+
+For example, an API may use JSON as its response format.
+
+The `Content-Type` HTTP header can indicate the format of the data being sent.
+
+
+## D
+
+### DELETE
+
+`DELETE` is an HTTP method used to request the removal of a resource.
+
+The exact behavior of a `DELETE` request depends on the API.
+
+### Docusaurus
+
+**Docusaurus** is a framework for building documentation websites.
+
+It supports Markdown and MDX and provides features such as:
+
+* Documentation pages
+* Navigation
+* Sidebars
+* Versioning
+* Search integrations
+* Custom styling
+* Static site generation
+
+In this guide, Docusaurus is used to convert Markdown content into a structured documentation website.
+
+### Docs-as-code
+
+**Docs-as-code** is an approach for creating and maintaining documentation using tools and workflows commonly associated with software development.
+
+A docs-as-code workflow may include:
+
+```text
+Write
+  ↓
+Track changes with Git
+  ↓
+Create a branch
+  ↓
+Review changes
+  ↓
+Build
+  ↓
+Test
+  ↓
+Merge
+  ↓
+Publish
+```
+
+This approach allows documentation to benefit from version control, collaborative review, structured workflows, and automation.
+
+
+## E
+
+### Endpoint
+
+An endpoint defines a specific location where a client can access an API resource or perform an operation.
+
+
+### Endpoint documentation
+
+**Endpoint documentation** explains how to use a particular API endpoint.
+
+
+
+## G
+
+### Git
+
+**Git** is a distributed version control system used to track changes to files. It is commonly used as part of a docs-as-code workflow.
+
+
+### GitHub
+
+**GitHub** is a platform for hosting Git repositories and collaborating on projects.
+
+Git and GitHub are related but very different.
+
+**Git** is the version control system, while **GitHub** is a platform that hosts Git repositories and provides collaboration features around them.
+
+
+### GitHub Pages
+
+**GitHub Pages** is a hosting service that can be used to publish websites directly from GitHub repositories.
+
+## H
+
+### Header
+
+An **HTTP header** is metadata included with an HTTP request or response.
+
+Headers provide additional information about the request or response.
+
+### HTTP
+
+**HTTP** stands for **Hypertext Transfer Protocol**.
+
+It is a protocol used for communication between clients and servers on the web.
+
+APIs commonly use HTTP to receive requests and return responses.
+
+
+### HTTP method
+
+An **HTTP method** indicates the operation a client wants to perform.
+
+Common HTTP methods include:
+
+| Method   | Common purpose              |
+| -------- | --------------------------- |
+| `GET`    | Retrieve data               |
+| `POST`   | Create or submit data       |
+| `PUT`    | Replace a resource          |
+| `PATCH`  | Partially update a resource |
+| `DELETE` | Remove a resource           |
+
+The exact behavior of a method depends on how the API implements it.
+
+
+### HTTP status code
+
+An **HTTP status code** is a three-digit code returned by a server to indicate the result of an HTTP request.
+
+
+Common examples include `200 OK`, `201 Created`, `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`, and `500 Internal Server Error`.
+
+## J
+
+### JSON
+
+**JSON** stands for **JavaScript Object Notation**.
+
+It is a lightweight data format commonly used to exchange structured data between applications.
+
+JSON represents information using structures such as objects, arrays, strings, numbers, booleans, and null values.
+
+
+### JSON object
+
+A **JSON object** is a collection of key-value pairs enclosed in curly braces.
+
+Example:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club"
+}
+```
+
+In this example, `id` and `title` are keys, while `550` and `"Fight Club"` are their corresponding values.
+
+
+### JSON array
+
+A **JSON array** is an ordered collection of values enclosed in square brackets.
+
+Example:
+
+```json
+{
+  "movies": [
+    {
+      "id": 550,
+      "title": "Fight Club"
+    },
+    {
+      "id": 680,
+      "title": "Pulp Fiction"
+    }
+  ]
+}
+```
+
+Arrays are commonly used when an API returns multiple resources.
+
+
+## M
+
+### Markdown
+
+**Markdown** is a lightweight markup language used to format and structure text.
+
+Docusaurus supports Markdown as one of the primary formats for writing documentation.
+
+
+### MDX
+
+**MDX** is an extension of Markdown that allows Markdown content to be combined with JSX and supported React components.
+
+A `.mdx` file can contain normal Markdown and interactive or custom components supported by the documentation project.
+
+
+## O
+
+### OpenAPI
+
+**OpenAPI** is a specification for describing HTTP APIs in a structured, machine-readable format.
+
+OpenAPI descriptions can also be used with tools that generate API documentation, validate requests, or create client code.
+
+
+### OAuth
+
+**OAuth** is an authorization framework that lets an application access a user’s resources on their behalf without requiring the user's password.
+
+It is commonly used when an application needs delegated access to another service.
+
+## P
+
+### Parameter
+
+A **parameter** is a value supplied to an API request to provide additional information or control how the request is processed.
+
+Common types include:
+
+* Path parameters
+* Query parameters
+* Header parameters
+
+
+### Path parameter
+
+A **path parameter** is a variable value included directly in an endpoint's URL path. It is commonly used to identify a specific resource.
+
+
+### POST
+
+`POST` is an HTTP method commonly used to submit data to a server or create a resource.
+
+A `POST` request may contain data in its request body.
+
+Example:
+
+```http
+POST /movies
+```
+
+The exact behavior depends on the API.
+
+
+### Postman
+
+**Postman** is a tool for working with APIs.
+
+It allows users to:
+
+* Send API requests
+* Configure authentication
+* Add parameters and headers
+* Inspect responses
+* Save requests into collections
+* Test API behavior
+
+For technical writers, Postman can be useful for exploring and verifying an API before documenting it.
+
+
+### PUT
+
+`PUT` is an HTTP method commonly used to replace or update a resource.
+
+The exact behavior depends on the API implementation.
+
+
+## Q
+
+### Query parameter
+
+A **query parameter** is a value added to an API URL after a question mark (`?`) to provide additional information to an API request.
+
+Multiple query parameters are separated using an ampersand (`&`)
+
+
+
+## R
+
+### Rate limiting
+
+**Rate limiting** is a mechanism used by an API to control how many requests a client can make within a specific period. For example, an API might limit a client to a certain number of requests per minute.
+
+Rate limits help protect API infrastructure from excessive traffic and ensure fair access to shared resources.
+
+API documentation should clearly explain applicable limits and how clients can respond when they reach them.
+
+
+### Request body
+
+A **request body** contains data sent to the server as part of an HTTP request.
+
+Request bodies are commonly used with methods such as `POST`, `PUT`, and `PATCH`.
+
+The format of the request body depends on the data the API expects.
+
+### Request header
+
+A **request header** provides additional information about an HTTP request.
+
+Headers can communicate information about authentication, content format, client preferences, and other request details.
+
+
+### Response body
+
+A **response body** contains the data the server returns after processing a client’s request.
+
+The response body may contain the requested resource, a collection of resources, metadata, or error information.
+
+
+### REST
+
+**REST** stands for **Representational State Transfer**.
+
+It is an architectural style for designing networked systems. RESTful APIs commonly use HTTP methods and resource-oriented URLs to allow clients interact with resources.
+
+:::note 
+
+Not every HTTP API is necessarily RESTful. REST describes an architectural style, while HTTP is the protocol commonly used to implement REST APIs.
+
+:::
+
+### REST API
+
+A **REST API** is an API designed according to REST principles.
+
+
+### Repository
+
+A **repository** is a location where a project's files and Git history are stored.
+
+The exact structure depends on the project.
+
+
+### Resource
+
+A **resource** is an identifiable piece of information or entity exposed by an API.
+
+REST APIs commonly organize endpoints around resources.
+
+
+## S
+
+### Server
+
+A **server** is a system that receives requests, processes them, and returns responses.
+
+In an API interaction, the server is responsible for processing the client's request and returning the appropriate result.
+
+
+### Session
+
+A **session** represents an established interaction or authenticated state between a client and a service.
+
+Some APIs use session identifiers to maintain state associated with a user or application.
+
+
+### Statelessness
+
+**Statelessness** is a REST constraint that means each request should contain all the information the server needs to understand and process that request.
+
+The server does not rely on stored client session state from a previous request to understand the current request.
+
+For example, if the API requires authentication, include the necessary credentials or tokens with each request according to its authentication mechanism.
+
+### Status code
+
+See **HTTP Status Code**.
+
+A status code is a three-digit number a server returned to indicate the outcome of an HTTP request.
+
+### Swagger
+
+**Swagger** is a collection of tools associated with the OpenAPI specification.
+
+Swagger tooling can be used for tasks such as:
+
+* Designing APIs
+* Viewing API specifications
+* Generating documentation
+* Testing API endpoints
+
+The terms **OpenAPI** and **Swagger** are related but should not be treated as exact synonyms. OpenAPI is the specification, while Swagger refers to a set of tools and the ecosystem around it.
+
+
+## T
+
+### Token
+
+A **token** is a credential or value used to authenticate or authorize requests to an API.
+
+Depending on the API, tokens may be used to:
+
+* Identify a client
+* Authenticate a user
+* Authorize access to protected resources
+* Maintain an authenticated session
+
+The exact meaning and lifecycle of a token depend on the authentication system being used.
+
+
+### Technical writer
+
+A **technical writer** creates documentation that explains technical products, systems, processes, or concepts clearly to a specific audience.
+
+A technical writer does not necessarily need to be a software developer, but understanding the technology being documented is essential.
+
+
+## U
+
+### URI
+
+**URI** stands for **Uniform Resource Identifier**.
+
+A URI identifies a particular resource or name.
+
+URLs are a type of URI that provide a way to locate a resource.
+
+In everyday API documentation, the term **URL** is often used when referring to the address used to make an API request.
+
+
+### URL
+
+**URL** stands for **Uniform Resource Locator**.
+
+A URL specifies the location of a resource and can be used to access it.
+
+
+## V
+
+### Version control
+
+**Version control** is a system for tracking changes to files over time.
+
+It allows contributors to see what changed, when it changed, and who made it.
+
+Git is a widely used version control system.
+
+For documentation teams, version control makes it easier to review, collaborate on, and restore documentation changes.
+
+
+### Webhook
+
+A **webhook** is a mechanism that allows a system to send an HTTP request to another system when a particular event occurs.
+
+Unlike a traditional API request, where a client asks a server for information, a webhook allows the server or service to notify another system when something happens.
+
+For example, a payment service might send a webhook when a payment succeeds.
+
+
+## Additional API and documentation terms
+
+### Authentication
+
+**Authentication** is the process of verifying the identity of a user, application, or system.
+
+An API may use API keys, tokens, sessions, OAuth, or other mechanisms to authenticate a user.
+
+Authentication answers the question:
+
+> Who are you?
+
+
+### Authorization
+
+**Authorization** determines what an authenticated user or application is allowed to access or do.
+
+Authorization answers the question:
+
+> What are you allowed to do?
+
+Authentication and authorization are related but are not the same thing.
+
+* **Authentication** determines who you are.
+* **Authorization** determines what you are allowed to access or do.
+
+
+### Bearer token
+
+A **bearer token** is a type of access token that grants access to whoever possesses it.
+
+It is commonly sent using the `Authorization` HTTP header.
+
+:::note
+
+Bearer tokens should be handled securely.
+
+:::
+
+
+### Error response
+
+An **error response** is an API response that indicates that a request could not be completed as intended.
+
+
+Good API documentation should explain common errors and how developers can resolve them.
+
+
+### Idempotent
+
+An operation is **idempotent** when making the same request multiple times has the same intended effect on the server as making it once.
+
+For example, certain `PUT` and `DELETE` operations are generally designed to be idempotent.
+
+Whether an operation is idempotent depends on the API's implementation and behavior.
+
+
+### Pagination
+
+**Pagination** is a technique for dividing a large collection of results into smaller sets, or pages.
+
+For example, an API might return:
+
+```text
+page=1
+page=2
+page=3
+```
+
+Pagination prevents an API from returning an unnecessarily large amount of data in a single response.
+
+API documentation should explain:
+
+* How pagination works.
+* How to specify a page.
+* How many results are returned per page.
+* How to determine whether more results are available.
+
+
+### Schema
+
+A **schema** describes the structure and expected properties of data.
+
+For example, a movie response schema might define fields such as:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15"
+}
+```
+
+A schema can specify the expected field names, data types, required properties, and relationships between data structures.
+
+
+### SDK
+
+**SDK** stands for **Software Development Kit**.
+
+An SDK is a collection of tools, libraries, documentation, and other resources designed to help developers build applications for a particular platform or service.
+
+An API may provide SDKs that make it easier to interact with its endpoints using a particular programming language.
+
+
+### Source file
+
+A **source file** is a file containing the original content or code used to create an application, website, or documentation site.
+
+In a Docusaurus project, Markdown and MDX files are examples of documentation source files.
+
+
+### Syntax highlighting
+
+**Syntax highlighting** is the visual formatting of code that uses different styles to distinguish programming-language elements.
+
+Markdown code blocks can specify a language:
+
+````markdown
+```json
+{
+  "id": 550
+}
+```
+````
+
+Docusaurus can then apply appropriate syntax highlighting to the example.
+
+
+## Quick reference
+
+The following concepts are especially important for API documentation:
+
+| Term               | Meaning                                                                    |
+| ------------------ | -------------------------------------------------------------------------- |
+| **API**            | A defined way for software systems to communicate                          |
+| **Endpoint**       | A specific API URL used to access a resource or operation                  |
+| **HTTP method**    | Indicates the operation a client wants to perform                          |
+| **Parameter**      | A value supplied to an API request                                         |
+| **Request**        | A message sent from a client to an API                                     |
+| **Response**       | A message returned by an API                                               |
+| **Status code**    | Indicates the result of an HTTP request                                    |
+| **JSON**           | A common format for exchanging structured data                             |
+| **Authentication** | Verifies identity                                                          |
+| **Authorization**  | Determines access permissions                                              |
+| **REST**           | An architectural style for designing networked systems                     |
+| **API key**        | A credential commonly used to identify or authenticate a client            |
+| **Token**          | A credential used for authentication or authorization                      |
+| **Postman**        | A tool for sending and testing API requests                                |
+| **OpenAPI**        | A specification for describing HTTP APIs                                   |
+| **Markdown**       | A lightweight markup language used to structure documentation              |
+| **Docusaurus**     | A framework for building documentation websites                            |
+| **Git**            | A version control system                                                   |
+| **GitHub**         | A platform for hosting Git repositories and collaboration                  |
+| **Docs-as-code**   | An approach to managing documentation using software-development workflows |
+
+
+## How to use this glossary
+
+You do not need to read this glossary from beginning to end before starting the guide.
+
+Instead, use it as a reference while learning.
+
+If you encounter an unfamiliar term:
+
+1. Check the glossary for a definition.
+2. Return to the chapter where the term was introduced.
+3. Read the surrounding explanation and examples.
+4. Try the concept yourself where possible.
+5. Return to the glossary whenever you need a quick refresher.
+
+Technical concepts become easier to understand when you see them used in context. The glossary is therefore a companion to the guide rather than a replacement for the explanations and practical exercises in each chapter.
+
+As you continue working with APIs, you will encounter additional terminology. Treat unfamiliar terms as opportunities to expand your technical vocabulary rather than something you need to master all at once.
+
+> **Remember:** You don't need to know every technical term before you can become a good API documentation writer. You need to understand the concepts relevant to the documentation you are creating and be able to explain them clearly to your readers.

@@ -1,0 +1,157 @@
+---
+title: Introduction to docs-as-code
+sidebar_position: 1
+---
+
+# Introduction to docs-as-code
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what docs-as-code means.
+- Understand why documentation teams use software development workflows.
+- Identify the benefits of treating documentation like code.
+- Recognize the tools commonly used in a docs-as-code workflow.
+
+## What is docs-as-code?
+
+**Docs-as-code** is an approach to creating and managing documentation using many of the same tools and workflows that software development teams use to build and maintain their code.
+
+If you're new to technical writing, you might have heard about this term or seen it in many job requirement as one of the skills needed for the position. Fret not, docs-as-code is not as difficult as you may think and once you get familiar with it, like me, you may even begin to enjoy it than working with traditional content writing and management tools. 
+
+In simple explanation, docs-as-code means that instead of creating content only in a word processor or content management system, documentation is stored as files in a repository and managed through tools such as Git and GitHub.
+
+For example, a typical docs-as-code workflow might look like this:
+
+```text
+Write
+  ↓
+Save documentation as files
+  ↓
+Commit changes
+  ↓
+Push changes to a repository
+  ↓
+Review
+  ↓
+Merge
+  ↓
+Build
+  ↓
+Publish
+```
+
+This approach allows documentation teams to collaborate with developers using a workflow that is already familiar to engineering teams.
+
+## Why use docs-as-code?
+
+Traditional documentation workflows often rely on tools designed primarily for content creation and publishing.
+
+Docs-as-code introduces software development practices that can make documentation easier to manage, review, and maintain.
+
+What does this mean? Let's break down some of the features that make docs-as-code.
+
+### Version control
+
+Verson control, in docs-as-code workflow, means the ability to see all that occur in documentation, including who made the change, when it was made, and even why. 
+
+This is important because documentation can change frequently as products and APIs evolve.
+
+Version control helps you to track changes to documentation over time.
+
+You can also restore an earlier version when necessary.
+
+### Collaboration
+
+One of the key factors of docs-as-code is that multiple contributors can work on documentation without relying on a single person to manage the master copy. You may want to say that but traditional content management tools like Google docs and Microsoft office also allow version control and collaboration. 
+
+While this is true, docs-as-code provide an edge as it allows easy collaboration with the engineering team since you are going to be using the tools they use for their tasks. 
+
+Meaning, writers, developers, product managers, and subject matter experts can contribute to the same documentation project through a shared repository.
+
+### Review
+
+With doc-as-code, documentation changes can go through a review process before they are published.
+
+For example, a technical writer can create a change, a developer can verify the technical accuracy, and another writer can review the content for clarity and consistency.
+
+### Automation
+
+Docs-as-code workflows can automate repetitive tasks such as:
+
+- Building documentation websites
+- Checking links
+- Validating formatting
+- Generating API references
+- Deploying documentation
+
+Automation reduces manual work and helps catch problems before documentation reaches users.
+
+## Common tools in a docs-as-code workflow
+
+Docs-as-code isn't a single tool. It is a workflow that can involve several tools.
+
+| Tool | Purpose |
+|------|---------|
+| **Markdown** | Write and format documentation using plain-text files. |
+| **Git** | Track changes to documentation. |
+| **GitHub** | Host repositories and collaborate on documentation changes. |
+| **Docusaurus** | Build and publish documentation websites. |
+| **Visual Studio Code** | Write and edit documentation files. |
+
+:::note
+
+Different organizations use different tools, but the underlying workflow is often similar.
+
+:::
+
+## How documentation fits into the development workflow
+
+In a docs-as-code environment, documentation can be developed alongside the product it describes.
+
+For example, when a developer adds a new API endpoint, the technical writer can document the endpoint in the same repository or through a connected documentation workflow.
+
+The documentation change can then be reviewed, tested, and published alongside the product change.
+
+This creates a closer connection between the product and its documentation.
+
+## Docs-as-code is more than using Git
+
+It is important to understand that docs-as-code does not simply mean:
+
+> "Write Markdown files and put them on GitHub."
+
+The approach combines several practices:
+
+- Writing documentation in a structured, version-controlled format.
+- Collaborating through a shared repository.
+- Reviewing changes before publication.
+- Automating quality checks and builds.
+- Publishing documentation through a repeatable process.
+
+Git and GitHub are tools that support this workflow, but the workflow itself is the bigger concept.
+
+## Why this matters
+
+As a technical writer, understanding docs-as-code helps you work more effectively with engineering and documentation teams.
+
+But, keep in mind that, you don't need to become a software developer to participate in a docs-as-code workflow.
+
+However, you should understand how documentation moves from a local file on your computer to a published website.
+
+You'll also need to become comfortable with concepts such as repositories, commits, branches, pull requests, and builds.
+
+The following chapters will introduce each of these concepts step by step.
+
+## Key takeaways
+
+- Docs-as-code applies software development workflows to documentation.
+- Version control makes documentation changes easier to track and manage.
+- Collaboration and review help teams maintain accurate documentation.
+- Automation can simplify testing, building, and publishing documentation.
+- Docs-as-code is a workflow rather than a single tool.
+
+## Next steps
+
+Now that you understand what docs-as-code means and why documentation teams use it, you'll start with **Markdown**, the lightweight markup language used to write the documentation in this guide.

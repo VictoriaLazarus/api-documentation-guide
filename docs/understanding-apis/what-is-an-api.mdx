@@ -1,0 +1,131 @@
+---
+title: What is an API?
+sidebar_position: 1
+---
+# What is an API?
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Define what an API is.
+- Explain why APIs are used.
+- Describe the roles of a client and a server.
+- Understand how an API enables communication between applications.
+
+## Why do APIs exist?
+
+Modern technologies rarely work in isolation. Instead, they rely on other applications and services to perform specific tasks or access data.
+
+Take, for instance, every day applications like your weather app, e-commerce website or a movie app. For these applications to work effectively, the weather app retrieves forecasts from a weather service, an e-commerce website processes payments through a payment provider, and a movie app displays information from a movie database.
+
+Instead of the developers of these application to build and maintain all these services themselves, they use Application Programming Interface (API) to enable their applications communicate with systems that already provide these services. This allows the developers to reuse existing functionality, keep applications lightweight, and focus on solving the problems their software is designed for. 
+
+By providing a standardized way for applications to exchange information, APIs allow software systems to work together without exposing their internal implementation. Each application only needs to know how to interact with the API, not how the underlying system is built.
+
+## What is an API?
+
+An API is a set of rules and protocols that allows different software applications to communicate and exchange data with each other.
+
+Put simply, software doesn't communicate directly with another application's database or internal code. Instead, it sends a request to the API. The API acts as an intermediary, receiving the request, passing it to the appropriate service for processing, and returning a response to the application.
+
+In other words, the API defines how requests should be made and what responses can be expected, allowing applications to exchange information in a secure and consistent way.
+
+## Understanding client and server in API interaction
+
+Every API interaction involves two participants: the **client** and the **server**. Understanding the role of each is essential in API documentation.
+
+### Client
+
+The **client** is the application or system that sends a request to an API. It initiates communication whenever it needs to retrieve data or perform an action.
+
+For example, a client could be:
+
+- A weather application requesting today's forecast.
+- A travel website searching for available flights.
+- A movie application retrieving details about a specific film.
+
+In each case, the client doesn't access the data directly. Instead, it sends a request to the API and waits for a response.
+
+### Server
+
+The **server** is the system that receives the client's request through the API. It processes the request, performs the required operation, and returns a response.
+
+Depending on the request, the server can:
+
+- Retrieve data from a database.
+- Create a new record.
+- Update existing information.
+- Delete information that is no longer needed.
+
+After completing the request, the server sends a response back to the client through the API.
+
+## How the client and server work together
+
+The following diagram shows how information flows between a client and a server.
+
+```text
++---------+        Request        +-------------+        Processes        +---------+
+| Client  | --------------------> |     API     | ---------------------> | Server  |
++---------+                       +-------------+                        +---------+
+      ^                                                                   |
+      |                                                                   |
+      +------------------------- Response --------------------------------+
+```
+
+:::tip
+
+As a technical writer, you'll document how the client communicates with the API, what information the client must send, and what responses the server returns.
+
+:::
+
+
+## Example
+
+Let's see how these concepts come together in a real-world scenario.
+
+Imagine you're building a movie application that allows users to search for information about films. Instead of maintaining its own movie database, the application uses the TMDB API to retrieve movie details.
+
+When a user selects a movie, the application (the client) sends a request to the TMDB API.
+
+```http
+GET https://api.themoviedb.org/3/movie/550
+```
+
+The API receives the request, retrieves the movie information from the server, and returns a response to the application.
+
+A simplified response might look like this:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "vote_average": 8.4
+}
+```
+
+The application then uses this information to display the movie's details to the user.
+
+In this example, you've already encountered several important concepts, including requests, responses, endpoints, and JSON. Each of these plays a key role in API communication and will be covered in detail throughout this guide.
+
+:::note
+
+This example only illustrate how APIs communicate. If you try sending the request to the TMDB API, it won't work unless you have a valid API key or access token.
+
+Later in this guide, you'll learn how to obtain API credentials, authenticate requests, and test API endpoints using Postman.
+
+:::
+
+## Key takeaways
+
+- **APIs** allow applications to communicate with one another.
+- **Clients and servers** communicate by exchanging requests and responses through an API.
+- **API communication** provides a consistent way for applications to exchange information without exposing their internal implementation.
+- **An understanding of API communication** forms the foundation for writing effective API documentation.
+
+## Next steps
+
+Now that you understand what an API is and the roles of the client and server, you're ready to explore how API communication works in more detail.
+
+In the next chapter, you'll examine the complete request-response lifecycle and learn how information flows between applications through an API.

@@ -1,0 +1,130 @@
+---
+title: Endpoint structure
+sidebar_position: 1
+---
+
+# Endpoint structure
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Identify the components of an API endpoint.
+- Explain the purpose of each component.
+- Recognize the information that should be documented for every endpoint.
+- Create a consistent structure for endpoint documentation.
+
+## What is an endpoint?
+
+An endpoint is a specific URL that allows clients to interact with an API. It represents a particular operation, such as retrieving data, creating a resource, updating information, or deleting an existing resource.
+
+For example:
+
+```http
+GET /movie/550
+```
+
+This endpoint retrieves information about the movie with the ID `550`.
+
+An API usually consists of multiple endpoints, each designed to perform a specific task.
+
+## What should an endpoint description include?
+
+Every endpoint description should provide enough information for developers to understand how to use it successfully.
+
+Therefore, when documenting an endpoint, ensure you cover important details like:
+
+- The endpoint's purpose
+- The HTTP method
+- The endpoint URL
+- Authentication requirements
+- Path parameters
+- Query parameters
+- Request body, if applicable
+- Response body
+- Status codes
+- Possible error responses
+
+Providing this information consistently makes your documentation easier to navigate and use.
+
+## Example endpoint
+
+Below is a simple example of how an endpoint can be documented.
+
+### Get Movie Details
+
+Returns detailed information about a specific movie.
+
+**HTTP Method**
+
+```http
+GET
+```
+
+**Endpoint**
+
+```http
+/movie/{movie_id}
+```
+
+**Authentication**
+
+Bearer Token
+
+**Path parameter**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `movie_id` | Integer | Yes | The unique identifier of the movie. |
+
+**Response**
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "runtime": 139
+}
+```
+
+This example includes the essential information developers need before calling the endpoint.
+
+## Keep your endpoint documentation consistent
+
+When you're writing your API documentation, keep in mind that users often work with multiple endpoints within the same API.
+
+Therefore, ensure you follow a consistent structure for your documentation. This helps the users find information quickly without learning a new layout each time.
+
+For example, if one endpoint lists authentication before parameters, every other endpoint should follow the same order.
+
+Consistency improves readability and reduces confusion.
+
+## Why this matters
+
+As a technical writer, you'll document dozens—or even hundreds—of endpoints over the course of a project.
+
+A consistent endpoint template:
+
+- Reduces omissions.
+- Improves readability.
+- Maintains documentation more efficiently.
+- Creates a better developer experience.
+
+:::note
+
+Many documentation teams use templates or style guides to ensure every endpoint follows the same structure.
+
+:::
+
+## Key takeaways
+
+After completing this chapter, you should understand that:
+
+- An endpoint performs a specific operation within an API.
+- Every endpoint should follow a consistent documentation structure.
+- Consistency improves readability and usability.
+
+## Next steps
+
+Now that you understand how endpoint documentation is structured, the next chapter explores how to document parameters accurately.

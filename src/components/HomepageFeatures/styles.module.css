@@ -1,0 +1,248 @@
+.features {
+  padding: 7rem 0;
+  background: #202424;
+}
+
+.sectionHeading {
+  margin-bottom: 3rem;
+  max-width: 700px;
+}
+
+.sectionHeading p {
+  margin-bottom: 0.8rem;
+
+  color: #36b7a3;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+
+  color: #f3f2ee;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.featureCard {
+  min-height: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 1.5rem;
+
+  border: 1px solid #343a39;
+  border-radius: 18px;
+
+  background: #272c2b;
+
+  color: inherit;
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+
+  border-color: #36b7a3;
+
+  background: #2b3231;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+
+  color: #7e8986;
+
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.arrow {
+  font-size: 1rem;
+}
+
+.cardContent {
+  margin-top: auto;
+}
+
+.numberBadge {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 1.5rem;
+
+  border: 1px solid #3a4543;
+  border-radius: 12px;
+
+  background: #303735;
+
+  color: #d9dfdc;
+
+  font-family: monospace;
+  font-weight: 700;
+}
+
+.featureCard h3 {
+  margin-bottom: 0.8rem;
+
+  color: #f3f2ee;
+
+  font-size: 1.4rem;
+}
+
+.featureCard p {
+  margin: 0;
+
+  color: #aeb7b4;
+
+  line-height: 1.7;
+}
+
+/* Light theme */
+
+[data-theme='light'] .features {
+  background: #eef3f1;
+}
+
+[data-theme='light'] .sectionHeading h2 {
+  color: #18211f;
+}
+
+[data-theme='light'] .featureCard {
+  border-color: #d9e2df;
+  background: #ffffff;
+}
+
+[data-theme='light'] .featureCard:hover {
+  border-color: #279f8d;
+  background: #fbfdfc;
+}
+
+[data-theme='light'] .numberBadge {
+  border-color: #d9e2df;
+  background: #f1f6f4;
+  color: #40504c;
+}
+
+[data-theme='light'] .featureCard h3 {
+  color: #18211f;
+}
+
+[data-theme='light'] .featureCard p {
+  color: #5b6763;
+}
+
+[data-theme='light'] .cardTop {
+  color: #71807b;
+}
+
+/* Final CTA */
+
+.finalCta {
+  padding: 7rem 1.5rem;
+
+  background: #181b1c;
+}
+
+.finalCtaContent {
+  max-width: 750px;
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.finalCta h2 {
+  margin: 0 0 1.2rem;
+
+  color: #f3f2ee;
+
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.finalCta p:not(.eyebrow) {
+  max-width: 550px;
+  margin: 0 auto 2rem;
+
+  color: #adb6b3;
+
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.finalCta .eyebrow {
+  margin-bottom: 1rem;
+
+  color: #36b7a3;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+/* Light theme */
+
+[data-theme='light'] .finalCta {
+  background: #e3ece9;
+}
+
+[data-theme='light'] .finalCta h2 {
+  color: #18211f;
+}
+
+[data-theme='light'] .finalCta p:not(.eyebrow) {
+  color: #596662;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 996px) {
+  .features {
+    padding: 5rem 1.5rem;
+  }
+
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .features {
+    padding: 4rem 1.25rem;
+  }
+
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featureCard {
+    min-height: 280px;
+  }
+
+  .finalCta {
+    padding: 5rem 1.25rem;
+  }
+}

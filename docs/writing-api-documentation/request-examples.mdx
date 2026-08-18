@@ -1,0 +1,172 @@
+---
+title: Request examples
+sidebar_position: 3
+---
+
+# Request examples
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain why request examples are an essential part of API documentation.
+- Write request examples that are accurate and easy to follow.
+- Select realistic example values.
+- Highlight important request details without overwhelming readers.
+
+## Why request examples matter
+
+A request example shows users how to interact with an API endpoint. Unlike a parameter description that shows developers what information an endpoint accepts, a request example shows how those parameters come together in a real request.
+
+Good request examples help developers:
+
+- Understand how to call an endpoint
+- Verify they're sending requests correctly
+- Copy and adapt examples for their own applications
+- Learn the API more quickly
+
+Whenever possible, include a request example for every endpoint.
+
+## What makes a good request example?
+
+A good request example should:
+
+- Use the correct HTTP method
+- Include the complete endpoint URL or endpoint path
+- Show required parameters
+- Include authentication when required
+- Use realistic example values
+- Be easy to copy and modify
+
+Avoid placeholders that don't help readers understand how the request works.
+
+## Example request
+
+The following example retrieves information about a specific movie using the TMDB API.
+
+```http
+GET https://api.themoviedb.org/3/movie/550
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+This request includes:
+
+- The HTTP method (`GET`)
+- The endpoint URL
+- An authentication header
+
+## Request with query parameters
+
+Request examples should also demonstrate how query parameters are used.
+
+For example:
+
+```http
+GET https://api.themoviedb.org/3/search/movie?query=inception&page=1
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+This example shows:
+
+- The search term
+- The page number
+- Authentication
+- The complete request URL
+
+Showing parameters in context makes them easier to understand than describing them individually.
+
+## Request with a request body
+
+When documenting endpoints that create or update resources, ensure to include an example request body. This is because, for an endpoint that creates or updates a resource, the request body usually contains the actual data the API needs to perform the operation. 
+
+For example:
+
+```http
+POST /movies
+Content-Type: application/json
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+```json
+{
+  "title": "The Matrix",
+  "release_date": "1999-03-31"
+}
+```
+
+In this example, the endpoint itself tells the developer where to send the request and the **POST** method tells them what kind of operation they're performing. But it doesn't tell them what data they need to send. The request body that follows makes that clear.
+
+Now the developer can see:
+
+- Which fields they need to provide.
+- What the field names look like.
+- What type of data each field expects.
+- How the JSON should be structured.
+- What a complete request might look like.
+
+Without an example, a developer might understand that they need to send a POST request but still have to guess how to structure the body.
+
+:::note
+
+Present the request body separately from the endpoint so it's easy to read.
+
+:::
+
+## Choosing example values
+
+Example values should be realistic and meaningful.
+
+Instead of using:
+
+```json
+{
+  "title": "Example Movie"
+}
+```
+
+Use:
+
+```json
+{
+  "title": "The Matrix"
+}
+```
+
+Meaningful examples help users understand what valid requests look like.
+
+Also, if a value has a required format, demonstrate that format in your example.
+
+## Keep examples up to date
+
+Examples should always reflect the current behavior of the API.
+
+Before publishing your API documentation:
+
+- Test every example
+- Verify authentication requirements
+- Confirm parameter names
+- Check that URLs are correct
+- Ensure request bodies match the latest API version
+
+An outdated example can confuse developers even if the rest of the documentation is accurate.
+
+## Why this matters
+
+Many developers use API documentation by copying and modifying request examples.
+
+Clear, tested examples reduce trial and error, build confidence, and improve the overall user experience.
+
+As a technical writer, your examples should demonstrate not only what an endpoint does, but also how developers are expected to use it.
+
+## Key takeaways
+
+After completing this chapter, you should know how to:
+
+- Include a request example for every endpoint whenever possible.
+- Use realistic values that reflect actual API usage.
+- Show authentication, parameters, and request bodies when required.
+- Test every example before publishing your documentation.
+
+## Next steps
+
+Now that you've learned how to write effective request examples, you'll explore how to document API responses so developers know what to expect after sending a request.

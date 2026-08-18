@@ -1,0 +1,184 @@
+---
+title: Parameters
+sidebar_position: 2
+---
+
+# Parameters
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Identify the information developers need about API parameters.
+- Document different types of parameters consistently.
+- Write clear and meaningful parameter descriptions.
+- Present parameter information using easy-to-read tables.
+
+## Why is parameter documentation important?
+
+Parameters tell an API what information to process or return. If they're documented poorly, developers may send incorrect requests or struggle to understand how an endpoint works.
+
+This is why it is important to explain the parameters in your API endpoints clearly so the developers know:
+
+- What the parameter is for
+- Whether it's required
+- What type of value it accepts
+- How to use it correctly
+
+Clear parameter documentation reduces errors and makes APIs easier to use.
+
+## What to document for every parameter
+
+For your API documentation, these are key parameter details you must include, regardless of the type:
+
+| Field | Description |
+|------|-------------|
+| **Name** | The name of the parameter. |
+| **Location** | Where the parameter is sent (Path, Query, Header, or Request Body). |
+| **Data type** | The expected data type, such as String, Integer, or Boolean. |
+| **Required** | Indicates whether the parameter is mandatory. |
+| **Description** | Explains the purpose of the parameter. |
+| **Default value** | The value used if none is provided, when applicable. |
+| **Allowed values** | Any accepted values, ranges, or restrictions. |
+| **Example** | A sample value that demonstrates correct usage. |
+
+Including this information helps developers understand how to construct valid requests.
+
+There are different types of parameters in API. We have the path, query, header, and body parameter. We already described this in the request and response section. For this purpose of this guide, this section covers how to document each type of parameter.
+
+:::note
+
+Parameters are best described using tables. This is to help the developers (who will use the documentation) grasp the important details necessary for successful API request. See examples of how to do this in the explanation of each parameter type.
+
+:::
+
+### Documenting path parameters
+
+Path parameters identify a specific resource.
+
+When documenting them, ensure you explain:
+
+- What resource the parameter identifies
+- The expected data type
+- Whether any value restrictions apply
+- And provide an example
+
+For instance:
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `movie_id` | Integer | Yes | The unique identifier of the movie to retrieve. |
+
+### Documenting query parameters
+
+Query parameters modify how an API returns data. They are commonly used for filtering, sorting, searching, and pagination.
+
+When describing your query parameter, make sure to explain:
+
+- Whether the parameter is optional
+- What it changes
+- Any default value
+- Accepted values, if applicable
+- And an example
+
+For example:
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `language` | String | No | Specifies the language used for the response. |
+| `page` | Integer | No | Specifies which page of results to return. Defaults to `1`. |
+
+### Documenting header parameters
+
+Header parameters often provide information that applies to the entire request, such as authentication or content type.
+
+Therefore, in your API documentation, ensure to include:
+
+- The header name,
+- Whether it's required,
+- Its expected format,
+- And when developers should include it.
+
+For example:
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `Authorization` | String | Yes | Bearer token used to authenticate the request. |
+| `Content-Type` | String | Yes | Indicates the format of the request body, such as `application/json`. |
+
+### Documenting request body fields
+
+Some endpoints require data to be included in the request body.
+
+Rather than describing the entire JSON object at once, document each field individually.
+
+For example:
+
+| Field | Type | Required | Description |
+|------|------|----------|-------------|
+| `title` | String | Yes | Title of the movie. |
+| `overview` | String | No | Brief description of the movie. |
+| `release_date` | String | Yes | Movie release date in YYYY-MM-DD format. |
+
+Documenting each field separately makes request bodies easier to understand and maintain.
+
+## Writing effective parameter descriptions
+
+A good parameter description explains the purpose of the parameter rather than repeating its name.
+
+Instead of writing:
+
+| Name | Description |
+|------|-------------|
+| `movie_id` | Movie ID |
+
+Write:
+
+| Name | Description |
+|------|-------------|
+| `movie_id` | The unique identifier of the movie to retrieve. |
+
+If there are restrictions on accepted values or formats, include them in the description.
+
+## Common mistakes
+
+Parameter documentation is one of the most important part of your API doc. Therefore, when describing your API parameters, ensure to avoid:
+
+- Omitting whether a parameter is required
+- Failing to specify the expected data type
+- Writing vague descriptions that repeat the parameter name
+- Leaving out default values or accepted values when they exist
+- Forgetting to update parameter documentation after the API changes
+
+## Parameter documentation checklist
+
+Before publishing your documentation, confirm that every parameter includes:
+
+- A name
+- A location
+- A data type
+- Whether it's required or optional
+- A clear description
+- Default or accepted values, when applicable
+- An example value, when helpful
+
+## Why this matters
+
+Parameter documentation is one of the most frequently referenced parts of an API.
+
+Developers rely on it to build valid requests and understand how different values affect an endpoint's behavior.
+
+Accurate and consistent parameter documentation improves usability, reduces confusion, and minimizes support requests.
+
+## Key takeaways
+
+After completing this chapter, you should know how to:
+
+- Document every parameter consistently.
+- Explain the purpose of each parameter, not just its name.
+- Include data types, requirements, examples, and constraints where applicable.
+- Use tables to make parameter information easy to scan.
+
+## Next steps
+
+Now that you've learned how to document parameters, you'll explore how to create effective request examples that developers can understand, copy, and adapt.

@@ -1,0 +1,725 @@
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 680px;
+
+  display: flex;
+  align-items: center;
+
+  background: #191d1d;
+}
+
+.heroGlow {
+  position: absolute;
+
+  width: 650px;
+  height: 650px;
+
+  right: 5%;
+  top: 5%;
+
+  background: radial-gradient(
+    circle,
+    rgba(48, 174, 157, 0.12) 0%,
+    rgba(48, 174, 157, 0.04) 40%,
+    transparent 70%
+  );
+
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+
+  width: min(1400px, 100%);
+
+  margin: 0 auto;
+  padding: 6rem 4rem;
+
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.heroText {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow,
+.sectionEyebrow {
+  margin: 0 0 2.8rem;
+
+  color: #35b9a5;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.eyebrow span {
+  margin-right: 0.7rem;
+
+  font-size: 1rem;
+}
+
+.heroTitle {
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: clamp(5rem, 8vw, 8rem);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.065em;
+}
+
+.heroTitle span:first-child {
+  color: #f1f0ed;
+}
+
+.heroTitle span:last-child {
+  color: #35b9a5;
+}
+
+.heroSubtitle {
+  max-width: 720px;
+
+  margin: 3rem 0 2.5rem;
+
+  color: #d0d5d3;
+
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  line-height: 1.6;
+}
+
+.startButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.3rem;
+
+  min-width: 280px;
+  padding: 1.1rem 1.6rem;
+
+  border-radius: 10px;
+
+  background: #35b9a5;
+  color: #071514;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.startButton span {
+  font-size: 1.3rem;
+  transition: transform 0.2s ease;
+}
+
+.startButton:hover {
+  color: #071514;
+  text-decoration: none;
+
+  background: #45c6b3;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 12px 30px rgba(53, 185, 165, 0.2);
+}
+
+.startButton:hover span {
+  transform: translateX(4px);
+}
+
+/* =========================
+   HERO VISUAL
+   ========================= */
+
+.heroVisual {
+  position: relative;
+
+  min-height: 540px;
+}
+
+.codeWindow {
+  position: absolute;
+
+  width: 78%;
+  height: 370px;
+
+  top: 50px;
+  right: 5%;
+
+  padding: 1.5rem;
+
+  border: 1px solid rgba(53, 185, 165, 0.55);
+  border-radius: 20px;
+
+  background: #091523;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.35),
+    0 0 70px rgba(53, 185, 165, 0.07);
+}
+
+.windowDots {
+  display: flex;
+  gap: 0.6rem;
+
+  margin-bottom: 2rem;
+}
+
+.windowDots span {
+  width: 13px;
+  height: 13px;
+
+  border-radius: 50%;
+
+  background: #627188;
+}
+
+.endpoint {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1.2rem;
+
+  border-radius: 12px;
+
+  background: #14243a;
+
+  color: #e7edf3;
+
+  font-size: 1.05rem;
+
+  overflow: hidden;
+}
+
+.endpoint strong {
+  color: #35c8ad;
+}
+
+.endpoint code {
+  color: #e0e5ec;
+  white-space: nowrap;
+}
+
+.tabs {
+  display: flex;
+  gap: 2rem;
+
+  margin-top: 1.7rem;
+  padding-bottom: 0.9rem;
+
+  border-bottom: 1px solid #243346;
+
+  color: #8292a9;
+}
+
+.activeTab {
+  color: #35c8ad;
+}
+
+.response {
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.25rem;
+
+  margin-top: 1.5rem;
+  padding: 1.4rem;
+
+  border-radius: 12px;
+
+  background: #06111d;
+
+  color: #b9c7d8;
+
+  font-family: monospace;
+  line-height: 1.7;
+}
+
+.codeBadge {
+  position: absolute;
+
+  top: 10px;
+  right: 11%;
+
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background: #35b9a5;
+
+  color: #071514;
+
+  font-family: monospace;
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.docsCard {
+  position: absolute;
+
+  width: 55%;
+  min-height: 430px;
+
+  right: 0;
+  bottom: 0;
+
+  padding: 2.2rem;
+
+  border: 1px solid #324c64;
+  border-radius: 20px;
+
+  background: #0b1828;
+
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+}
+
+.docsIcon {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 2rem;
+
+  border-radius: 15px;
+
+  background: rgba(53, 185, 165, 0.15);
+
+  color: #35c8b0;
+
+  font-family: monospace;
+  font-size: 1.3rem;
+}
+
+.docsCard h3 {
+  margin-bottom: 2rem;
+
+  color: #f0f2f4;
+
+  font-size: 1.8rem;
+}
+
+.docsLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+
+  color: #8fa0b5;
+}
+
+.docsLinks span {
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.docsLinks .selected {
+  background: rgba(53, 185, 165, 0.16);
+  color: #35c8b0;
+}
+
+/* =========================
+   GUIDE SECTION
+   ========================= */
+
+.guideSection {
+  padding: 7rem 0;
+
+  background: #202525;
+}
+
+.sectionIntro {
+  max-width: 720px;
+
+  margin-bottom: 3.5rem;
+}
+
+.sectionEyebrow {
+  margin-bottom: 1rem;
+}
+
+.sectionIntro h2 {
+  margin: 0;
+
+  color: #f0f1ee;
+
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.guideGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.guideCard {
+  min-height: 270px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 1.5rem;
+
+  border: 1px solid #353c3b;
+  border-radius: 16px;
+
+  background: #252b2a;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.guideCard:hover {
+  transform: translateY(-4px);
+
+  border-color: #35b9a5;
+
+  background: #29302f;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardNumber {
+  color: #35b9a5;
+
+  font-family: monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.cardArrow {
+  color: #71807c;
+
+  font-size: 1.2rem;
+}
+
+.cardContent {
+  margin-top: auto;
+}
+
+.cardContent h3 {
+  margin-bottom: 0.7rem;
+
+  color: #f0f1ee;
+
+  font-size: 1.3rem;
+}
+
+.cardContent p {
+  margin: 0;
+
+  color: #9ca8a5;
+
+  line-height: 1.65;
+}
+
+/* =========================
+   FINAL CTA
+   ========================= */
+
+.finalCta {
+  padding: 7rem 1.5rem;
+
+  background: #181c1c;
+}
+
+.finalCtaInner {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.finalCtaInner .sectionEyebrow {
+  margin-bottom: 1rem;
+}
+
+.finalCta h2 {
+  margin: 0 auto 1.2rem;
+
+  color: #f1f0ed;
+
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.finalCtaInner > p:not(.sectionEyebrow) {
+  max-width: 560px;
+
+  margin: 0 auto 2rem;
+
+  color: #aab4b1;
+
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* =========================
+   LIGHT THEME
+   ========================= */
+
+[data-theme='light'] .hero {
+  background: #f4f7f6;
+}
+
+[data-theme='light'] .heroGlow {
+  background: radial-gradient(
+    circle,
+    rgba(53, 185, 165, 0.14) 0%,
+    rgba(53, 185, 165, 0.05) 45%,
+    transparent 70%
+  );
+}
+
+[data-theme='light'] .heroTitle span:first-child {
+  color: #17211f;
+}
+
+[data-theme='light'] .heroSubtitle {
+  color: #4d5a56;
+}
+
+[data-theme='light'] .guideSection {
+  background: #eaf0ee;
+}
+
+[data-theme='light'] .sectionIntro h2 {
+  color: #17211f;
+}
+
+[data-theme='light'] .guideCard {
+  border-color: #d5dfdc;
+  background: #f8faf9;
+}
+
+[data-theme='light'] .guideCard:hover {
+  border-color: #35b9a5;
+  background: #ffffff;
+}
+
+[data-theme='light'] .cardContent h3 {
+  color: #17211f;
+}
+
+[data-theme='light'] .cardContent p {
+  color: #5d6965;
+}
+
+[data-theme='light'] .finalCta {
+  background: #e0e9e6;
+}
+
+[data-theme='light'] .finalCta h2 {
+  color: #17211f;
+}
+
+[data-theme='light'] .finalCtaInner > p:not(.sectionEyebrow) {
+  color: #596662;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media screen and (max-width: 1100px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    padding: 5rem 3rem;
+  }
+
+  .heroVisual {
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .heroText {
+    text-align: center;
+  }
+
+  .heroSubtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .eyebrow {
+    margin-bottom: 2rem;
+  }
+
+  .guideGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .heroContent {
+    padding: 4rem 1.5rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(4rem, 17vw, 6rem);
+  }
+
+  .heroSubtitle {
+    margin-top: 2rem;
+
+    font-size: 1.05rem;
+  }
+
+  .startButton {
+    min-width: 240px;
+  }
+
+  .heroVisual {
+    min-height: 430px;
+  }
+
+  .codeWindow {
+    width: 90%;
+    height: 300px;
+
+    right: 5%;
+  }
+
+  .docsCard {
+    width: 65%;
+    min-height: 330px;
+
+    padding: 1.5rem;
+  }
+
+  .docsCard h3 {
+    font-size: 1.4rem;
+  }
+
+  .docsLinks {
+    gap: 0.3rem;
+  }
+
+  .docsLinks span {
+    padding: 0.45rem;
+  }
+
+  .codeBadge {
+    width: 58px;
+    height: 58px;
+
+    right: 5%;
+  }
+
+  .guideSection {
+    padding: 5rem 1.25rem;
+  }
+
+  .guideGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .guideCard {
+    min-height: 240px;
+  }
+
+  .finalCta {
+    padding: 5rem 1.25rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .heroContent {
+    padding: 3.5rem 1rem;
+  }
+
+  .heroTitle {
+    font-size: 3.8rem;
+  }
+
+  .heroVisual {
+    min-height: 350px;
+  }
+
+  .codeWindow {
+    height: 245px;
+    padding: 1rem;
+  }
+
+  .endpoint {
+    padding: 0.8rem;
+
+    font-size: 0.8rem;
+  }
+
+  .tabs {
+    gap: 0.8rem;
+
+    font-size: 0.8rem;
+  }
+
+  .response {
+    padding: 0.8rem;
+
+    font-size: 0.7rem;
+  }
+
+  .docsCard {
+    min-height: 275px;
+    padding: 1rem;
+  }
+
+  .docsIcon {
+    width: 45px;
+    height: 45px;
+
+    margin-bottom: 1rem;
+  }
+
+  .docsCard h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  .docsLinks span {
+    font-size: 0.75rem;
+  }
+}

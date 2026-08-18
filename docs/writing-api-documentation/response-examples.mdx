@@ -1,0 +1,233 @@
+---
+title: Response examples
+sidebar_position: 4
+---
+
+# Response examples
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what makes a useful API response example.
+- Document response bodies clearly and accurately.
+- Identify the information developers need to understand a response.
+- Use realistic response examples in API documentation.
+- Explain response fields without overwhelming the reader.
+
+## Why response examples matter
+
+A request example shows developers how to interact with an endpoint. A response example shows them what to expect after the request is processed.
+
+Developers use response examples to understand:
+
+- What information the API returns.
+- How the returned data is structured.
+- What each field represents.
+- Which fields they can use in their applications.
+- What a successful response looks like.
+
+Response example is more than just a block of JSON. It should help the reader understand the information returned by the API.
+
+## What to include in a response example
+
+When documenting an API response, consider including:
+
+- The HTTP status code.
+- Response headers, when relevant.
+- The response body.
+- Descriptions of important response fields.
+- The multiple response examples when an endpoint can return substantially different responses depending on the request or outcome.
+
+For example:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "runtime": 139,
+  "vote_average": 8.4
+}
+```
+
+The status code **200** indicates that the request was successful, while the response body contains information about the requested movie.
+
+## Document the response fields
+
+In many API documentation, response example is documented as just a JSON response. This is not completely accurate because the JSON can contain many fields. Simply displaying the response doesn't always tell developers what those fields mean.
+
+When the meaning of a field isn't obvious, explain it separately.
+
+For example:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | Integer | Unique identifier of the movie. |
+| `title` | String | Title of the movie. |
+| `release_date` | String | Release date of the movie in `YYYY-MM-DD` format. |
+| `runtime` | Integer | Duration of the movie in minutes. |
+| `vote_average` | Number | Average user rating for the movie. |
+
+This allows developers to understand the response without having to spend time figuring out the meaning of each field.
+
+## Keep response examples realistic
+
+Use response data that accurately represents what the API returns.
+
+For example, if an API returns a movie object with an `id`, `title`, and `release_date`, don't create an example containing fields that the API doesn't actually return.
+
+Whenever possible, generate response examples by testing the endpoint yourself. This helps you avoid documenting assumptions instead of actual API behavior.
+
+## Don't overwhelm the reader
+
+Some API responses contain dozens or even hundreds of fields.
+
+Displaying the entire response can make the documentation difficult to scan, especially when many fields aren't relevant to the endpoint being explained.
+
+When a response is particularly large, consider showing a representative example and explaining the most important fields.
+
+For example:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ]
+}
+```
+
+If the actual response contains additional fields, make it clear that the example has been shortened.
+
+For example:
+
+```text
+// Additional response fields omitted for brevity.
+```
+
+Never remove fields that developers need to understand how to use the endpoint without making it clear that the response has been shortened.
+
+## Document nested objects clearly
+
+API responses often contain objects or arrays nested inside other objects.
+
+For example:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ]
+}
+```
+
+In this example, `genres` is an array containing objects. Each object contains an `id` and `name`.
+
+When documenting nested data, make the relationship between the fields clear.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `genres` | Array | List of genres associated with the movie. |
+| `genres[].id` | Integer | Unique identifier of the genre. |
+| `genres[].name` | String | Name of the genre. |
+
+This level of detail is particularly useful when developers need to extract specific values from a complex response.
+
+## Document different response scenarios
+
+An endpoint may return different responses depending on what happens during a request.
+
+For example:
+
+- A successful request may return `200 OK`.
+- A request for a resource that doesn't exist may return `404 Not Found`.
+- A request without valid authentication may return `401 Unauthorized`.
+
+Point out where these responses are important in understanding how an endpoint behaves and document representative examples for each scenario.
+
+For example:
+
+### Successful response
+
+```http
+HTTP/1.1 200 OK
+```
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club"
+}
+```
+
+### Resource not found
+
+```http
+HTTP/1.1 404 Not Found
+```
+
+```json
+{
+  "status_code": 34,
+  "status_message": "The resource you requested could not be found."
+}
+```
+
+This helps developers understand not only what happens when everything goes as expected, but also what they should expect when something goes wrong.
+
+## Verify response examples
+
+Before publishing a response example:
+
+- Send the request to the API.
+- Confirm the status code.
+- Check the response structure.
+- Verify field names and data types.
+- Confirm that documented fields actually exist.
+- Check whether values or formats have changed.
+- Compare the response with the current API documentation.
+
+:::note
+
+Testing the response yourself is especially important when working with an API that is actively being developed.
+
+:::
+
+## Why this matters
+
+Response examples are often one of the first things developers look at when learning an endpoint. A well-documented response helps them understand what data is available and how they can use it in their applications.
+
+Your responsibility as a technical writer is not simply to reproduce the API response. It's to make the response understandable.
+
+Therefore, when documenting this, make sure to present accurate examples, explain important fields, and provide enough context for developers to use the returned data confidently.
+
+## Key takeaways
+
+- Show developers what they can expect from an API response.
+- Include status codes, response bodies, and relevant headers when appropriate.
+- Explain response fields that aren't immediately obvious.
+- Use realistic examples based on the API's actual behavior.
+- Document different response scenarios when they provide useful context.
+- Keep large responses focused without hiding important information.
+
+## Next steps
+
+Now that you know how to document successful and alternative API responses, the next chapter focuses on **error handling**.
+
+You'll learn how to document errors in a way that helps developers understand what went wrong and how to resolve the problem.

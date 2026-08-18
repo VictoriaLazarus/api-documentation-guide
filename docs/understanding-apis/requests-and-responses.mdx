@@ -1,0 +1,235 @@
+---
+title: Requests and responses
+sidebar_position: 4
+---
+
+# Requests and responses
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Describe the purpose and component of an API request and response.
+- Explain how requests and responses work together during API communication.
+
+## What is an API request?
+
+An API request is the message a client sent to an API asking it to perform an action or return information.
+
+Depending on the operation, a request might retrieve data, create a new resource, update existing information, or delete a resource.
+
+:::important
+
+Every request contains the information the API needs to understand what the client wants to do.
+
+:::
+
+## Components of an API request
+
+Although requests vary from one API to another, they usually have the following components.
+
+| Component | Purpose |
+|----------|---------|
+| URL | Identifies the API and the resource being accessed. |
+| HTTP method | Specifies the action to perform. |
+| Headers | Provide additional information about the request, such as authentication credentials or the expected response format. |
+| Query parameters | Pass optional information to refine a request. |
+| Path parameters | Identify a specific resource within the URL. |
+| Request body | Contains data sent to the API when creating or updating resources. |
+
+:::note
+
+Not every request contains all of these components. The required ones depend on the API and the operation being performed.
+
+:::
+
+### URL
+
+The URL identifies where the request is sent.
+
+```http
+https://api.themoviedb.org/3/movie/550
+```
+
+### Headers
+
+Headers provide additional information about the request.
+
+Common headers include:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+Accept: application/json
+Content-Type: application/json
+```
+
+:::note
+
+Content-Type is most relevant when the request has a body, such as a POST, PUT, or PATCH request. A simple GET request often doesn't need it.
+
+:::
+
+### Parameters
+
+Parameters are values that clients send to an API to specify the information they want or the action they want the API to perform.
+
+For example, parameters can identify a specific resource, filter search results, control pagination, or provide data required to create or update a resource.
+
+Without parameters, many API endpoints wouldn't know what information to return or how to process a request.
+
+#### Path parameters
+
+Path parameters are part of the URL path and identify a specific resource.
+
+For example:
+
+```http
+GET /movie/550
+```
+
+In this example, `550` is the path parameter. It identifies the movie whose details the client is requesting.
+
+Unlike query parameters, path parameters are part of the URL itself and **do not begin with a question mark (`?`)**.
+
+#### Query parameters
+
+Query parameters provide optional information that modifies or filters a request.
+
+They appear **after a question mark (`?`)** in the URL as `key=value` pairs.
+
+For example:
+
+```http
+GET /movie/popular?language=en-US&page=2
+```
+
+In this example:
+
+- `language=en-US` specifies that the response should be returned in English (United States).
+- `page=2` requests the second page of results.
+
+:::note
+
+When multiple query parameters are included, they are separated by an ampersand (`&`).
+
+:::
+
+#### Path parameters vs. query parameters
+
+Although both path parameters and query parameters pass information to an API, they serve different purposes.
+
+| Path parameter | Query parameter |
+|----------------|-----------------|
+| Appears as part of the URL path. | Appears after a question mark (`?`) in the URL. |
+| Identifies a specific resource. | Modifies, filters, or refines the request. |
+| Does not begin with `?`. | Begins with `?` and uses the `key=value` format. |
+| Example: `/movie/550` | Example: `?language=en-US&page=2` |
+
+### Request body
+
+Some requests include a body containing data. For example:
+
+```json
+{
+  "title": "My Favorite Movie",
+  "description": "A personal movie list."
+}
+```
+
+Request bodies are commonly used when creating or updating resources.
+
+## What is an API response?
+
+After processing a request, the API returns a response to the client.
+
+An API response tells the client whether the request was successful and may include additional information, such as the requested data or details about an error.
+
+## Components of an API response
+
+A typical API response contains the following components.
+
+| Component | Purpose |
+|----------|---------|
+| Status code | Indicates whether the request succeeded or failed. |
+| Headers | Provide metadata about the response. |
+| Response body | Contains the returned data or an error message. |
+
+### Status code
+
+```http
+200 OK
+```
+
+The status code indicates that the request is successful.
+
+### Response headers
+
+Response headers provide additional information about the response.
+
+```http
+Content-Type: application/json
+```
+
+### Response body
+
+The response body contains the data returned by the API.
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15"
+}
+```
+
+## Putting it all together
+
+The following example shows a complete interaction between a client and an API.
+
+**Request**
+
+```http
+GET https://api.themoviedb.org/3/movie/550
+Authorization: Bearer YOUR_ACCESS_TOKEN
+Accept: application/json
+```
+
+↓
+
+**Response**
+
+```http
+200 OK
+Content-Type: application/json
+```
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "vote_average": 8.4
+}
+```
+
+This example combines many of the concepts introduced throughout this chapter and illustrates how requests and responses work together during API communication.
+
+:::important
+
+As a technical writer, when documenting an API, you'll describe how developers should structure their requests, what information they need to provide, and what they can expect in return. Clear documentation helps developers integrate with an API more efficiently and reduces confusion during implementation.
+
+:::
+
+## Key takeaways
+
+After completing this chapter, you should understand that:
+
+- API requests are sent by clients to retrieve data or perform an action.
+- API responses return the result of a request, including information about an error.
+- API requests and responses consist of multiple components, each serving a specific purpose.
+
+## Next steps
+
+Now that you're familiar with the structure of API requests and responses, it's time to look at one of the most common data formats used in API communication.
+
+In the next chapter, you'll learn how JSON is structured, how to read and interpret JSON data, and why it's widely used in API requests and responses.

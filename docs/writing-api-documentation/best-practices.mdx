@@ -1,0 +1,268 @@
+---
+title: API documentation best practices
+sidebar_position: 6
+---
+
+# API documentation best practices
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Apply practical principles for writing effective API documentation.
+- Structure information so developers can find what they need quickly.
+- Write clear and consistent technical content.
+- Keep examples accurate and useful.
+- Review documentation from a developer's perspective.
+
+## What makes API documentation effective?
+
+Good API documentation does more than describe how an API works. It helps developers accomplish a task easily.
+
+Effective documentation should be:
+
+- **Accurate** — Reflect the actual behavior of the API.
+- **Clear** — Explain technical concepts in language the intended audience can understand.
+- **Consistent** — Use the same terminology, structure, and formatting throughout.
+- **Complete** — Provide the information developers need to use the API successfully.
+- **Scannable** — Make important information easy to find.
+- **Maintainable** — Be structured so it can be updated as the API changes.
+
+These principles should guide every part of your documentation, from an individual parameter description to an entire developer guide.
+
+## Write for the developer's task
+
+Developers usually visit API documentation because they want to accomplish something.
+
+They may want to:
+
+- Retrieve information
+- Create a resource
+- Update existing data
+- Authenticate a request
+- Troubleshoot an error
+- Understand how to use an endpoint
+
+Start by considering what the developer needs to accomplish rather than what information you want to explain.
+
+For example, instead of organizing an endpoint page around internal API implementation details, organize it around the information a developer needs to successfully make the request.
+
+## Put information where developers expect it
+
+Developers should not have to search through several sections to understand how to use an endpoint.
+
+Keep related information together.
+
+For example, an endpoint should ideally provide:
+
+1. A clear description
+2. The endpoint and HTTP method
+3. Authentication requirements
+4. Parameters
+5. Request example
+6. Response example
+7. Possible errors
+
+This gives developers a predictable structure they can follow across the API.
+
+## Use clear and precise language
+
+Technical documentation should be easy to understand without becoming unnecessarily verbose.
+
+Prefer direct language.
+
+Instead of:
+
+> In order for the API to be able to successfully process the request, it is necessary for the user to provide a valid authentication token.
+
+Write:
+
+> Include a valid authentication token in the request.
+
+The second version communicates the same information with fewer words.
+
+Avoid unnecessary jargon, vague language, and complicated sentence structures.
+
+## Be consistent with terminology
+
+Use the same term for the same concept throughout your documentation.
+
+For example, if you call a value an **access token** in one section, don't call it an **authentication token** elsewhere unless they are actually different things.
+
+Similarly, maintain consistent capitalization and formatting for:
+
+- Endpoint names
+- Parameter names
+- HTTP methods
+- Product names
+- Technical terms
+
+Consistency helps readers understand that the same term refers to the same concept.
+
+## Use examples strategically
+
+Examples often communicate technical concepts more effectively than explanations alone.
+
+Use examples to demonstrate:
+
+- How to construct a request.
+- How to provide parameters.
+- How to authenticate a request.
+- What a successful response looks like.
+- What an error response looks like.
+
+Make examples realistic and relevant to the endpoint.
+
+Avoid unnecessary complexity. If an example only needs three fields to demonstrate a concept, don't add ten unrelated fields.
+
+## Keep examples accurate
+
+An example that doesn't work can damage a developer's trust in the entire documentation set.
+
+Before publishing an example:
+
+- Test the request
+- Verify the endpoint
+- Confirm parameter names
+- Check authentication requirements
+- Verify the response
+- Confirm that the example reflects the current API behavior
+
+When an API changes, update its examples to match the current API workflow. This practice helps to keep your documentation useful.
+
+## Make documentation scannable
+
+Developers often scan documentation rather than reading it from beginning to end.
+
+Help them find information quickly by using:
+
+- Descriptive headings
+- Short paragraphs
+- Tables
+- Bullet lists
+- Code blocks
+- Consistent formatting
+- Meaningful links
+
+Avoid large blocks of uninterrupted text when the information can be presented more clearly in another format.
+
+## Explain the "why" when it helps
+
+Documentation should explain not only what developers need to do, but also why a particular requirement exists.
+
+For example:
+
+> The `page` parameter defaults to `1`. Use this parameter to retrieve subsequent pages when the response contains more results than can be returned in a single request.
+
+This is more useful than simply stating:
+
+> `page` — Page number.
+
+However, don't explain every implementation detail. Include context when it helps the developer make a decision or use the API correctly.
+
+## Avoid documenting implementation details
+
+API documentation should focus on information that developers need to interact with the API.
+
+For example, developers may need to know:
+
+- Which parameters are required
+- How authentication works
+- What the endpoint returns
+- Which errors can occur
+
+They generally don't need to know:
+
+- Which database stores the information
+- How the server's internal functions are structured
+- Which internal services process the request
+
+Unless those details directly affect how developers use the API, leave them out.
+
+## Document limitations and constraints
+
+Developers need to know when an API has restrictions that affect how they use it.
+
+Document relevant constraints such as:
+
+- Rate limits
+- Maximum request sizes
+- Pagination limits
+- Character limits
+- Required formats
+- Supported values
+- Authentication requirements
+
+For example:
+
+> The `page` parameter accepts values from `1` through `500`.
+
+This is much more useful than simply describing the parameter as an integer.
+
+## Keep documentation consistent across endpoints
+
+Consistency becomes increasingly important as an API grows.
+
+If one endpoint documents parameters in a table, use the same structure for similar endpoints.
+
+If request examples appear before response examples on one page, don't reverse the order on another without a reason.
+
+A consistent structure reduces the amount of time developers spend learning how to navigate the documentation itself.
+
+## Review documentation like a developer
+
+Before publishing an API documentation page, try to use it as your reader would.
+
+Ask yourself:
+
+- Can I understand what this endpoint does?
+- Do I know what information I need to provide?
+- Do I know where each parameter belongs?
+- Can I construct the request using the example?
+- Do I understand the response?
+- Do I know what to do if the request fails?
+- Are there any assumptions I had to make?
+
+If you have to guess, the documentation probably needs more clarification.
+
+## Use a documentation checklist
+
+A checklist can help ensure that important information isn't missed during review.
+
+For each endpoint, verify that you have documented:
+
+- [ ] Endpoint description
+- [ ] HTTP method
+- [ ] Authentication requirements
+- [ ] Parameters
+- [ ] Required and optional values
+- [ ] Constraints and accepted values
+- [ ] Request example
+- [ ] Successful response example
+- [ ] Relevant error responses
+- [ ] Important limitations or notes
+
+A checklist is particularly useful when documenting a large API with many endpoints.
+
+## Why this matters
+
+API documentation is both a technical and communication task.
+
+You need to understand the API accurately, but you also need to make that information useful to the people who depend on it.
+
+The best documentation reduces the amount of work developers have to do themselves. It answers questions before they become blockers, makes complex information easier to understand, and gives developers enough confidence to use the API successfully.
+
+## Key takeaways
+
+- Write documentation around the developer's goals and tasks.
+- Organize related information so developers can find it quickly.
+- Use clear, precise, and consistent language.
+- Provide realistic and tested examples.
+- Document relevant limitations and constraints.
+- Review documentation from the developer's perspective.
+
+## Next steps
+
+You now have the core techniques for documenting an API endpoint.
+
+In the next part, you'll learn some common mistakes to avoid when writing API documentation.

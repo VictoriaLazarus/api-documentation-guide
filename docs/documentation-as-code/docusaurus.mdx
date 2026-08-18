@@ -1,0 +1,929 @@
+# Docusaurus
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what Docusaurus is and why documentation teams use it.
+- Describe how Docusaurus turns Markdown and MDX files into documentation websites.
+- Understand the basic structure of a Docusaurus project.
+- Identify the purpose of key Docusaurus files and directories.
+- Create and organize documentation pages.
+- Configure documentation navigation using sidebars.
+- Understand the role of `docusaurus.config.js`.
+- Run a Docusaurus site locally.
+- Build a Docusaurus site for production.
+- Identify common problems that can prevent a Docusaurus site from rendering correctly.
+- Explain how Docusaurus fits into a docs-as-code workflow.
+
+## What is Docusaurus?
+
+**Docusaurus** is a framework for building, organizing, and publishing documentation websites.
+
+It allows you to write documentation using Markdown or MDX and provides the structure and features needed to turn those files into a website.
+
+With Docusaurus, instead of manually creating HTML pages for every documentation article, you can write a Markdown file such as:
+
+```markdown
+# Getting started
+
+This guide explains how to authenticate with the API.
+```
+
+Docusaurus processes the file and turns it into a web page that readers can access through a documentation site.
+
+Here's how this works:
+
+```text
+Markdown or MDX
+       ↓
+   Docusaurus
+       ↓
+Documentation website
+```
+
+This capability makes Docusaurus useful for technical writers working in a docs-as-code environment.
+
+## Why Docusaurus matters to technical writers
+
+Docusaurus provides more than a way to display Markdown files.
+
+It provides a structured environment for creating and maintaining documentation.
+
+With Docusaurus, you can organize documentation into sections, create navigation menus, add code examples, include images, use Markdown and MDX features, and build the documentation into a website.
+
+For example, a documentation project might contain:
+
+- Getting started
+- API concepts
+- Authentication
+- Guides
+- API reference
+- Troubleshooting
+
+Docusaurus can turn this content into a navigable documentation website.
+
+This means a technical writer can focus primarily on writing and structuring content while Docusaurus handles much of the website infrastructure.
+
+## Docusaurus and docs-as-code
+
+Docusaurus works well with the docs-as-code approach because documentation can be stored as files in a Git repository.
+
+In docs-as-code workflow, here's how Docusaurus fits in:
+
+```text
+Write documentation in Markdown or MDX
+                  ↓
+            Store in Git
+                  ↓
+           Push to GitHub
+                  ↓
+          Review the changes
+                  ↓
+             Build with
+            Docusaurus
+                  ↓
+        Publish documentation
+```
+
+Each tool has a different role.
+
+| Tool | Role |
+|---|---|
+| Markdown | Provides a simple syntax for writing documentation. |
+| Git | Tracks changes to documentation files. |
+| GitHub | Hosts the repository and supports collaboration and review. |
+| Docusaurus | Builds Markdown and MDX files into a documentation website. |
+
+Understanding how these tools work together is key in mastering docs-as-code workflow.
+
+## How Docusaurus works
+
+At its simplest, Docusaurus takes documentation files and transforms them into web pages.
+
+For example, you might create:
+
+```text
+docs/
+└── authentication.md
+```
+
+with content such as:
+
+```markdown
+# Authentication
+
+Authentication allows an application to verify its identity
+when communicating with the API.
+```
+
+Docusaurus reads the file and generates a corresponding documentation page.
+
+The exact website URL depends on your project's configuration and file structure.
+
+The important idea is:
+
+```text
+authentication.md
+        ↓
+Docusaurus processes the file
+        ↓
+Authentication documentation page
+```
+
+You therefore don't need to manually create an HTML file for every documentation page.
+
+## Understanding a Docusaurus project
+
+A newly created Docusaurus project contains several files and directories.
+
+A simplified project might look like this:
+
+```text
+my-docs/
+├── docs/
+├── src/
+├── static/
+├── docusaurus.config.js
+├── sidebars.js
+├── package.json
+└── README.md
+```
+
+Each part has a different purpose.
+
+- The `docs` directory contains your documentation content.
+
+For example:
+
+```text
+docs/
+├── introduction.md
+├── prerequisites.md
+├── api-concepts/
+│   ├── what-is-an-api.md
+│   ├── http.md
+│   └── authentication.md
+└── writing-api-documentation/
+    ├── requests.md
+    ├── responses.md
+    └── errors.md
+```
+
+This is where most technical writers will spend much of their time. You create and edit Markdown or MDX files inside this directory.
+
+- The `src` directory contains custom website components and styling.
+
+For example, a project may contain:
+
+```text
+src/
+├── components/
+├── css/
+└── pages/
+```
+
+Technical writers may not need to modify this directory frequently.
+
+However, it is useful to know that it exists because it is where developers can customize parts of the Docusaurus site.
+
+- The `static` directory stores static assets that should be available on the website.
+
+These can include:
+
+- Images
+- PDFs
+- Downloadable files
+- Other static resources
+
+For example:
+
+```text
+static/
+└── img/
+    └── api-workflow.png
+```
+
+You can then reference the image from your documentation when appropriate.
+
+- The `docusaurus.config.js` file contains configuration for the Docusaurus site.
+
+It can control settings such as:
+
+- Site title
+- Site tagline
+- Site URL
+- Navigation
+- Theme configuration
+- Footer content
+- Documentation settings
+- Other site-wide behavior
+
+For example:
+
+```javascript
+const config = {
+  title: 'The Beginner’s Guide to API Documentation',
+  tagline: 'Learn how to write clear and effective API documentation',
+};
+```
+
+:::note
+
+You don't need to understand every configuration option before working with Docusaurus. As a technical writer, focus first on the configuration that affects the documentation experience. Then expand your knowledge as you work with this tool.
+
+:::
+
+- The `sidebars.js` file controls the documentation sidebar.
+
+For example:
+
+```javascript
+const sidebars = {
+  tutorialSidebar: [
+    'introduction',
+    'foundations/prerequisites',
+    'understanding-apis/what-is-an-api',
+  ],
+};
+
+export default sidebars;
+```
+
+The exact syntax can vary depending on how the project is configured.
+
+The important idea is that the sidebar determines how readers navigate between documentation pages.
+
+If you create a new documentation page but do not configure the sidebar correctly, the page may not appear where you expect it to in the documentation navigation.
+
+## Creating a documentation page
+
+Creating a documentation page in Docusaurus is straightforward.
+
+Inside the `docs` directory, create a Markdown file.
+
+For example:
+
+```text
+docs/authentication.md
+```
+
+Add your content:
+
+```markdown
+# Authentication
+
+Authentication allows an API to verify the identity
+of a client making a request.
+
+Before using protected endpoints, you may need
+to provide an API key or access token.
+```
+
+When you run the Docusaurus development server, the file will be rendered as a documentation page.
+
+## Organizing documentation into folders
+
+As a documentation project grows, keeping every file directly inside the `docs` directory can become difficult to manage.
+
+You can organize related pages into folders.
+
+For example:
+
+```text
+docs/
+├── foundations/
+│   ├── prerequisites.md
+│   └── tools.md
+├── api-concepts/
+│   ├── what-is-an-api.md
+│   ├── http.md
+│   └── authentication.md
+└── writing-documentation/
+    ├── requests.md
+    ├── responses.md
+    └── errors.md
+```
+
+This structure makes the project easier to navigate and maintain.
+
+It also helps communicate the relationship between related documentation topics.
+
+## Markdown and MDX in Docusaurus
+
+Docusaurus supports both **Markdown** and **MDX**.
+
+You have already learned how Markdown can be used to structure documentation.
+
+For example:
+
+```markdown
+# Authentication
+
+## API keys
+
+API keys identify an application when it communicates
+with an API.
+```
+MDX stands for Markdown + JavaScript XML (JSX). It is an extension of Markdown that allows you to write regular Markdown while also using JSX components within the same file.
+
+For example, Docusaurus supports features such as admonitions which is achieved with MDX:
+
+```mdx
+:::
+
+Keep your API credentials secure.
+
+:::
+```
+
+For example, regular Markdown may look like this
+
+```markdown
+## Authentication
+
+API authentication verifies the identity of the client making a request.
+```
+
+With MDX, you can still write Markdown, but you can also use a component:
+
+```mdx
+## Authentication
+
+API authentication verifies the identity of the client making a request.
+
+<details>
+  <summary>Learn more</summary>
+
+Authentication credentials must be included in the request.
+
+</details>
+```
+
+MDX therefore extends what you can do with standard Markdown.
+
+However, you do not need to use MDX for everything.
+
+For straightforward documentation content, standard Markdown is often enough.
+
+Use MDX when the documentation requires functionality that standard Markdown cannot provide.
+
+## Markdown files vs. MDX files
+
+You may encounter both of these file types in a Docusaurus project:
+
+```text
+authentication.md
+```
+
+and:
+
+```text
+authentication.mdx
+```
+
+A `.md` file contains standard Markdown.
+
+A `.mdx` file supports Markdown together with MDX features.
+
+The distinction becomes important because MDX is processed differently from ordinary Markdown.
+
+For example, content that is valid Markdown may still produce an error if MDX syntax is written incorrectly.
+
+When troubleshooting a Docusaurus page, always check whether the file is `.md` or `.mdx`.
+
+## Adding code examples
+
+Docusaurus supports fenced code blocks in Markdown and MDX.
+
+For example:
+
+```http
+GET https://api.example.com/movies/550
+```
+
+The language identifier, such as `http`, tells Docusaurus how to apply syntax highlighting to the code.
+
+You can use different language identifiers for different types of examples.
+
+For example:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club"
+}
+```
+
+This makes technical examples easier for readers to understand.
+
+Code examples are particularly important in API documentation because developers often need to copy, adapt, and test the examples you provide.
+
+## Adding images
+
+Docusaurus also allows you to include images in your documentation.
+
+For example:
+
+```markdown
+![API request workflow](./images/api-workflow.png)
+```
+
+The image itself might be stored alongside the documentation:
+
+```text
+docs/
+└── images/
+    └── api-workflow.png
+```
+
+Use descriptive alternative text to explain the purpose of the image.
+
+For example:
+
+```markdown
+![Diagram showing the flow from client to API to server](./images/api-workflow.png)
+```
+
+Images can be useful for explaining workflows, architecture, interfaces, and other concepts that are difficult to communicate through text alone.
+
+## Understanding the sidebar
+
+A documentation site needs a way for readers to move between pages.
+
+Docusaurus provides sidebars for this purpose.
+
+A sidebar can organize pages into a hierarchy such as:
+
+```text
+Introduction
+
+Part I: Foundations
+  Prerequisites
+  Tools
+
+Part II: Understanding APIs
+  What is an API?
+  HTTP and HTTPS
+  Common HTTP methods
+  Common HTTP status codes
+
+Part III: Before You Write
+  Understanding your audience
+  Testing with Postman
+
+Part IV: Writing API Documentation
+  Request examples
+  Response examples
+  Parameters
+  Common mistakes
+
+Part V: Documentation as Code
+  Markdown
+  Git
+  GitHub
+  Docusaurus
+```
+
+This structure helps readers understand where they are and what they can learn next.
+
+## Sidebar configuration
+
+A sidebar can be defined in `sidebars.js`.
+
+For example:
+
+```javascript
+const sidebars = {
+  tutorialSidebar: [
+    'introduction',
+    {
+      type: 'category',
+      label: 'Foundations',
+      items: [
+        'foundations/prerequisites',
+        'foundations/tools',
+      ],
+    },
+  ],
+};
+
+export default sidebars;
+```
+
+The exact structure depends on the project configuration, but the principle is the same: the sidebar maps documentation pages into a navigation structure.
+
+If a sidebar references a file that does not exist, Docusaurus may fail to build the site.
+
+For example, if the sidebar contains:
+
+```javascript
+'foundations/prerequisites'
+```
+
+Docusaurus expects the corresponding documentation page to exist at the appropriate location.
+
+If you rename or move the file without updating the sidebar, you may encounter an error.
+
+## Running Docusaurus locally
+
+One of the most useful features of Docusaurus is the ability to preview documentation locally before publishing it.
+
+From the project directory, run:
+
+```bash
+npm run start
+```
+
+This starts the Docusaurus development server.
+
+You can then open the local site in your browser.
+
+The development server allows you to see how your documentation will appear as you write it.
+
+This is particularly useful for catching problems such as:
+
+- Incorrect Markdown syntax
+- Broken links
+- Incorrect sidebar configuration
+- Images that do not load
+- MDX errors
+- Incorrect formatting
+
+## Why local preview matters
+
+A Markdown file can look correct when you're reading the source but render differently in the browser.
+
+For instance, you may write:
+
+```markdown
+## Authentication
+```
+
+and expect it to appear as a heading.
+
+The browser should render it as a heading, but an incorrectly formatted Markdown or MDX block elsewhere on the page can cause unexpected results.
+
+Previewing your documentation locally allows you to catch these problems before submitting the changes for review.
+
+A useful documentation workflow is therefore:
+
+```text
+Write
+  ↓
+Preview
+  ↓
+Review
+  ↓
+Correct
+  ↓
+Preview again
+```
+
+:::note
+
+Do not rely only on the source file. Always check the rendered documentation when possible.
+
+:::
+
+## Building a Docusaurus site
+
+The development server is useful while writing and testing documentation, but documentation also needs to be built for production.
+
+You can create a production build with:
+
+```bash
+npm run build
+```
+
+The build process checks and processes the documentation and generates the files required for deployment.
+
+If the build succeeds, Docusaurus produces a production-ready version of the site.
+
+If the build fails, Docusaurus reports errors that you need to resolve before the site can be successfully built.
+
+## Development server vs. production build
+
+These two commands serve different purposes:
+
+```bash
+npm run start
+```
+
+starts the development server.
+
+```bash
+npm run build
+```
+
+creates a production build.
+
+A simple way to remember the difference is:
+
+| Command | Purpose |
+|---|---|
+| `npm run start` | Preview and develop the documentation locally. |
+| `npm run build` | Build the documentation for production. |
+
+As a technical writer, you may use the development server frequently while writing and the production build when verifying that the project can successfully build before publication.
+
+## Common Docusaurus errors
+
+Docusaurus errors can sometimes look intimidating, especially when you're new to the tool.
+
+Many errors are caused by small configuration or file-structure problems.
+
+### Referencing a file that does not exist
+
+Let's assume your sidebar references:
+
+```text
+foundations/prerequisites
+```
+
+but the file has been renamed or moved.
+
+Docusaurus may report an error indicating that it cannot find the referenced module or document.
+
+Check that:
+
+- The file exists
+- The file is in the expected directory
+- The filename is correct
+- The sidebar reference matches the file location
+
+### Incorrect file extensions
+
+Docusaurus supports both `.md` and `.mdx`, but they are not interchangeable in every situation.
+
+If you rename a file from:
+
+```text
+authentication.mdx
+```
+
+to:
+
+```text
+authentication.md
+```
+
+make sure any references to that file still work correctly.
+
+Also check whether the file contains MDX-specific syntax that requires the `.mdx` format.
+
+### Incorrect MDX syntax
+
+MDX supports additional syntax beyond standard Markdown.
+
+An incorrectly written MDX component or admonition can prevent the page from rendering.
+
+For example:
+
+```mdx
+:::
+
+Remember to test your API examples.
+
+:::
+```
+
+This is a valid admonition syntax supported by the Docusaurus configuration.
+
+However, malformed syntax can cause a build or rendering error.
+
+When a page suddenly stops rendering after adding an MDX feature, check the syntax you most recently added.
+
+### Broken sidebar references
+
+A page can exist in the `docs` directory but still fail to appear in the sidebar if it has not been configured correctly.
+
+If you create:
+
+```text
+docs/foundations/tools.md
+```
+
+and the sidebar does not include the page or category correctly, readers may not be able to reach it through the navigation.
+
+Check the sidebar configuration whenever you add, rename, or move documentation files.
+
+### Broken links
+
+Links can break when files are renamed, moved, or deleted.
+
+For example, if one page links to:
+
+```text
+/docs/authentication
+```
+
+and the authentication page is moved, the link may no longer work.
+
+When reorganizing documentation, check the links that point to the affected page.
+
+## Troubleshooting a Docusaurus error
+
+When Docusaurus reports an error, avoid changing several things at once.
+
+Instead, work through the problem systematically.
+
+### Read the error
+
+Look at the error message carefully.
+
+It may tell you:
+
+- Which file caused the problem
+- Which module could not be found
+- Which line contains the problem
+- Which configuration value is invalid
+
+### Identify your most recent change
+
+Ask yourself:
+
+> What did I change immediately before the error appeared?
+
+If the site worked before you added a new admonition, changed a sidebar entry, or renamed a file, that change is a useful place to start investigating.
+
+### Check file paths
+
+Verify that the file actually exists where Docusaurus expects it to be.
+
+Pay attention to:
+
+- Folder names
+- Filenames
+- File extensions
+- Capitalization
+
+### Check Markdown or MDX syntax
+
+If the error occurs after editing a documentation file, review the Markdown or MDX syntax you added.
+
+### Run the project again
+
+After correcting the problem, restart the development server if necessary:
+
+```bash
+npm run start
+```
+
+Then check the page again.
+
+## Docusaurus configuration and the technical writer
+
+As a technical writer, you don't need to become a JavaScript developer to work with Docusaurus.
+
+However, you should be comfortable reading basic configuration files and understanding what they control.
+
+For example, you may encounter:
+
+```javascript
+title: 'The Beginner’s Guide to API Documentation'
+```
+
+You should understand that this controls the site's title.
+
+You may also encounter:
+
+```javascript
+url: 'https://example.com'
+```
+
+which identifies the site's URL.
+
+The goal is not to memorize every configuration option.
+
+The goal is to understand enough of the configuration to make safe documentation-related changes and recognize when a problem is caused by configuration rather than content.
+
+## Docusaurus and version control
+
+Docusaurus projects can be managed with Git just like other documentation projects.
+
+For example, when you add a new page:
+
+```text
+docs/docusaurus.md
+```
+
+Git can track the new file.
+
+You can then:
+
+```bash
+git add docs/docusaurus.md
+```
+
+commit it:
+
+```bash
+git commit -m "Add Docusaurus documentation chapter"
+```
+
+and push it to GitHub:
+
+```bash
+git push
+```
+
+This means the Docusaurus project can benefit from the same version control and review workflow you learned about in the Git and GitHub chapters.
+
+## Docusaurus and GitHub
+
+Docusaurus and GitHub can work together as part of a documentation workflow.
+
+For example:
+
+```text
+Writer edits Markdown
+        ↓
+Docusaurus previews the documentation
+        ↓
+Git tracks the changes
+        ↓
+Changes are pushed to GitHub
+        ↓
+Pull request is opened
+        ↓
+Documentation is reviewed
+        ↓
+Changes are merged
+        ↓
+Docusaurus builds the site
+        ↓
+Documentation is published
+```
+
+The exact process will vary between organizations.
+
+Some teams may use automated deployment. Others may have a separate publishing process.
+
+The important concept is that Docusaurus handles the documentation website while Git and GitHub support version control and collaboration.
+
+## What a technical writer needs to know about Docusaurus
+
+You do not need to understand every part of the Docusaurus framework to use it effectively.
+
+At the beginner stage, the knowledge you need include:
+
+- Creating Markdown and MDX documentation files.
+- Organizing documentation into folders.
+- Understanding the purpose of the `docs` directory.
+- Understanding what `sidebars.js` controls.
+- Recognizing the role of `docusaurus.config.js`.
+- Adding code examples and images.
+- Running the documentation locally.
+- Building the documentation.
+- Reading basic Docusaurus errors.
+- Checking file paths and sidebar references.
+- Using Git to track Docusaurus changes.
+
+These skills give you a strong foundation for working with Docusaurus in a professional documentation environment.
+
+## Why Docusaurus matters
+
+Docusaurus allows technical writers to work with documentation as structured, version-controlled content rather than treating documentation as a collection of static documents.
+
+You can write in Markdown or MDX, organize content into a hierarchy, preview it locally, manage changes with Git, collaborate through GitHub, and publish the result as a documentation website.
+
+Docusaurus therefore connects several skills you've learned throughout this guide.
+
+```text
+Markdown
+   ↓
+Write structured content
+   ↓
+Docusaurus
+   ↓
+Build documentation website
+   ↓
+Git
+   ↓
+Track changes
+   ↓
+GitHub
+   ↓
+Collaborate and review
+```
+
+Understanding this relationship is more valuable than simply memorizing Docusaurus commands.
+
+## Key takeaways
+
+- Docusaurus provides a framework for building and publishing documentation websites.
+- Markdown and MDX files provide the primary content for Docusaurus documentation.
+- The `docs` directory contains the documentation content in a typical Docusaurus project.
+- The `sidebars.js` file controls documentation navigation.
+- The `docusaurus.config.js` file controls important site-wide configuration.
+- The development server allows you to preview documentation locally while you work.
+- The production build prepares documentation for deployment.
+- Correct file paths, Markdown or MDX syntax, and sidebar references are important for successful rendering and builds.
+- Docusaurus works well with Git and GitHub as part of a docs-as-code workflow.
+
+## Next steps
+
+You now understand the core tools that support a docs-as-code workflow: Markdown for writing, Git for version control, GitHub for collaboration, and Docusaurus for building documentation websites.
+
+In the next chapter, you'll bring these concepts together and examine what a complete **docs-as-code workflow** looks like from writing and testing documentation to reviewing, merging, and publishing it.

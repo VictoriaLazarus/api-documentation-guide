@@ -1,0 +1,474 @@
+---
+title: Markdown
+sidebar_position: 2
+---
+
+# Markdown
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what Markdown is and why documentation teams use it.
+- Create common documentation elements using Markdown.
+- Format headings, lists, links, tables, and code examples.
+- Use Markdown to structure readable technical documentation.
+- Recognize how Markdown is used within a docs-as-code workflow.
+
+## What is Markdown?
+
+**Markdown** is a lightweight markup language used to structure and format plain-text content. Instead of relying on a visual editor to apply formatting, you use simple characters and syntax to tell a documentation system how different parts of your content should be structured and displayed.
+
+For example, this Markdown:
+
+```md
+# Getting started
+
+## Authentication
+
+To authenticate your request, include your API key in the request header.
+```
+
+is rendered as:
+
+# Getting started
+
+## Authentication
+
+The Markdown itself is plain text. A documentation platform such as **Docusaurus** then processes and renders it as a formatted documentation page.
+
+## Markdown and traditional editors
+
+If you've used a word processor such as Microsoft Word or Google Docs, you're probably familiar with applying formatting through a visual interface. You select text and choose options such as bold, italic, heading styles, or bullet lists.
+
+Markdown works differently.
+
+Instead of applying formatting through a visual toolbar, you write the formatting directly into the text using Markdown syntax.
+
+## Why Markdown is important in a docs-as-code workflow
+
+Markdown is particularly useful in a **docs-as-code** workflow because documentation is treated as part of a software project rather than as a separate collection of files managed only through a visual editor.
+
+In a typical docs-as-code workflow, documentation may be stored in a Git repository alongside source code and other project files.
+
+For example:
+
+```text
+project/
+├── docs/
+│   ├── introduction.md
+│   ├── authentication.md
+│   └── api-reference.md
+├── src/
+├── static/
+├── sidebars.js
+└── docusaurus.config.js
+```
+
+The `.md` files contain the documentation content. Git tracks changes to those files, allowing writers and developers to review, collaborate on, and maintain documentation using the same version-control workflow used for software projects.
+
+A simplified workflow might look like this:
+
+```text
+Write documentation in Markdown
+              ↓
+        Store in Git
+              ↓
+       Create a branch
+              ↓
+      Review the changes
+              ↓
+          Build/test
+              ↓
+           Merge
+              ↓
+           Publish
+```
+
+Because Markdown is plain text, Git can identify exactly what changed between versions.
+
+For example, if a writer changes:
+
+```markdown
+The API requires an API key.
+```
+
+to:
+
+```markdown
+The API requires an access token.
+```
+
+Git can show that specific change during review.
+
+This makes Markdown particularly well suited in documentation workflows where content needs to be versioned, reviewed, maintained, and published alongside the product.
+
+
+## Basic Markdown syntax
+
+### Headings
+
+Use the `#` symbol to create headings.
+
+```md
+# Main heading
+
+## Section heading
+
+### Subsection heading
+```
+
+The number of `#` characters determines the heading level.
+
+Use headings to create a logical hierarchy rather than choosing a heading level based on how large you want the text to appear.
+
+For example:
+
+```md
+# Authentication
+
+## API keys
+
+### Creating an API key
+```
+
+A page should normally have one primary heading, followed by lower-level headings that organize the content beneath it.
+
+### Paragraphs
+
+Regular text can be written as plain text.
+
+Separate paragraphs with a blank line:
+
+```md
+API authentication verifies the identity of the application making a request.
+
+The API can then determine whether the application has permission to access the requested resource.
+```
+
+### Bold and italic text
+
+Use double asterisks for bold text:
+
+```md
+**required**
+```
+
+Use single asterisks for italic text:
+
+```md
+*optional*
+```
+
+Use formatting sparingly. Emphasis should help readers identify important information rather than decorate the page.
+
+## Lists
+
+### Unordered lists
+
+Use hyphens to create an unordered list:
+
+```md
+- Authentication
+- Parameters
+- Request body
+- Response
+```
+
+This is useful when presenting related items that don't need to follow a particular order.
+
+### Ordered lists
+
+Use numbers when the order matters:
+
+```md
+1. Create an account.
+2. Generate an API key.
+3. Add the key to your request.
+4. Send the request.
+```
+
+Ordered lists are particularly useful for procedures and step-by-step instructions.
+
+## Links
+
+Use the following syntax to create a link:
+
+```md
+[OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+```
+
+The text inside the square brackets is the text readers see, while the URL inside the parentheses is the destination.
+
+Use descriptive link text rather than vague phrases such as:
+
+```md
+[Click here](https://example.com)
+```
+
+Prefer:
+
+```md
+[Read the API reference](https://example.com)
+```
+
+Descriptive link text gives readers more context and makes links easier to understand when scanning a page.
+
+## Code
+
+Technical documentation frequently contains code, commands, URLs, parameter names, and API requests.
+
+### Inline code
+
+Use single backticks for short pieces of technical information within a sentence:
+
+```md
+Use the `movie_id` parameter to identify the movie.
+```
+
+This is useful for:
+
+- Parameter names.
+- Function names.
+- File names.
+- Commands.
+- URLs.
+- Short code snippets.
+
+### Code blocks
+
+Use fenced code blocks for longer examples:
+```md
+```http
+GET https://api.example.com/movies/550
+```
+The **language identifier** after the opening backticks tells the documentation system which syntax highlighting to apply to the code.
+
+For example:
+```md
+```json
+{
+  "id": 550,
+  "title": "Fight Club"
+}
+```
+
+This allows Docusaurus to apply syntax highlighting appropriate to the language or format.
+
+Use the appropriate language identifier whenever one is available. It makes technical examples easier to read and distinguish from surrounding content.
+
+## Tables
+
+You can also create tables with Markdown syntax. Here's how to do this:
+
+```md
+| Parameter | Type | Required |
+|-----------|------|----------|
+| `movie_id` | Integer | Yes |
+| `language` | String | No |
+```
+
+The above syntax is rendered as a formatted table:
+
+| Parameter | Type | Required |
+|-----------|------|----------|
+| `movie_id` | Integer | Yes |
+| `language` | String | No |
+
+Tables are useful for structured information such as:
+
+- Parameters
+- Response fields
+- Error codes
+- Configuration options
+- Supported values
+
+Keep tables focused. If a table becomes too wide or contains long explanations, consider whether another format would communicate the information more effectively.
+
+## Blockquotes
+
+Use the `>` character to create a blockquote:
+
+```md
+> Authentication is required for this endpoint.
+```
+
+This is rendered as:
+
+> Authentication is required for this endpoint.
+
+Blockquotes can be useful for highlighting supporting information, warnings, or important context.
+
+However, use them intentionally. Important information shouldn't be hidden inside blockquotes simply for visual emphasis.
+
+## Images
+
+Markdown can also reference images:
+
+```md
+![API request workflow](./images/api-workflow.png)
+```
+
+The text inside the square brackets is called **alternative text**, or **alt text**.
+
+Alt text describes the image for readers who cannot see it and can also provide useful context when an image fails to load.
+
+For example:
+
+```md
+![Diagram showing the flow from client to API to server](./images/api-workflow.png)
+```
+
+Use images when they help explain a concept, process, or relationship. Avoid adding images simply for decoration.
+
+## Markdown in Docusaurus
+
+The documentation you've been building in this guide is written primarily in Markdown files and rendered by Docusaurus.
+
+For example, a file such as:
+
+```text
+docs/
+└── foundations/
+    └── prerequisites.md
+```
+
+contains Markdown content that Docusaurus processes and displays as a documentation page.
+
+Docusaurus also supports **MDX**, which extends Markdown by allowing you to use React components and other interactive elements within Markdown content.
+
+This means you may encounter both `.md` and `.mdx` files in a Docusaurus project.
+
+For example:
+
+```text
+docs/
+├── introduction.md
+├── prerequisites.md
+└── api-concepts.mdx
+```
+
+A `.md` file contains standard Markdown, while an `.mdx` file can contain Markdown together with supported JSX or React components.
+
+For the basic documentation in this guide, Markdown provides most of what you need. You'll encounter MDX when the documentation requires functionality beyond standard Markdown.
+
+## Writing good Markdown
+
+Knowing Markdown syntax is only part of using it effectively.
+
+Good Markdown should create a clear structure for the reader.
+
+For example, don't use bold text to imitate a heading:
+
+```md
+**Authentication**
+```
+
+when the content is actually a section heading.
+
+Use the appropriate heading syntax:
+
+```md
+## Authentication
+```
+
+A heading communicates the structure of the page, while bold text only emphasizes content.
+
+Similarly, don't use multiple spaces or special characters to create visual alignment when a table would communicate the information more clearly.
+
+Markdown should describe the **structure and meaning** of the content rather than simply its appearance.
+
+## Common Markdown mistakes
+
+When writing documentation, watch out for common problems such as:
+
+- Skipping heading levels without a reason.
+- Using headings only to make text appear larger.
+- Forgetting blank lines between Markdown elements.
+- Using inconsistent list formatting.
+- Writing vague link text.
+- Failing to specify the language for code blocks.
+- Using tables for information that doesn't need a tabular structure.
+- Adding unnecessary formatting.
+- Using Markdown syntax incorrectly or inconsistently.
+
+Small formatting problems can become more noticeable as a documentation project grows, especially when multiple writers contribute to the same repository.
+
+## Markdown and documentation structure
+
+Markdown does more than control how individual pieces of text appear. It also helps create the overall structure of a documentation page.
+
+For example, headings establish the hierarchy of information:
+
+```md
+# Authentication
+
+## API keys
+
+### Creating an API key
+
+### Using an API key
+
+## Access tokens
+```
+
+This hierarchy helps both readers and documentation tools understand how the content is organized.
+
+A well-structured Markdown file is therefore easier to read, navigate, review, and maintain.
+
+## Markdown is not the only option
+
+Markdown is widely used in software and documentation workflows, but it is not the only language that can be used to create documentation.
+
+**HTML (HyperText Markup Language)** can also be used in a docs-as-code workflow.
+
+HTML provides much more control over the structure and presentation of web content. For example:
+
+```html
+<h2>Authentication</h2>
+
+<p>Authentication allows an API to verify the identity of the client.</p>
+```
+
+Markdown provides a simpler syntax for common documentation structures, while HTML gives you more direct control over the underlying web markup.
+
+Many documentation systems also allow Markdown and HTML to coexist. In some cases, you may write most of a page in Markdown and use HTML when you need functionality or formatting that Markdown does not provide directly.
+
+For example, a documentation project might contain:
+
+```text
+docs/
+├── authentication.md
+├── api-reference.md
+└── advanced-example.html
+```
+
+However, Markdown is often a practical choice for technical documentation because it is concise, readable as plain text, easy to version-control, and supported by many documentation tools.
+
+You therefore do not need to think of Markdown and HTML as competing languages where one completely replaces the other. They serve different purposes, and the appropriate choice depends on the documentation system and the needs of the project.
+
+## Why Markdown matters
+In a docs-as-code workflow, Markdown becomes the medium through which you create content that can be version-controlled, reviewed, built, and published alongside software.
+
+Learning Markdown therefore gives you a foundation for working with tools such as GitHub and Docusaurus.
+
+However, you don't need to memorize every Markdown feature. You need to understand the syntax well enough to structure technical information clearly and maintain it confidently.
+
+As you work with documentation projects, you'll naturally encounter additional Markdown features that you learn as your documentation needs become more advanced.
+
+## Key takeaways
+
+- Markdown provides a lightweight way to structure and format documentation.
+- Headings, lists, tables, links, and code blocks help organize technical information.
+- Appropriate Markdown syntax improves readability, consistency, and document structure.
+- Code blocks can use language identifiers to improve the presentation of technical examples.
+- Docusaurus supports Markdown and extends it through MDX.
+- Good Markdown focuses on content structure and meaning rather than visual formatting.
+
+## Next steps
+
+Now that you understand how Markdown is used to write and structure documentation, you'll learn how **Git** tracks changes to those documentation files.
+
+Git is one of the foundations of a docs-as-code workflow and is essential for collaborating on documentation projects.
+
+In the next chapter, you'll learn the core Git concepts you'll need as a technical writer, including repositories, commits, branches, and version history.

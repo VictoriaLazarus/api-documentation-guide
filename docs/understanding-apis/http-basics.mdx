@@ -1,0 +1,165 @@
+---
+title: HTTP basics
+sidebar_position: 2
+---
+
+# HTTP basics
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what HTTP is and why APIs use it.
+- Identify the different parts of an API URL.
+- Distinguish between a base URL and an endpoint.
+- Recognize the purpose of common HTTP methods.
+- Interpret common HTTP status codes.
+
+## What is HTTP?
+
+HTTP (Hypertext Transfer Protocol) is the standard procedures that allow clients and servers to communicate over the web. Earlier on, we defined API as a set of rules and protocols that allows different software applications to communicate and exchange data with each other. HTTP is that protocol.
+
+When a client sends a request to an API, it uses HTTP to specify what information it wants or action to perform. The server then uses HTTP to return a response.
+
+Simply put, HTTP defines how requests and responses are sent and returned. It is widely used because it provides a standardized way for clients and servers to exchange information over the web. Most APIs use HTTP to send requests and receive responses.
+
+## HTTP and HTTPS
+
+You may notice that API URLs begin with either **http://** or **https://**.
+
+The **S** in HTTPS stands for **Secure**.
+
+HTTPS encrypts data while it travels between the client and server, helping protect sensitive information such as passwords, API keys, and access tokens.
+
+For this reason, modern APIs almost always use HTTPS.
+
+## Common HTTP methods
+
+HTTP methods tell the server what action the client wants to perform.
+
+| Method | Purpose |
+|---------|---------|
+| GET | Retrieve information. |
+| POST | Create a new resource. |
+| PUT | Replace an existing resource. |
+| PATCH | Update part of an existing resource. |
+| DELETE | Remove a resource. |
+
+You'll use these methods throughout API documentation to describe how developers interact with different endpoints.
+
+:::note
+
+After the client sends a request using an HTTP method, the server processes it and returns an HTTP status code indicating whether it was successful.
+
+:::
+
+## Common HTTP status code
+
+Status codes are an important part of API documentation because they help developers understand the outcome of a request and troubleshoot issues.
+
+Some common http status code are:
+
+| Status code | Meaning |
+|-------------|---------|
+| 200 OK | The request was successful. |
+| 201 Created | A new resource was created successfully. |
+| 400 Bad request | The request was invalid. |
+| 401 Unauthorized | Authentication is required or invalid. |
+| 403 Forbidden | The client doesn't have permission to access the resource. |
+| 404 Not found | The requested resource couldn't be found. |
+| 500 Internal server error | An unexpected error occurred on the server. |
+
+Now that you've seen how clients communicate with an API using HTTP, let's look at where those requests are sent.
+
+## Understanding an API URL
+
+Every API request is sent to a specific URL.
+
+For example:
+
+```http
+https://api.themoviedb.org/3/movie/550
+```
+
+Although this url looks like a single address, it contains several parts:
+
+| Part | Example | Description |
+|------|---------|-------------|
+| Protocol | `https://` | Specifies how the client communicates with the server. |
+| Domain | `api.themoviedb.org` | Identifies the server hosting the API. |
+| Version | `/3` | Indicates the API version being used. |
+| Endpoint | `/movie/550` | Identifies the resource being requested. |
+
+Understanding these parts makes it easier to read and document API requests.
+
+## Base URL and endpoint
+
+An API URL is often divided into two parts:
+
+- **Base URL**
+- **Endpoint**
+
+The **base URL** identifies the API.
+
+```text
+https://api.themoviedb.org/3
+```
+
+The **endpoint** identifies a specific resource or operation.
+
+```text
+/movie/550
+```
+
+When combined, they form the complete request URL.
+
+```text
+https://api.themoviedb.org/3/movie/550
+```
+:::tip
+
+As a technical writer, you'll frequently document both the base URL and the endpoints available in an API.
+
+:::
+
+## Resources
+
+A **resource** is any piece of data or functionality that an API makes available.
+
+For example:
+
+| Resource | Description |
+|----------|-------------|
+| Movies | Information about movies, such as titles, ratings, and release dates. |
+| Users | User accounts and profile information. |
+| Products | Items available in an online store. |
+| Orders | Customer purchase records. |
+
+APIs organize their data into resources so that clients can request or modify specific information. Each resource is typically accessed through its own endpoint.
+
+For example:
+
+| Resource | Example endpoint |
+|----------|------------------|
+| Movies | `/movie` |
+| Users | `/users` |
+| Products | `/products` |
+| Orders | `/orders` |
+
+Endpoints allow clients to interact with these resources by retrieving, creating, updating, or deleting data.
+
+## Key takeaways
+
+After completing this chapter, you should understand that:
+
+- HTTP is the protocol that enables communication between clients and servers.
+- API requests are sent to specific URLs made up of several components.
+- A base URL identifies an API, while an endpoint identifies a specific resource or operation.
+- HTTP methods define the action the client wants to perform.
+- HTTP status codes indicate whether a request succeeded or failed.
+
+## Next steps
+
+Now that you understand how APIs communicate using HTTP, it's time to examine the structure of API requests and responses in more detail.
+
+In the next chapter, you'll learn a very important concept in API documentation: REST APIs.

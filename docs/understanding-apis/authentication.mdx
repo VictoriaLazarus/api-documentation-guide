@@ -1,0 +1,120 @@
+---
+title: Authentication
+sidebar_position: 6
+---
+
+# Authentication
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain why APIs require authentication.
+- Distinguish between authentication and authorization.
+- Identify common API authentication methods.
+- Recognize authentication information in API requests.
+- Explain why authentication is important in API documentation.
+
+## What is authentication?
+
+Authentication is the process of verifying the identity of a client before allowing access to an API.
+
+When a client sends a request, the API first checks whether the client is allowed to access the requested resource. If the client's identity can't be verified, the API rejects the request.
+
+In simple terms, authentication answers the question:
+
+> **Who are you?**
+
+## Why APIs require authentication
+
+Not every API is publicly accessible.
+
+Many APIs contain sensitive or valuable information, such as user accounts, financial records, or private business data. Authentication helps protect these resources by ensuring that only authorized clients can access them.
+
+Beyond protection, authentication also allows API providers to:
+
+- Monitor API usage.
+- Apply rate limits.
+- Identify which application is making requests.
+
+Without authentication, anyone could send requests to an API and access or modify its data.
+
+## Authentication vs. authorization
+
+Although both terms are closely related, they do not mean the same in API documentation.
+
+- **Authentication** verifies who the client is.
+- **Authorization** determines what the authenticated client is allowed to do.
+
+Think of entering a secure office building.
+
+- Showing your ID badge is **authentication** because it proves your identity.
+- Being allowed to enter only certain rooms is **authorization** because it determines what you're permitted to access.
+
+Many APIs perform authentication first and then apply authorization rules before processing a request. 
+
+## Common authentication methods
+
+Different APIs use different methods to verify a client's identity. The most common ones are:
+
+| Method | Description |
+|---------|-------------|
+| API key | A unique key provided by the API provider. |
+| Bearer token | A temporary access token included in the request. |
+| OAuth 2.0 | A framework that allows users to grant applications limited access to their data without sharing their passwords. |
+
+You'll encounter these methods frequently when working with public APIs. To know the supported authentication method, check the existing API documentation. Each API specifies the authentication method in its documentation.
+
+## Authentication in an API request
+
+Authentication information is commonly included in the request headers.
+
+For example:
+
+```http
+GET /movie/550 HTTP/1.1
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+In this example, the client includes an access token in the `Authorization` header. The API validates the token before processing the request.
+
+If the token is missing or invalid, the API returns an authentication error.
+
+## Common authentication errors
+
+If authentication fails, the API typically returns an error response.
+
+Common authentication-related status codes are:
+
+| Status code | Meaning |
+|--------------|---------|
+| 401 Unauthorized | Authentication is missing or invalid. |
+| 403 Forbidden | Authentication succeeded, but the client doesn't have permission to access the requested resource. |
+
+Understanding these responses makes it easier to troubleshoot failed API requests.
+
+## Why this matters
+
+Authentication is one of the first things developers look for when reading API documentation. Clear authentication documentation helps developers get started quickly and reduces common integration issues.
+
+Therefore, as a technical writer, you'll need to explain how to obtain API credentials, where authentication information should be included in a request, and what errors they might encounter if authentication fails.
+
+
+
+## Key takeaways
+
+After completing this chapter, you should understand that:
+
+- Authentication verifies the identity of a client before an API processes a request.
+- Authentication helps protect APIs from unauthorized access.
+- Authentication and authorization serve different purposes.
+- APIs commonly use API keys, bearer tokens, or OAuth 2.0 to authenticate requests.
+- Authentication information is often included in the request headers.
+
+## Next steps
+
+Congratulations! You've just completed Part II of this guide and now understand the core concepts behind API communication.
+
+In the next part, you'll shift from understanding APIs to exploring them. You'll learn how to examine an API, test endpoints with Postman, understand your audience, and plan documentation before you begin writing.
+
+Let's dive in.

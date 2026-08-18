@@ -1,0 +1,161 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   FAQ Accordion
+   ========================================= */
+
+.faq {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  margin: 0;
+}
+
+.faq details:first-child {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.faq summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2.5rem 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  transition: color 0.2s ease;
+}
+
+/* Remove the browser's default disclosure marker */
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::marker {
+  display: none;
+}
+
+/* Plus sign */
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ifm-color-emphasis-500);
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Change plus to minus when opened */
+.faq details[open] summary::after {
+  content: "−";
+}
+
+/* Question hover state */
+.faq summary:hover {
+  color: var(--ifm-color-primary);
+}
+
+.faq summary:hover::after {
+  color: var(--ifm-color-primary);
+}
+
+/* Answer area */
+.faq details > :not(summary) {
+  margin-left: 0;
+}
+
+.faq details[open] > :not(summary) {
+  animation: faqFadeIn 0.2s ease-in;
+}
+
+@keyframes faqFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Spacing around the answer */
+.faq details[open] summary {
+  padding-bottom: 0.75rem;
+}
+
+.faq details[open] > p:first-of-type {
+  margin-top: 0.75rem;
+}
+
+/* Better spacing for lists and code examples inside answers */
+.faq details ul,
+.faq details ol {
+  margin-bottom: 1rem;
+}
+
+.faq details pre {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Improve keyboard accessibility */
+.faq summary:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 996px) {
+  .faq summary {
+    font-size: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .faq summary::after {
+    font-size: 1.35rem;
+  }
+}

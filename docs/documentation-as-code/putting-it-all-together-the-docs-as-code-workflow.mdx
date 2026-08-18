@@ -1,0 +1,511 @@
+# Putting it all together: the docs-as-code workflow
+
+You have now learned the individual tools and concepts that make up a docs-as-code environment.
+
+You know how to write documentation in Markdown, use Git to track changes, work with GitHub for collaboration, and use Docusaurus to build and preview a documentation website.
+
+The next step is to understand how these pieces work together.
+
+This is where the **docs-as-code workflow** comes in.
+
+## Why use a docs-as-code workflow?
+
+Traditional documentation workflows often rely on tools such as word processors or content management systems.
+
+These tools can still be useful, but they may not provide the same development workflow used by engineering teams.
+
+A docs-as-code approach allows technical writers to work more closely with developers and use processes that support collaboration, review, and version control.
+
+For example, instead of emailing a document to a developer for review, a technical writer can create a change, commit it to Git, and open a pull request for review.
+
+The reviewer can then comment on specific changes before the documentation is merged.
+
+This creates a more structured process for maintaining technical content.
+
+## The complete docs-as-code workflow
+
+A simplified docs-as-code workflow looks like this:
+
+```text
+Plan
+  ↓
+Write
+  ↓
+Preview
+  ↓
+Track changes with Git
+  ↓
+Open a pull request
+  ↓
+Review
+  ↓
+Revise
+  ↓
+Merge
+  ↓
+Build
+  ↓
+Publish
+```
+
+Each stage has a purpose.
+
+Let's look at what happens at each stage.
+
+### Plan the documentation
+
+Before writing, determine what needs to be documented.
+
+This may involve:
+
+- Understanding the feature or product.
+- Identifying the target audience.
+- Reviewing existing documentation.
+- Gathering information from subject matter experts.
+- Testing the product or API.
+- Determining the appropriate documentation format.
+- Identifying where the new content belongs.
+
+For example, suppose a development team introduces a new authentication method for an API.
+
+Before writing the documentation, you might need to understand:
+
+- How the authentication method works.
+- Which users need it.
+- What credentials are required.
+- How users obtain those credentials.
+- How the credentials are included in requests.
+- What happens when authentication fails.
+
+Planning helps ensure that you are documenting the right information before you begin writing.
+
+### Write the documentation
+
+Once you understand what needs to be documented, create or update the appropriate Markdown or MDX file.
+
+For example:
+
+```text
+docs/
+└── authentication.md
+```
+
+You might add content such as:
+
+```markdown
+# Authentication
+
+The API uses access tokens to authenticate requests.
+
+Include the token in the `Authorization` header:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+The exact content will depend on the product and audience.
+
+The important point is that the documentation is stored as a file in the project repository.
+
+### Preview the documentation
+
+After writing the content, preview it locally.
+
+With Docusaurus, you can run:
+
+```bash
+npm run start
+```
+
+This allows you to inspect the rendered page before submitting your changes.
+
+Check for problems such as:
+
+- Incorrect formatting
+- Broken links
+- Missing images
+- Incorrect code blocks
+- Incorrect headings
+- Sidebar problems
+- Unexpected rendering
+- MDX errors
+
+This step is important because the source Markdown may look correct while the rendered page contains a problem.
+
+### Create a Git branch
+
+Before making changes to a shared repository, you will often create a separate Git branch.
+
+A branch gives you an isolated space to work without changing the main version of the project.
+
+For example:
+
+```bash
+git checkout -b add-authentication-guide
+```
+
+The branch name should clearly describe the work being done.
+
+For example:
+
+```text
+add-authentication-guide
+fix-api-example
+update-installation-guide
+```
+
+Different teams may follow different naming conventions. However, the purpose remains the same: keep your changes separate until they are ready for review.
+
+### Review your changes
+
+Before committing your work, review what you changed.
+
+Git can show you the differences between your current files and the previous version.
+
+For example:
+
+```bash
+git diff
+```
+
+Review the output carefully.
+
+Look for:
+
+- Unintended changes
+- Formatting problems
+- Deleted content
+- Incorrect links
+- Typos
+- Changes to files you did not intend to modify
+
+This is an important habit for technical writers because documentation changes can affect more than the text itself.
+
+A small change to a sidebar, configuration file, or link can affect the documentation site.
+
+### Commit your changes
+
+Once you are satisfied with your changes, stage the files you want Git to track.
+
+For example:
+
+```bash
+git add docs/authentication.md
+```
+
+Then create a commit:
+
+```bash
+git commit -m "Add authentication guide"
+```
+
+A commit creates a record of the changes you made.
+
+A useful commit message should briefly explain what the change does.
+
+For example:
+
+```text
+Add authentication guide
+```
+
+is more useful than:
+
+```text
+Changes
+```
+
+This would help another contributor understand what the commit contains without opening the files.
+
+### Push the changes
+
+After committing your changes locally, push the branch to the remote repository.
+
+For example:
+
+```bash
+git push -u origin add-authentication-guide
+```
+
+This makes your branch available on the remote Git repository, such as GitHub.
+
+At this point, your changes can be shared with other members of the team.
+
+### Open a pull request
+
+After pushing your branch, you can open a **pull request**.
+
+A pull request allows other contributors to review your proposed changes before they are merged into the main branch.
+
+A typical pull request contains:
+
+- A title
+- A description of the changes
+- The files that were modified
+- Reviewers
+- Comments and discussions
+- Automated checks, depending on the team's setup
+
+For example, a pull request title might be:
+
+```text
+Add authentication documentation
+```
+
+The description might explain what was added, why it was needed, and any areas where the reviewer should pay particular attention.
+
+### Review and revise
+
+The pull request may go through one or more rounds of review.
+
+A developer might point out that an API example is incorrect.
+
+A technical writer might then update the example and push another commit to the same branch.
+
+The important thing to understand is that review is part of the documentation process, not a final step that happens after the documentation is "finished."
+
+Documentation improves through collaboration and feedback.
+
+### Merge the changes
+
+Once the reviewers approve the pull request and any required automated checks pass, the changes can be merged into the main branch.
+
+:::note
+
+The exact process depends on the organization's workflow.
+
+:::
+
+After the merge, the updated documentation becomes part of the main version of the project.
+
+At this point, the documentation is ready for the build and publishing process.
+
+### Build your doc
+
+Before documentation can be published, the project may need to be built.
+
+With Docusaurus, this can be done using:
+
+```bash
+npm run build
+```
+
+The build process processes the documentation files and generates the ones required for the website.
+
+A successful build indicates that the documentation can be processed without errors.
+
+If the build fails, make sure you investigate and correct before the documentation is published.
+
+### Publish the documentation
+
+Once the documentation has been successfully built, it is ready to be published.
+
+The exact publishing process depends on the organization's infrastructure.
+
+Some teams may publish manually.
+
+Others may use an automated deployment process that publishes the documentation whenever changes are merged into a specific branch.
+
+Publishing is where documentation moves from the repository to the users.
+
+
+## Where CI/CD fits into the workflow
+
+You may encounter the terms **continuous integration (CI)** and **continuous deployment (CD)** while working with docs-as-code teams.
+
+These practices allow certain parts of the documentation workflow to happen automatically.
+
+For example, a CI system might automatically:
+
+- Check Markdown files
+- Check links
+- Run tests
+- Build the Docusaurus site
+- Identify configuration errors
+
+A deployment system may then publish the documentation after the required checks pass.
+
+The workflow might look like this:
+
+```text
+Writer creates changes
+        ↓
+Pull request opened
+        ↓
+Automated checks run
+        ↓
+Review completed
+        ↓
+Pull request merged
+        ↓
+Production build
+        ↓
+Automatic deployment
+```
+
+You don't need to become an expert in CI/CD to work effectively as a technical writer.
+
+However, understanding where these processes fit helps you understand what happens to your documentation after you submit it.
+
+The complete process looks like this:
+
+```text
+Research and test the endpoint
+          ↓
+Write the documentation
+          ↓
+Preview with Docusaurus
+          ↓
+Review changes with Git
+          ↓
+Push to GitHub
+          ↓
+Open pull request
+          ↓
+Technical review
+          ↓
+Revise if necessary
+          ↓
+Merge
+          ↓
+Build
+          ↓
+Publish
+```
+
+This is the docs-as-code workflow in practice.
+
+## The role of the technical writer
+
+A docs-as-code workflow does not turn technical writers into developers.
+
+Instead, it gives technical writers a structured way to work with technical content and collaborate with engineering teams.
+
+As a technical writer, you may be responsible for:
+
+- Researching technical information.
+- Testing products and APIs.
+- Writing and editing documentation.
+- Maintaining Markdown or MDX files.
+- Reviewing rendered documentation.
+- Creating Git branches.
+- Committing documentation changes.
+- Opening and responding to pull requests.
+- Participating in documentation reviews.
+- Fixing documentation-related build errors.
+- Working with developers and subject matter experts.
+- Maintaining documentation after publication.
+
+The exact responsibilities vary between organizations.
+
+However, the more comfortable you become with the workflow, the easier it is to participate in a modern documentation team.
+
+## Docs-as-code is a process, not a single tool
+
+One important distinction is that **docs-as-code is not a tool**.
+
+Markdown is a tool or syntax for writing.
+
+Git is a version control system.
+
+GitHub is a platform for hosting repositories and collaborating.
+
+Docusaurus is a framework for building documentation websites.
+
+Docs-as-code describes the **overall approach to creating, managing, reviewing, and publishing documentation using development-oriented tools and practices**.
+
+You can still have a docs-as-code workflow without using Docusaurus.
+
+For example, another documentation framework could replace Docusaurus while Git, Markdown, pull requests, automated checks, and publishing processes remain part of the workflow.
+
+The tools may change, but the underlying approach remains.
+
+## Limitations and challenges
+
+Docs-as-code also introduces challenges.
+
+Technical writers may need to become comfortable with tools and concepts that are less familiar than traditional writing tools.
+
+These may include:
+
+- Git commands
+- Branches
+- Pull requests
+- Merge conflicts
+- Markdown and MDX
+- Build processes
+- Command-line tools
+- Automated checks
+
+The learning curve can feel steep at first.
+
+However, you don't need to master everything immediately.
+
+Start by understanding the purpose of each part of the workflow and gradually become more comfortable with the tools through practice.
+
+## The bigger picture
+
+At this point, you have seen how the different pieces fit together.
+
+Markdown provides the writing format.
+
+Git provides version control.
+
+GitHub provides collaboration and review.
+
+Docusaurus turns the documentation files into a website.
+
+Automated tools can test, build, and deploy the documentation.
+
+Together, these tools support a workflow that allows documentation to move from an idea to published content.
+
+```text
+Documentation need
+        ↓
+Research and planning
+        ↓
+Markdown / MDX
+        ↓
+Local preview with Docusaurus
+        ↓
+Git branch
+        ↓
+Commit
+        ↓
+GitHub
+        ↓
+Pull request
+        ↓
+Review
+        ↓
+Merge
+        ↓
+Build
+        ↓
+Publish
+        ↓
+Users
+```
+
+The exact implementation will differ from one organization to another, but understanding this overall flow gives you a strong foundation for working in a docs-as-code environment.
+
+## Key takeaways
+
+- Docs-as-code treats documentation as version-controlled and maintainable content.
+- The docs-as-code workflow combines writing, version control, collaboration, review, building, and publishing.
+- Markdown or MDX provides the format for writing documentation.
+- Git tracks changes and maintains documentation history.
+- GitHub or another Git-based platform supports collaboration and review.
+- Docusaurus can preview and build documentation websites.
+- Pull requests provide a structured process for reviewing documentation changes.
+- Automated checks can identify problems before documentation is published.
+- CI/CD processes can automate documentation builds and deployments.
+- Docs-as-code describes an approach rather than a single tool.
+- The exact workflow varies between organizations, but the underlying principles remain similar.
+
+## Next steps
+
+You now understand how the individual tools you've learned fit together into a complete docs-as-code workflow.
+
+The final stage is getting that documentation into the hands of your readers.
+

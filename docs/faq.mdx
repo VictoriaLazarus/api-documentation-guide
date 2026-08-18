@@ -1,0 +1,1308 @@
+---
+sidebar_position: 1
+---
+
+# Frequently asked questions
+
+This FAQ provides quick answers to common questions about APIs, API documentation, testing, and the docs-as-code workflow covered in this guide.
+
+If you are new to API documentation, use this page as a reference when you encounter a concept you want to clarify or revisit.
+
+## API fundamentals
+
+<div className="faq">
+
+<details>
+<summary>What is an API?</summary>
+
+API stands for **[Application Programming Interface](/docs/understanding-apis/what-is-an-api)**.  
+
+It is an interface that allows different software applications to communicate and exchange data.
+
+Instead of a system accessing another application's internal code or database directly, it sends a request to the API. The API receives the request, passes it to the appropriate service for processing, and returns a response.
+
+</details>
+
+<details>
+<summary>Do I need to know how to code to write API documentation?</summary>
+
+No. You do not need to be a software developer to become an API technical writer.
+
+However, you need to be comfortable researching unfamiliar technical concepts, asking developers questions, testing APIs, and verifying information before publishing it.
+
+Your goal is not to understand every line of an application's source code. It is to understand the interface well enough to explain how a user can successfully work with it.
+
+Also, you may encounter programming concepts while working through the guide, but you can learn them progressively as they become relevant to your documentation work.
+
+If a concept is unfamiliar, focus first on understanding what it does, why it matters, and how a developer interacts with it.
+
+You do not need to master an entire programming language before you can begin learning API documentation.
+
+</details>
+
+<details>
+<summary>What is the difference between an API and an endpoint?</summary>
+
+An **API** is the overall interface through which software applications communicate.
+
+An **endpoint** is a specific location within an API where a particular resource can be accessed or an operation can be performed.
+
+A useful way to think about the distinction is:
+
+- **API:** the complete interface.
+- **Endpoint:** a specific entry point within that interface.
+
+</details>
+
+<details>
+<summary>What is an API resource?</summary>
+
+A **resource** is a piece of data or functionality that an API makes available to clients.
+
+For example, a movie API might expose resources such as:
+
+- Movies
+- TV shows
+- People
+- User accounts
+- Lists
+
+An endpoint can provide access to a specific resource or perform an operation involving it.
+
+
+</details>
+
+<details>
+<summary>What is the difference between a client and a server?</summary>
+
+The **client** is the application or system that sends a request. It could be a web application, mobile application, desktop application, command-line tool, or API testing tool such as Postman.
+
+The **server** is the system that receives and processes the request and returns a response.
+
+The interaction can be represented as:
+
+```text
+Client
+  |
+  | Request
+  v
+Server
+  |
+  | Response
+  v
+Client
+```
+
+Understanding this relationship is important because API documentation describes how the client communicates with the server.
+
+See [understanding client and server in API interaction](/docs/understanding-apis/what-is-an-api#understanding-client-and-server-in-api-interaction).
+</details>
+
+</div>
+
+## HTTP and REST APIs
+
+<div className="faq">
+
+<details>
+<summary>What is HTTP and why is it important for APIs?</summary>
+
+**HTTP (Hypertext Transfer Protocol)** is a protocol used for communication between clients and servers.
+
+APIs commonly use HTTP to define how clients send requests and how servers return responses.
+
+[Understanding HTTP](/docs/understanding-apis/http-basics) is therefore one of the foundations of API documentation.
+
+</details>
+
+<details>
+<summary>What is HTTPS and how is it different from HTTP?</summary>
+
+**HTTPS (Hypertext Transfer Protocol Secure)** is HTTP with an encrypted connection.
+
+You will commonly see API URLs beginning with:
+
+```text
+https://
+```
+
+rather than:
+
+```text
+http://
+```
+
+HTTPS helps protect information exchanged between the client and server from being read or modified while it is transmitted.
+
+API documentation should generally use the secure HTTPS URL provided by the API.
+
+</details>
+
+<details>
+<summary>What is a REST API?</summary>
+
+A REST API is an API designed according to the architectural principles and constraints associated with **REST (Representational State Transfer)**.
+
+REST is not a programming language or a framework. It is an architectural style for designing networked applications.
+
+:::note
+
+Not every API is a REST API. REST is one approach to API design.
+
+:::
+
+</details>
+
+<details>
+<summary>What does statelessness mean in a REST API?</summary>
+
+**Statelessness** means that each request contains the information the server needs to process it. The server does not rely on stored client state from a previous request to understand the current one.
+
+For example, if an API requires authentication, the necessary information is generally sent with each request according to the API's authentication mechanism.
+
+Statelessness allows requests to be handled independently and helps make interactions more predictable.
+
+</details>
+
+<details>
+<summary>What is cacheability in REST?</summary>
+
+**Cacheability** means that a response can be stored and reused for subsequent requests when the API and HTTP caching rules allow it.
+
+Caching can reduce unnecessary requests to the server and improve performance.
+
+However, whether a response can be cached depends on the API's behavior and the caching directives associated with the response.
+
+As a technical writer, you should document caching behavior when it is relevant to how developers use the API.
+
+</details>
+
+<details>
+<summary>What are the most common HTTP methods?</summary>
+
+Common HTTP methods include:
+
+| Method | Common purpose |
+|--------|----------------|
+| `GET` | Retrieve data |
+| `POST` | Create or submit data |
+| `PUT` | Replace an existing resource |
+| `PATCH` | Partially update an existing resource |
+| `DELETE` | Delete a resource |
+
+These descriptions represent common usage, but the exact behavior depends on how an API implements each endpoint.
+
+Do not assume that an API behaves a particular way solely because it uses a specific HTTP method. Verify the API's actual behavior before documenting it.
+
+</details>
+
+<details>
+<summary>What is an HTTP status code?</summary>
+
+An HTTP status code is a three-digit number returned by the server to indicate the result of a request.
+
+Status codes are grouped into categories:
+
+| Code | Category |
+|-------|----------|
+| `2xx` | Successful requests |
+| `3xx` | Redirection |
+| `4xx` | Client-side errors |
+| `5xx` | Server-side errors |
+
+For example:
+
+```text
+200 OK
+400 Bad Request
+401 Unauthorized
+404 Not Found
+500 Internal Server Error
+```
+
+Status codes are useful in API documentation because they help developers understand whether a request succeeded and how to interpret a failed one.
+
+</details>
+
+</div>
+
+## Requests, responses, and parameters
+
+<div className="faq">
+
+<details>
+<summary>What is an API request?</summary>
+
+An API request is a message sent by a client to an API.
+
+Depending on the endpoint, a request can contain:
+
+- An HTTP method
+- A URL
+- Path parameters
+- Query parameters
+- Headers
+- Authentication information
+- A request body
+
+A complete API request contains the information the server needs to understand and process the client's request.
+
+</details>
+
+<details>
+<summary>What is an API response?</summary>
+
+An API response is the message the server returns after processing a request.
+
+A response commonly contains:
+
+- A status code
+- Response headers
+- A response body
+
+The response body contains the data the API returned.
+
+When documenting an endpoint, explain both what the developer needs to send and important fields in the response they received.
+
+</details>
+
+<details>
+<summary>What is a request body?</summary>
+
+A request body contains data that the client sends to the server.
+
+They are commonly used with methods such as `POST`, `PUT`, and `PATCH`.
+
+The structure of a request body depends on the endpoint. 
+
+See [requests and responses](/docs/understanding-apis/requests-and-responses)
+
+</details>
+
+<details>
+<summary>What is a response body?</summary>
+
+A response body contains the data the server returned.
+
+For example:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15"
+}
+```
+
+When documenting a response body, explain the fields that developers need to understand.
+
+For complex responses, include information about nested objects, arrays, data types, and fields that may require additional explanation.
+
+</details>
+
+<details>
+<summary>What is the difference between a path parameter and a query parameter?</summary>
+
+A **path parameter** is included as part of the URL path is commonly used to identify a specific resource.
+
+For example:
+
+```text
+/movies/550
+```
+
+Here, `550` can represent the `movie_id` path parameter.
+
+A **query parameter** appears after a `?` in the URL and commonly provides additional options, filters, or preferences.
+
+For example:
+
+```text
+/movies/550?language=en-US
+```
+
+Here, `language` is a query parameter.
+
+When multiple query parameters are used, they are separated with `&`:
+
+```text
+/movies/550?language=en-US&include_cast=true
+```
+
+A useful distinction is:
+
+- **Path parameter:** commonly identifies *which resource* to access.
+- **Query parameter:** commonly specifies *how the request should be processed*.
+
+The exact behavior depends on the API, so always verify the endpoint documentation.
+
+</details>
+
+<details>
+<summary>What is an HTTP header?</summary>
+
+HTTP headers contain metadata about a request or response.
+
+For example, a request might include:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+A response might include:
+
+```http
+Content-Type: application/json
+```
+
+Headers can communicate information about authentication, content types, caching, accepted formats, and other aspects of the interaction.
+
+When documenting headers, specify the header name, whether it is required, the expected value or format, and its purpose.
+
+</details>
+
+<details>
+<summary>How do I know whether a parameter is required?</summary>
+
+The API documentation or API specification should indicate whether a parameter is required or optional.
+
+For example:
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `movie_id` | Integer | Yes | Identifies the movie. |
+| `language` | String | No | Specifies the response language. |
+
+A required parameter must be provided for the request to be processed correctly.
+
+An optional parameter can be omitted unless the developer needs the behavior it provides.
+
+Never assume that a parameter is optional simply because an example request does not contain it. Verify the API's behavior.
+
+</details>
+
+</div>
+
+## JSON and data formats
+
+<div className="faq">
+
+<details>
+<summary>What is JSON?</summary>
+
+**JSON (JavaScript Object Notation)** is a lightweight format used to represent and exchange structured data.
+
+It is commonly used in APIs because it is relatively easy for humans to read and straightforward for software applications to process.
+
+As a technical writer working with APIs, you should understand JSON objects, arrays, key-value pairs, strings, numbers, booleans, and null values.
+
+</details>
+
+<details>
+<summary>What is a JSON object?</summary>
+
+A JSON object is a collection of key-value pairs enclosed in curly braces:
+
+```json
+{
+  "title": "Fight Club",
+  "year": 1999
+}
+```
+
+In this example:
+
+- `title` is a key
+- `"Fight Club"` is its value
+- `year` is another key
+- `1999` is its value
+
+Objects can also contain nested objects and arrays.
+
+</details>
+
+<details>
+<summary>What is a JSON array?</summary>
+
+A JSON array is an ordered collection of values enclosed in square brackets.
+
+For example:
+
+```json
+{
+  "genres": [
+    "Drama",
+    "Thriller"
+  ]
+}
+```
+
+Arrays can contain strings, numbers, objects, booleans, null values, or other arrays.
+
+When documenting an API response, pay attention to whether a field contains a single value, an object, or an array.
+
+</details>
+
+<details>
+<summary>Why is JSON important for API documentation?</summary>
+
+Technical writers frequently need to explain the structure of API requests and responses.
+
+Understanding JSON helps you identify:
+
+- Field names
+- Data types
+- Objects
+- Arrays
+- Nested structures
+- Relationships between fields
+- Optional and required information
+
+Without understanding the structure of a JSON response, it is difficult to accurately explain what developers will receive from an endpoint.
+
+</details>
+
+</div>
+
+## Authentication and authorization
+
+<div className="faq">
+
+<details>
+<summary>What is authentication?</summary>
+
+Authentication is the process of verifying identity or credentials.
+
+An API may require a client to provide credentials before it allows access to protected resources.
+
+Common authentication mechanisms include:
+
+- API keys
+- Access tokens
+- Bearer tokens
+- OAuth-based authentication
+
+The exact mechanism depends on the API.
+
+When documenting authentication, explain where the credential should be provided and show a safe example using a placeholder rather than a real secret.
+
+</details>
+
+<details>
+<summary>What is authorization?</summary>
+
+Authorization determines what an authenticated user or application is allowed to access or do.
+
+For example, a user may successfully authenticate but still not have permission to perform a particular operation.
+
+A simple distinction is:
+
+> Authentication asks, "Who are you?"
+
+> Authorization asks, "What are you allowed to do?"
+
+Both concepts can be important when documenting protected API operations.
+
+</details>
+
+<details>
+<summary>What is an API key?</summary>
+
+An API key is a credential used by an API to identify or authorize a client.
+
+Depending on the API, an API key may be sent through a request header, query parameter, or another mechanism.
+
+For example:
+
+```http
+X-API-Key: YOUR_API_KEY
+```
+
+API keys should be treated as sensitive information.
+
+Never publish a real API key in public documentation, source code, screenshots, or repositories.
+
+</details>
+
+<details>
+<summary>What is an access token?</summary>
+
+An access token is a credential that allows a client to access protected resources or perform authorized operations.
+
+A common bearer-token format is:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+The exact behavior of an access token depends on the authentication system used by the API.
+
+</details>
+
+<details>
+<summary>Why should I never put a real API key or token in documentation?</summary>
+
+A real credential may provide access to an API account or protected resources.
+
+Publishing it can expose the credential to unauthorized users.
+
+Use placeholders such as:
+
+```text
+YOUR_API_KEY
+```
+
+or:
+
+```text
+YOUR_ACCESS_TOKEN
+```
+
+If you need to demonstrate authentication, show the location and format of the credential without exposing the actual secret.
+
+</details>
+
+</div>
+
+## Testing and troubleshooting APIs
+
+<div className="faq">
+
+<details>
+<summary>What is Postman?</summary>
+
+Postman is a tool that allows you to send requests to APIs and inspect their responses.
+
+You can use Postman to:
+
+- Select HTTP methods
+- Enter API URLs
+- Add parameters
+- Add headers
+- Configure authentication
+- Send requests
+- Inspect responses
+- Organize requests into collections
+- Test different API scenarios
+
+For technical writers, Postman is particularly useful because it allows you to interact with an API directly instead of relying entirely on existing documentation.
+
+</details>
+
+<details>
+<summary>Why should I test an API before documenting it?</summary>
+
+Testing helps you understand how the API actually behaves. Existing documentation, API specifications, and information from developers are valuable sources, but testing gives you an opportunity to verify the behavior yourself.
+
+During testing, you can identify:
+
+- Incorrect URLs
+- Missing parameters
+- Authentication requirements
+- Actual response structures
+- Error responses
+- Unexpected behavior
+- Differences between documented and actual behavior
+
+You should not simply document what an API is supposed to do. Whenever possible, verify what it actually does.
+
+</details>
+
+<details>
+<summary>What should I record when testing an endpoint?</summary>
+
+Keep notes about the information during testing:
+
+```text
+Endpoint:
+HTTP method:
+Purpose:
+Authentication:
+Path parameters:
+Query parameters:
+Headers:
+Request body:
+Successful response:
+Error responses:
+Notes:
+```
+
+These notes can later become the foundation for your endpoint documentation.
+
+Recording your findings also makes it easier to identify gaps and questions that need clarification from developers or subject matter experts.
+
+</details>
+
+<details>
+<summary>Why does my API request return <code>401 Unauthorized</code>?</summary>
+
+A `401 Unauthorized` response generally indicates that the request does not contain valid authentication information.
+
+Possible causes include:
+
+- Missing credentials
+- An invalid API key
+- An invalid access token
+- An expired credential
+- Incorrect authentication configuration
+
+Check the API's authentication requirements and verify that the credential is being sent in the correct location and format.
+
+Do not assume that every `401` error has the same cause. Consult the API's documentation and error response for additional information.
+
+</details>
+
+<details>
+<summary>Why does my API request return <code>404 Not Found</code>?</summary>
+
+A `404 Not Found` response generally indicates that the requested resource or endpoint could not be found.
+
+Possible causes include:
+
+- An incorrect URL
+- An incorrect endpoint path
+- An invalid resource identifier
+- A resource that does not exist
+
+Check the URL carefully and verify that path parameters contain valid values.
+
+For example, compare:
+
+```text
+/movies/550
+```
+
+with an incorrectly constructed path such as:
+
+```text
+/movie/550
+```
+
+A small difference in the endpoint path can result in a failed request.
+
+</details>
+
+<details>
+<summary>Why does my example work in Postman but not in my documentation?</summary>
+
+If a request works in Postman but fails when a reader follows your documentation, compare the working request with the documented example.
+
+Check:
+
+- HTTP method
+- URL
+- Path parameters
+- Query parameters
+- Headers
+- Authentication
+- Request body
+- Content type
+
+The problem may be that the documentation omitted a piece of information that Postman was automatically providing or that you configured separately.
+
+A good practice is to reproduce the request from the documentation itself rather than relying only on a previously configured Postman request.
+
+</details>
+
+<details>
+<summary>Why should I test documentation examples before publishing them?</summary>
+
+Examples are often copied directly by developers.
+
+An example can look technically correct while still containing an incorrect URL, parameter, authentication requirement, or response.
+
+Testing allows you to verify that:
+
+- The URL is correct.
+- Parameters are correct.
+- Authentication works.
+- The request produces the expected result.
+- The response example matches actual API behavior.
+
+Testing therefore turns an example from an assumption into something you have verified.
+
+</details>
+
+</div>
+
+## Writing better API documentation
+
+<div className="faq">
+
+<details>
+<summary>What information should an API endpoint page contain?</summary>
+
+The exact structure depends on the API and your documentation standards, but a useful endpoint page commonly includes:
+
+- Endpoint name
+- Description
+- HTTP method
+- URL
+- Authentication requirements
+- Path parameters
+- Query parameters
+- Headers
+- Request body
+- Request example
+- Response example
+- Response field descriptions
+- Status codes
+- Error information
+- Additional notes where necessary
+
+The goal is to give developers enough information to successfully use the endpoint without forcing them to guess.
+
+</details>
+
+<details>
+<summary>How much detail should API documentation contain?</summary>
+
+API documentation should contain enough information for the intended reader to successfully use the API.
+
+Too little information creates gaps.
+
+Too much irrelevant information makes the documentation difficult to scan.
+
+A useful question to ask is:
+
+> What does the developer need to know to successfully complete this task?
+
+Use the answer to determine what information belongs in the documentation.
+
+Valuable documentation does not mean documenting every technical detail you can find. It means providing the details that are relevant to the user's task.
+
+</details>
+
+<details>
+<summary>Should every endpoint have a request and response example?</summary>
+
+Whenever possible, yes.
+
+A request example shows developers how to construct the request, while a response example shows what they can expect from the API.
+
+However, examples should be realistic, accurate, and safe to copy and adapt.
+
+</details>
+
+<details>
+<summary>Should I document every response field?</summary>
+
+Not necessarily.
+
+The level of detail should depend on the complexity and purpose of the response.
+
+For a small response, documenting every field may be appropriate.
+
+For a large response, focus on fields that developers need to understand and use. Complex, unusual, or potentially confusing fields may require additional explanation.
+
+The goal is to make the response understandable without overwhelming the reader.
+
+</details>
+
+<details>
+<summary>What makes a good API example?</summary>
+
+A good API example should be:
+
+- Accurate
+- Relevant to the endpoint
+- Easy to understand
+- Complete enough to demonstrate the concept
+- Safe to copy and adapt
+- Free of unnecessary complexity
+
+Examples should also use realistic placeholder values where actual credentials or private information would otherwise appear.
+
+</details>
+
+<details>
+<summary>What should I do when the API documentation and the actual API behavior disagree?</summary>
+
+Do not silently choose one source and assume it is correct.
+
+First, verify the behavior by testing the API.
+
+Then determine whether the discrepancy is caused by:
+
+- Outdated documentation
+- An API change
+- An incorrect test
+- An incorrect specification
+- An environment difference
+- A misunderstanding of the endpoint
+
+If you cannot resolve the discrepancy yourself, raise it with the appropriate developer or subject matter expert.
+
+The important principle is to verify before publishing.
+
+</details>
+
+<details>
+<summary>How do I know what information developers actually need?</summary>
+
+Start with the task the developer is trying to accomplish.
+
+Ask questions such as:
+
+- What are they trying to do?
+- What endpoint do they need?
+- What information must they provide?
+- What authentication is required?
+- What response will they receive?
+- What errors might they encounter?
+- What decisions do they need to make while using the API?
+
+User needs should guide the structure and level of detail of your documentation.
+
+</details>
+
+</div>
+
+## Markdown and Docusaurus
+
+<div className="faq">
+
+<details>
+<summary>What is Markdown?</summary>
+
+Markdown is a lightweight markup language used to structure and format text.
+
+It provides syntax for elements such as:
+
+- Headings
+- Lists
+- Tables
+- Links
+- Images
+- Code blocks
+- Blockquotes
+
+For example:
+
+```markdown
+## Authentication
+
+Authentication is required for this endpoint.
+```
+
+Markdown is particularly useful in documentation because the source is relatively easy to read and works well with version control systems.
+
+</details>
+
+<details>
+<summary>Why is Markdown useful in a docs-as-code workflow?</summary>
+
+Markdown files can be stored and managed alongside other project files in a Git repository.
+
+This allows documentation to benefit from software development practices such as:
+
+- Version control
+- Branching
+- Pull requests
+- Reviews
+- Change history
+- Automated builds
+- Automated publishing
+
+Markdown therefore becomes more than a formatting syntax. It becomes one of the primary ways technical writers create content within a docs-as-code environment.
+
+</details>
+
+<details>
+<summary>What is Docusaurus?</summary>
+
+Docusaurus is a framework for building documentation websites using Markdown and MDX.
+
+It provides features such as:
+
+- Documentation pages
+- Sidebars
+- Navigation
+- Search integrations
+- Versioning
+- Static site generation
+- Customizable website layouts
+
+In this guide, Docusaurus is used to turn documentation files into a browsable website.
+
+</details>
+
+<details>
+<summary>What is the difference between Markdown and MDX?</summary>
+
+Markdown provides syntax for writing structured documentation.
+
+MDX extends Markdown by allowing supported JSX or React components to be used alongside Markdown.
+
+A Markdown file uses the `.md` extension:
+
+```text
+introduction.md
+```
+
+An MDX file uses the `.mdx` extension:
+
+```text
+faq.mdx
+```
+
+For standard documentation content, Markdown is often sufficient.
+
+MDX becomes useful when you need functionality beyond standard Markdown, such as interactive components or custom page elements.
+
+</details>
+
+<details>
+<summary>Why would I use an MDX file for an FAQ?</summary>
+
+An FAQ can be written in standard Markdown, but MDX gives you additional flexibility.
+
+For example, this FAQ uses HTML `<details>` and `<summary>` elements to create expandable questions.
+
+MDX allows you to combine those elements with Markdown content while giving you the option to introduce more interactive components later.
+
+This makes MDX a useful choice when a documentation page requires behavior or presentation that goes beyond standard Markdown.
+
+</details>
+
+<details>
+<summary>Why does my Markdown sometimes render differently from what I expect?</summary>
+
+Markdown is processed by the documentation system before it appears on the website. If your Markdown file appears differently on the website, it could be as a result of any of these problems:
+
+- Incorrect heading syntax
+- Unclosed code fences
+- Incorrect indentation
+- Missing blank lines
+- Incorrect link syntax
+- Incorrect table formatting
+- Mixing Markdown and JSX incorrectly in an MDX file
+
+If something does not render as expected, inspect the source carefully and check the Markdown or MDX syntax.
+
+</details>
+
+</div>
+
+## Git, GitHub, and docs-as-code
+
+<div className="faq">
+
+<details>
+<summary>What is Git?</summary>
+
+Git is a distributed version control system used to track changes to files.
+
+It allows documentation teams to:
+
+- Track changes
+- Create branches
+- Commit work
+- Review changes
+- Restore previous versions
+- Collaborate with other contributors
+
+Git provides the version-control foundation for many docs-as-code workflows.
+
+</details>
+
+<details>
+<summary>What is GitHub?</summary>
+
+GitHub is a platform for hosting Git repositories and collaborating on projects.
+
+It provides features such as:
+
+- Repository hosting
+- Pull requests
+- Issue tracking
+- Discussions
+- Code and documentation review
+- Collaboration tools
+
+Git and GitHub are related but are not the same thing.
+
+**Git** is the version control system.
+
+**GitHub** is a platform that hosts Git repositories and provides collaboration features around them.
+
+</details>
+
+<details>
+<summary>What is a repository?</summary>
+
+A repository is a location where a project's files and Git history are stored.
+
+A documentation repository might contain:
+
+```text
+docs/
+src/
+static/
+sidebars.js
+docusaurus.config.js
+package.json
+```
+
+The exact structure depends on the project.
+
+A repository allows documentation teams to manage content, configuration, and the history of changes in one place.
+
+</details>
+
+<details>
+<summary>What is a commit?</summary>
+
+A commit is a recorded set of changes in a Git repository.
+
+For example, after adding authentication documentation, you might create a commit with a message such as:
+
+```text
+Add authentication documentation
+```
+
+Good commit messages make a project's history easier to understand.
+
+</details>
+
+<details>
+<summary>What is a branch?</summary>
+
+A branch is a separate line of development within a Git repository.
+
+A documentation contributor can create a branch to work on changes without immediately modifying the main branch.
+
+For example:
+
+```text
+main
+  |
+  └── api-documentation
+```
+
+Once the work has been reviewed and approved, the changes can be merged into the appropriate branch.
+
+See [What is a branch?](/docs/documentation-as-code/git#what-is-a-branch).
+
+</details>
+
+<details>
+<summary>What is a pull request?</summary>
+
+This is a request to merge changes from one branch into another.
+
+Pull requests provide an opportunity to:
+
+- Review changes
+- Discuss proposed updates
+- Identify problems
+- Suggest improvements
+- Approve changes
+
+Documentation teams can use pull requests to review content before it is merged and published.
+
+</details>
+
+<details>
+<summary>What is a docs-as-code workflow?</summary>
+
+Docs-as-code is an approach to creating and maintaining documentation using tools and workflows commonly associated with software development.
+
+A typical workflow might look like:
+
+```text
+Write
+  ↓
+Track changes with Git
+  ↓
+Create a branch
+  ↓
+Review changes
+  ↓
+Build documentation
+  ↓
+Test
+  ↓
+Merge
+  ↓
+Publish
+```
+
+The exact workflow differs between organizations, but the underlying idea is to manage documentation using practices such as version control, collaborative review, automated builds, and publishing workflows.
+
+</details>
+
+</div>
+
+## Learning and career questions
+
+<div className="faq">
+
+<details>
+<summary>What skills should a technical writer develop for API documentation?</summary>
+
+Important skills include:
+
+- Technical writing
+- Information architecture
+- API fundamentals
+- HTTP
+- JSON
+- Authentication
+- API testing
+- Markdown
+- Git
+- GitHub
+- Documentation tools such as Docusaurus
+- Research and information gathering
+- Collaboration with developers and subject matter experts
+
+You do not need to master everything simultaneously.
+
+Build your skills progressively and practice applying them through real documentation projects.
+
+</details>
+
+<details>
+<summary>How can I practice API documentation?</summary>
+
+A practical way to practice is to choose a public API and document a small group of endpoints.
+
+You can:
+
+1. Read the API documentation
+2. Identify the intended audience
+3. Test the endpoints
+4. Record what you discover
+5. Identify gaps or unclear behavior
+6. Plan the documentation structure
+7. Write the endpoint documentation
+8. Add request and response examples
+9. Document errors and edge cases
+10. Review the content
+11. Build the documentation
+12. Publish the result
+
+The final project in this guide follows a similar process.
+
+</details>
+
+<details>
+<summary>Do I need to document an entire API for a portfolio project?</summary>
+
+No.
+
+A well-documented selection of endpoints can demonstrate your skills effectively.
+
+A strong portfolio project can show that you know how to:
+
+- Understand an API
+- Test endpoints
+- Explain authentication
+- Document parameters
+- Explain requests and responses
+- Provide accurate examples
+- Document errors
+- Structure information logically
+- Use documentation tools
+- Apply a docs-as-code workflow
+
+Quality, accuracy, and usability are more valuable than simply documenting a large number of endpoints.
+
+</details>
+
+<details>
+<summary>Can I use another API instead of TMDB for the final project?</summary>
+
+Yes.
+
+TMDB is used throughout this guide because it provides a practical API for applying the concepts you've learned.
+
+However, the documentation process can be applied to other APIs.
+
+You can use another API and follow the same general process:
+
+```text
+Explore
+  ↓
+Test
+  ↓
+Understand
+  ↓
+Plan
+  ↓
+Document
+  ↓
+Review
+  ↓
+Build
+  ↓
+Publish
+```
+
+The important part is not the specific API you choose. It is your ability to research, test, understand, and communicate the API accurately.
+
+</details>
+
+<details>
+<summary>What should I learn after completing this guide?</summary>
+
+Keep practicing and expand your technical knowledge gradually.
+
+Depending on your goals, you can explore:
+
+- OpenAPI
+- OAuth
+- Webhooks
+- Rate limiting
+- API versioning
+- GraphQL
+- More advanced Git workflows
+- CI/CD for documentation
+- Automated documentation testing
+- Accessibility in technical documentation
+- Documentation analytics
+- Content design and information architecture
+
+You do not need to learn everything before working on real documentation.
+
+The most effective approach is to continue learning as your documentation projects introduce new requirements.
+
+</details>
+
+</div>
+
+## Final reminder
+
+<div className="faq">
+
+<details>
+<summary>What is the most important thing to remember about API documentation?</summary>
+
+API documentation is not simply a collection of endpoint descriptions.
+
+Its purpose is to help developers successfully understand and use an API.
+
+As you write, keep asking:
+
+> **Can the reader use this documentation to accomplish what they need to do?**
+
+If the answer is yes, your documentation is serving its purpose.
+
+Remember to:
+
+- Understand the technology.
+- Test what you document.
+- Verify information before publishing.
+- Explain what matters to the reader.
+- Provide accurate examples.
+- Document important errors and edge cases.
+- Keep information organized and easy to navigate.
+- Never expose real credentials.
+- Write for the user's task, not simply for the technology.
+
+Good API documentation sits at the intersection of **technical accuracy, usability, and clear communication**.
+
+</details>
+
+</div>

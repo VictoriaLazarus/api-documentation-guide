@@ -1,0 +1,860 @@
+---
+title: GitHub
+sidebar_position: 4
+---
+
+# GitHub
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what GitHub is and how it relates to Git.
+- Distinguish between Git and GitHub.
+- Navigate a GitHub repository and identify its main components.
+- Explain how technical writers use GitHub to collaborate on documentation.
+- Understand the purpose of README files, issues, and pull requests.
+- Explain how documentation changes are reviewed on GitHub.
+- Describe how GitHub fits into a docs-as-code workflow.
+
+## What is GitHub?
+
+**GitHub** is a platform for hosting Git repositories and collaborating on projects.
+
+Git tracks changes to files and maintains their history. GitHub provides a place where those Git repositories can be stored remotely and where contributors can work together.
+
+For example, your documentation project can exist as a Git repository on your computer. You can then push that repository to GitHub so that other members of your team can access it, review changes, and contribute to the project.
+
+A simplified relationship looks like this:
+
+```text
+Git
+↓
+Tracks changes and manages version history
+
+GitHub
+↓
+Hosts Git repositories and provides collaboration tools
+```
+
+Git and GitHub are related, but they are not the same thing.
+
+## Git vs. GitHub
+
+It is common for beginners to use the terms Git and GitHub interchangeably. They are different tools with different purposes.
+
+| Git | GitHub |
+|---|---|
+| Git is a version control system. | GitHub is a platform for hosting and collaborating on Git repositories. |
+| Git tracks changes to files. | GitHub provides a remote location for repositories. |
+| Git can be used locally on your computer. | GitHub is accessed through the web and Git tools. |
+| Git manages branches, commits, and version history. | GitHub provides pull requests, issues, reviews, and other collaboration features. |
+| Git does not require GitHub. | GitHub uses Git repositories. |
+
+You can use Git without GitHub.
+
+For example, you could create a Git repository on your computer and use Git to track your documentation without connecting it to any remote service.
+
+However, GitHub makes it easier for teams to collaborate around that repository.
+
+## Why GitHub matters
+
+Technical writers often work with developers, product managers, documentation engineers, and other contributors.
+
+GitHub provides a shared environment where these contributors can:
+
+- Store documentation
+- Review proposed changes
+- Report documentation problems
+- Discuss improvements
+- Track documentation tasks
+- Collaborate on changes
+- Maintain documentation alongside the software it describes
+
+For example, imagine that a developer changes the authentication process for an API.
+
+The technical writer may need to update the authentication documentation to reflect the new behavior.
+
+A typical workflow might look like this:
+
+```text
+Developer changes authentication
+            ↓
+Technical writer updates documentation
+            ↓
+Writer creates a pull request
+            ↓
+Team reviews the changes
+            ↓
+Changes are approved
+            ↓
+Documentation is merged
+            ↓
+Updated documentation is published
+```
+
+GitHub provides many of the collaboration features needed to support this process.
+
+## Understanding a GitHub repository
+
+A **GitHub repository** is a project hosted on GitHub.
+
+A repository can contain source code, documentation, configuration files, images, and other project resources.
+
+For example, your Docusaurus documentation project might have a repository structure similar to:
+
+```text
+my-docs/
+├── docs/
+├── src/
+├── static/
+├── docusaurus.config.js
+├── package.json
+├── sidebars.js
+└── README.md
+```
+
+When this project is pushed to GitHub, contributors can access the repository through the GitHub interface.
+
+The repository becomes the central location where the team can view the project and collaborate on changes.
+
+## Navigating a documentation repository
+
+When you open a repository on GitHub, you'll typically see the files and folders that make up the project.
+
+For a documentation project, you might find directories such as:
+
+```text
+docs/
+static/
+src/
+```
+
+You may also see files such as:
+
+```text
+README.md
+package.json
+docusaurus.config.js
+sidebars.js
+```
+
+As a technical writer, you should become comfortable identifying where documentation lives within a repository.
+
+For example, if the project uses Docusaurus, the main documentation content may be stored inside the `docs` directory.
+
+A repository might therefore contain:
+
+```text
+docs/
+├── introduction.md
+├── getting-started.md
+├── authentication.md
+└── api-reference/
+    ├── movies.md
+    └── users.md
+```
+
+The exact structure depends on how the project has been organized. Therefore, do not assume that every repository uses the same structure. Before editing files, take time to understand how the project is organized.
+
+## The README file
+
+A **README** file provides information about a project and helps new contributors understand how to work with it.
+
+README files are commonly written in Markdown and are often named:
+
+```text
+README.md
+```
+
+A repository's README might explain:
+
+- What the project does
+- How to install or set up the project
+- How to run the project locally
+- How the repository is organized
+- How to contribute
+- Where to find additional documentation
+- Important project requirements
+
+For a technical writer, the README can be one of the first places to look when joining an unfamiliar repository.
+
+In the README, you might find instructions such as:
+
+```text
+1. Clone the repository
+2. Install the required dependencies
+3. Start the documentation locally
+4. Make your changes
+5. Run the documentation build
+6. Create a pull request
+```
+
+Following the repository's contribution instructions is important because every project may have its own workflow.
+
+## Why README files matter to technical writers
+
+A README is often the first piece of documentation a contributor encounters.
+
+This makes it an important part of the developer experience.
+
+A good README should help a new contributor answer questions such as:
+
+- What is this project?
+- What do I need before I begin?
+- How do I set it up?
+- Where are the documentation files?
+- How do I preview my changes?
+- How do I contribute?
+
+Technical writers may be responsible for creating, maintaining, or improving README files as part of their documentation responsibilities.
+
+## Issues
+
+A **GitHub issue** is a way to track a task, problem, question, or proposed improvement within a repository.
+
+Issues are not limited to software bugs.
+
+Documentation teams can use issues to track tasks such as:
+
+- Fixing an inaccurate example
+- Updating outdated documentation
+- Adding a missing guide
+- Reporting a broken link
+- Improving navigation
+- Documenting a new feature
+- Reviewing terminology
+- Requesting screenshots or diagrams
+
+For example, a documentation issue might be:
+
+```text
+Title:
+Update authentication examples for API v2
+
+Description:
+The authentication examples in the getting-started guide
+still use the API v1 endpoint. Update the examples to use
+the current API v2 endpoint.
+```
+
+The issue gives the team a place to discuss the work before or while it is being completed.
+
+## Issues and documentation planning
+
+Issues can also help technical writers manage documentation work.
+
+Suppose a product team is preparing to release a new feature.
+
+The documentation work might be represented by an issue such as:
+
+```text
+Document the new payment API
+```
+
+The issue could contain information about:
+
+- What needs to be documented
+- Which product version is affected
+- Who is responsible for the work
+- Links to relevant product requirements
+- Technical contacts
+- Acceptance criteria
+
+This gives the writer context before they begin writing.
+
+## Pull requests
+
+A **pull request**, commonly called a **PR**, is a request to merge changes from one branch into another.
+
+You already learned about branches and pull requests in the previous chapter. On GitHub, the pull request provides the interface where those changes can be discussed and reviewed.
+
+For example:
+
+```text
+update-authentication-docs
+            |
+            | Pull request
+            ↓
+           main
+```
+
+A pull request can show:
+
+- Which files were changed
+- Lines that were added
+- Lines that were removed
+- The person who created the change
+- Comments from reviewers
+- Review decisions
+- Automated checks
+
+This makes pull requests particularly useful for documentation teams.
+
+## What does a documentation pull request look like?
+
+Imagine you have been asked to update an API authentication guide.
+
+You create a branch:
+
+```text
+update-authentication-guide
+```
+
+You update the documentation and create a pull request.
+
+The pull request might contain a description such as:
+
+```text
+## Summary
+
+- Updated API key authentication instructions
+- Added a Postman example
+- Corrected the authentication endpoint
+- Updated the troubleshooting section
+
+## Testing
+
+- Tested the API request in Postman
+- Built the documentation locally
+- Verified that all links work
+```
+
+This gives reviewers useful context about what changed and how you verified the changes.
+
+## Reviewing documentation changes
+
+One of the most important ways technical writers use GitHub is through **code and content review**.
+
+When someone opens a pull request, reviewers can inspect the proposed changes before they are merged.
+
+For documentation, reviewers might check:
+
+- Is the information technically accurate?
+- Does the example work?
+- Is the terminology consistent?
+- Is the explanation clear?
+- Are important steps missing?
+- Are links working?
+- Does the Markdown render correctly?
+- Does the documentation follow the project's style guide?
+
+A reviewer might leave a comment such as:
+
+```text
+Could we clarify what value the user should enter
+for this parameter?
+```
+
+The writer can then update the documentation and push the change to the same branch.
+
+The pull request automatically reflects the new changes.
+
+## Reviewing changes with a diff
+
+GitHub provides a **diff**, which shows the differences between the existing version of a file and the proposed version.
+
+For example, a diff might show:
+
+```diff
+- Enter your API key in the Authorization field.
++ Enter your API key in the Authorization header.
+```
+
+The removed line is shown separately from the added line.
+
+Diffs allow reviewers to focus on what actually changed rather than having to compare entire documents manually.
+
+This is particularly useful for technical documentation because even a small wording change can affect technical accuracy.
+
+For example:
+
+```diff
+- Send the request using the POST method.
++ Send the request using the GET method.
+```
+
+A reviewer can immediately spot the change and verify whether it is correct.
+
+## Pull request reviews and technical writing
+
+Pull request reviews are more than proofreading.
+
+A documentation review can involve several types of feedback.
+
+### Technical review
+
+A developer or subject matter expert may verify that the documentation accurately describes the product.
+
+### Editorial review
+
+A technical writer or editor may review the content for clarity, consistency, grammar, and style.
+
+### Product review
+
+A product manager or product specialist may verify that the documentation accurately reflects the intended user experience.
+
+This means a documentation pull request may involve several people with different areas of expertise.
+
+## Resolving reviewers comments
+
+Reviewers may request changes before approving a pull request.
+
+For example:
+
+```text
+Reviewer:
+This example uses an outdated endpoint.
+Please update it to the v2 endpoint.
+```
+
+You can make the correction locally:
+
+```text
+Update documentation
+        ↓
+Commit change
+        ↓
+Push branch
+        ↓
+Pull request updates automatically
+```
+
+You do not normally need to create a completely new pull request for every review comment.
+
+Instead, you continue working on the branch associated with the pull request.
+
+## Approving and merging a pull request
+
+Once reviewers are satisfied with the changes, they can approve the pull request.
+
+Depending on the team's workflow, the pull request may then be merged into the main branch.
+
+The result might look like:
+
+```text
+Feature branch
+      |
+      | reviewed and approved
+      ↓
+Main branch
+```
+
+Once merged, the documentation changes become part of the main version of the project.
+
+The project may then automatically build and publish the updated documentation.
+
+## GitHub Actions
+
+GitHub also provides automation through **GitHub Actions**.
+
+GitHub Actions allows teams to automate tasks when certain events occur in a repository.
+
+For example, a documentation project might automatically:
+
+- Build the documentation
+- Check links
+- Run tests
+- Check formatting
+- Deploy documentation to a website
+
+A simplified documentation workflow might look like:
+
+```text
+Writer opens pull request
+          ↓
+GitHub Actions runs checks
+          ↓
+Documentation build succeeds
+          ↓
+Reviewer approves changes
+          ↓
+Pull request is merged
+          ↓
+Deployment workflow runs
+          ↓
+Documentation is published
+```
+
+Technical writers do not necessarily need to create GitHub Actions workflows themselves.
+
+However, understanding that these automated checks exist can help you understand what happens to your documentation after you submit a pull request.
+
+## GitHub Pages
+
+**GitHub Pages** is a service that can publish websites directly from a GitHub repository.
+
+It can be used for documentation sites, project websites, and other static websites.
+
+For example, a documentation project can be built into static files and deployed through GitHub Pages.
+
+The general process looks like:
+
+```text
+Documentation files
+        ↓
+Build documentation
+        ↓
+Generate static website
+        ↓
+Deploy to GitHub Pages
+        ↓
+Published documentation
+```
+
+The exact deployment process depends on how the project has been configured.
+
+Docusaurus documentation can also be deployed to hosting platforms such as GitHub Pages.
+
+## GitHub and Docusaurus
+
+The Docusaurus project you've been building can be stored in a GitHub repository.
+
+For example:
+
+```text
+my-docs/
+├── docs/
+│   ├── introduction.md
+│   ├── prerequisites.md
+│   └── api-concepts/
+├── src/
+├── static/
+├── docusaurus.config.js
+├── package.json
+└── sidebars.js
+```
+
+You can use Git to track changes to these files and GitHub to collaborate with others on the project.
+
+For example, suppose you add a new chapter called:
+
+```text
+docs/documentation-as-code/github.md
+```
+
+You can:
+
+1. Create a branch for the chapter
+2. Write the documentation
+3. Preview it locally
+4. Check the changes with Git
+5. Commit the changes
+6. Push the branch to GitHub
+7. Open a pull request
+8. Ask another contributor to review the chapter
+9. Address any feedback
+10. Merge the approved changes
+
+This is a practical example of how the tools you've learned so far work together.
+
+## A practical GitHub workflow for technical writers
+
+Let's put everything together.
+
+Imagine that your team has asked you to document a new API feature. The steps below explain how you will do this.
+
+### Find the repository
+
+Locate the GitHub repository that contains the project's documentation.
+
+Read the README and contribution guidelines before making changes.
+
+### Understand the documentation structure
+
+Identify where the relevant documentation lives.
+
+For example:
+
+```text
+docs/
+├── getting-started/
+├── guides/
+├── api-reference/
+└── troubleshooting/
+```
+
+Determine where your new content belongs before creating files.
+
+### Check existing issues
+
+Look for an existing issue describing the documentation work.
+
+The issue may contain important context, requirements, links, or technical information.
+
+If no issue exists and the team's workflow requires one, create an issue before beginning the work.
+
+### Create a branch
+
+Create a branch specifically for your documentation work:
+
+```bash
+git switch -c document-payment-api
+```
+
+### Write the documentation
+
+Create or update the relevant Markdown or MDX files.
+
+For example:
+
+```text
+docs/api-reference/payments.md
+```
+
+### Test the documentation
+
+Preview the documentation locally.
+
+For a Docusaurus project, this might involve running:
+
+```bash
+npm run start
+```
+
+Check that:
+
+- The page renders correctly
+- Code blocks display properly
+- Links work
+- Headings are structured correctly
+- Images load correctly
+- Navigation works
+- Examples are accurate
+
+### Review your Git changes
+
+Run:
+
+```bash
+git status
+```
+
+Then inspect the differences:
+
+```bash
+git diff
+```
+
+### Commit your changes
+
+Stage the relevant files:
+
+```bash
+git add docs/api-reference/payments.md
+```
+
+Then create a commit:
+
+```bash
+git commit -m "Add payment API documentation"
+```
+
+### Push the branch
+
+Push your branch to GitHub:
+
+```bash
+git push origin document-payment-api
+```
+
+### Create a pull request
+
+Open a pull request from your branch into the project's main branch.
+
+Explain:
+
+- What you documented
+- Why the change was needed
+- How you tested the documentation
+- Anything reviewers should pay particular attention to
+
+### Respond to review feedback
+
+Reviewers may request changes.
+
+Update the documentation, commit the changes, and push them to the same branch.
+
+### Merge the documentation
+
+Once the pull request is approved and all required checks pass, the changes can be merged according to the team's workflow.
+
+## Common GitHub mistakes
+
+### Editing files directly without understanding the workflow
+
+GitHub allows you to edit files directly through the browser.
+
+However, don't assume that this is always the appropriate workflow.
+
+Some teams require contributors to work locally, create branches, test their changes, and submit pull requests.
+
+Always follow the repository's contribution guidelines.
+
+### Opening a pull request without testing the documentation
+
+A pull request is not a substitute for testing.
+
+Before submitting documentation, preview it locally when possible.
+
+Check the actual rendered result rather than assuming the Markdown will display correctly.
+
+### Writing unclear pull request descriptions
+
+A pull request description should give reviewers enough information to understand the change.
+
+Avoid:
+
+```text
+Updated docs.
+```
+
+Prefer something more informative:
+
+```text
+Updated the authentication guide to reflect the new
+API key workflow and added a tested Postman example.
+```
+
+### Ignoring review comments
+
+Review comments are part of the collaboration process.
+
+Read each comment carefully and determine whether the requested change is valid.
+
+If you disagree with a suggestion, discuss it with the reviewer rather than silently ignoring it.
+
+### Making unrelated changes
+
+Avoid adding unrelated edits to a pull request.
+
+For example, if you're documenting authentication, don't also rewrite the homepage unless the changes are directly related.
+
+Focused pull requests are easier to review.
+
+### Forgetting repository guidelines
+
+Different repositories may have different requirements.
+
+A project may specify:
+
+- Branch naming conventions
+- Commit message conventions
+- Pull request templates
+- Review requirements
+- Build commands
+- Documentation style guidelines
+- Required checks
+
+Read the repository documentation before contributing.
+
+## GitHub and docs-as-code
+
+GitHub brings together many of the practices you've learned throughout this guide.
+
+Markdown provides the format for writing documentation.
+
+Git tracks changes to those Markdown files.
+
+GitHub hosts the repository and provides collaboration tools.
+
+Docusaurus can transform the documentation into a website.
+
+Automated workflows can test and publish the documentation.
+
+Together, these tools can form a docs-as-code workflow:
+
+```text
+Markdown
+   ↓
+Git
+   ↓
+GitHub
+   ↓
+Pull request
+   ↓
+Review
+   ↓
+Automated checks
+   ↓
+Merge
+   ↓
+Docusaurus build
+   ↓
+Published documentation
+```
+:::note
+
+The exact tools and workflow will vary between organizations, but the underlying principles are similar.
+
+:::
+
+## GitHub is more than a place to store files
+
+It can be tempting to think of GitHub simply as a website where developers store code.
+
+For technical writers, GitHub is much more than that.
+
+GitHub can become part of the entire documentation lifecycle:
+
+```text
+Plan
+ ↓
+Write
+ ↓
+Review
+ ↓
+Update
+ ↓
+Publish
+ ↓
+Maintain
+```
+
+Issues can help with planning.
+
+Branches can isolate work.
+
+Pull requests can support review.
+
+Git can preserve history.
+
+Automated workflows can test and publish content.
+
+Understanding this ecosystem makes it easier to work effectively with engineering and documentation teams.
+
+## What technical writers should know about GitHub
+
+Again, you do not need to become a GitHub administrator or Git expert to work effectively in a documentation repository. I wasn't one and still not one but I can work with both tools comfortably.
+
+At this stage, focus on understanding how to:
+
+- Find documentation in a repository
+- Read a README and contribution guidelines
+- Understand issues related to documentation work
+- Create and work on a branch
+- Open a pull request
+- Review a diff
+- Respond to review comments
+- Understand basic automated checks
+- Follow the repository's contribution workflow
+
+As you gain experience, you'll naturally encounter more advanced GitHub features and workflows.
+
+## Key takeaways
+
+- GitHub provides a platform for hosting Git repositories and collaborating on projects.
+- Git tracks changes and version history, while GitHub provides collaboration features around Git repositories.
+- GitHub repositories can contain documentation, source code, configuration files, and project assets.
+- README files provide important information about a project's purpose, setup, and contribution process.
+- Issues help teams track documentation tasks, problems, questions, and improvements.
+- Pull requests provide a structured way to propose and review documentation changes.
+- Diffs allow reviewers to see exactly what changed between versions of a file.
+- GitHub Actions can automate documentation checks, builds, and deployments.
+- GitHub can support many stages of a docs-as-code workflow, from planning and writing to review and publication.
+
+## Next steps
+
+Now that you understand how Git and GitHub support documentation workflows, it's time to bring the pieces together.
+
+In the next chapter, you'll learn about **Docusaurus** and see how it fits into the **docs-as-code workflow** and also how tools such as Markdown, Git, GitHub, and Docusaurus work together to create, review, and publish documentation.

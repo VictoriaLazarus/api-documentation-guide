@@ -1,0 +1,158 @@
+---
+title: JSON
+sidebar_position: 5
+---
+
+# JSON
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what JSON is and why APIs use it.
+- Identify the basic structure of JSON data.
+- Distinguish between JSON objects and arrays.
+- Read and interpret simple JSON responses.
+- Recognize why JSON examples are an important part of API documentation.
+
+## What is JSON?
+
+JSON (JavaScript Object Notation) is a lightweight format for organizing and exchanging data using human-readable text. Although it originated from JavaScript, it is now supported by almost every modern programming language and is the most common format used in web APIs. The reason is because JSON is both human and machine-readable.
+
+## Why APIs use JSON
+
+APIs exchange information between clients and servers. To make that communication reliable, both sides need a common format for representing data.
+
+JSON provides that format. Its simple and consistent structure makes it easy for both humans and software applications to read and process.
+
+JSON is the standard data format used by most modern APIs.
+
+## Understanding JSON structure
+
+JSON is built from two main structures:
+
+- Objects
+- Arrays
+
+These structures can contain different types of data, including:
+
+- Strings
+- Numbers
+- Boolean values (`true` or `false`)
+- Null values
+- Other objects
+- Arrays
+
+### JSON objects
+
+An object is a collection of related data enclosed in curly braces (`{}`).
+
+The information in the JSON object is stored as a **key-value pair**.
+
+For example:
+
+```json
+{
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "vote_average": 8.4
+}
+```
+
+In this example:
+
+- `title`, `release_date`, and `vote_average` are **keys**.
+- `"Fight Club"`, `"1999-10-15"`, and `8.4` are their corresponding **values**.
+
+Keys describe the data, while values contain the actual information.
+
+### JSON arrays
+
+An array stores an ordered list of values.
+
+Arrays are enclosed in square brackets (`[]`).
+
+For example:
+
+```json
+[
+  "Action",
+  "Drama",
+  "Thriller"
+]
+```
+
+Arrays can contain strings, numbers, objects, or even other arrays.
+
+## Objects and arrays together
+
+In practice, API responses often contain both objects and arrays.
+
+For example:
+
+```json
+{
+  "title": "Fight Club",
+  "genres": [
+    "Drama",
+    "Thriller"
+  ]
+}
+```
+
+Here:
+
+- The response itself is a JSON object.
+- The `genres` field contains a JSON array.
+
+Learning to recognize these structures will make it much easier to read API responses.
+
+## Reading a JSON response
+
+Consider the following response:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "adult": false
+}
+```
+
+You can read this response as follows:
+
+- The movie ID is **550**.
+- The movie title is **Fight Club**.
+- The release date is **1999-10-15**.
+- The movie is **not** classified as adult content.
+
+As a technical writer, you'll often read JSON responses like this to understand the information returned by an API before documenting it.
+
+:::important
+
+JSON is one of the most common formats you'll encounter when working with APIs. Therefore, understanding how JSON is structured helps you write accurate examples and explain API behavior clearly. You don't need to memorize every JSON rule. Instead, focus on learning how to read and interpret JSON responses, as this is a skill you'll use throughout your documentation projects.
+
+:::
+
+## Key takeaways
+
+After completing this chapter, you should understand that:
+
+- JSON is a lightweight format for organizing and exchanging data.
+- Most modern APIs use JSON to send and receive information.
+- JSON is built primarily from objects and arrays.
+- JSON stores information as key-value pairs.
+- Understanding JSON makes it easier to read and document API requests and responses.
+
+## Next steps
+
+Now that you understand how API data is structured, it's time to learn how APIs control access to their resources.
+
+In the next chapter, you'll explore authentication, why APIs require it, and the common methods used to verify a client's identity before processing a request.
+
+:::tip
+
+When documenting API responses, preserve the original JSON formatting whenever possible. Proper indentation and syntax highlighting make examples easier to read and reduce the chance of introducing errors when developers copy and paste them.
+
+:::

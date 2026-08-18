@@ -1,0 +1,478 @@
+---
+title: Common mistakes
+sidebar_position: 7
+---
+
+# Common mistakes
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Recognize common problems in API documentation.
+- Identify documentation that is incomplete, inaccurate, or difficult to use.
+- Understand how documentation mistakes affect developers.
+- Review your documentation for common errors before publishing it.
+- Apply practical techniques to prevent these mistakes.
+
+## Why common mistakes matter
+
+Even well-written documentation, if not thoroughly cross-checked, can contain errors or omissions.
+
+A parameter description may be technically correct but fail to explain how the parameter should be used. A request example may look valid but contain an incorrect URL. An error response may be documented without explaining how a developer can resolve the problem.
+
+These issues can create unnecessary work for developers and reduce their confidence in the documentation.
+
+As a technical writer, learning how to spot and correct common error is a very important part of becoming a better API documentation specialist. 
+
+Now, let's get into these common errors and how to avoid them.
+
+## 1. Documenting without testing the API
+
+One of the most serious mistakes is documenting an API based entirely on specifications, existing documentation, or information provided by a developer without testing the API yourself.
+
+On the one hand, documentation can become outdated, and on the other, specifications may not always reflect the API's current behavior.
+
+For example, a specification may indicate that a parameter is optional, while the API actually rejects the request when the parameter is omitted.
+
+### Why it's a problem
+
+If developers follow an example that doesn't work, they may assume they are doing something wrong when the problem is actually in the documentation.
+
+### Better approach
+
+Test endpoints whenever possible.
+
+Verify:
+
+- The endpoint URL
+- HTTP method
+- Authentication requirements
+- Required and optional parameters
+- Request body
+- Response structure
+- Error behavior
+
+Testing might take some time but it's the best way to write a useful API documentation. Use the API's current behavior as evidence, while treating the official specification or other authoritative sources as the source of truth for intended behavior.
+
+## 2. Repeating the parameter name without explaining it
+
+A parameter description should explain what the parameter does, not simply repeat its name.
+
+For example:
+
+**Weak:**
+
+| Parameter | Description |
+|-----------|-------------|
+| `movie_id` | Movie ID. |
+
+**Better:**
+
+| Parameter | Description |
+|-----------|-------------|
+| `movie_id` | The unique identifier of the movie to retrieve. |
+
+The second description gives the reader useful information about the parameter's purpose.
+
+### Better approach
+
+When writing a description, ask:
+
+> What does the developer need to know about this parameter to use it correctly?
+
+Include relevant information such as its purpose, accepted format, restrictions, or effect on the response.
+
+## 3. Omitting required information
+
+An endpoint may technically be documented, but still be difficult to use if important information is missing.
+
+For example, documentation might provide:
+
+```http
+GET /movies/{movie_id}
+```
+
+without explaining:
+
+- What `movie_id` represents.
+- Whether authentication is required.
+- What type of value `movie_id` accepts.
+- Whether the parameter is required.
+- What happens when the movie doesn't exist.
+
+### Why it's a problem
+
+When an API doc omits important requirement, developers are forced to make assumptions or search elsewhere for answers.
+
+### Better approach
+
+Review every endpoint against a consistent checklist before publishing it.
+
+At minimum, consider:
+
+- Description
+- HTTP method
+- Endpoint URL
+- Authentication
+- Parameters
+- Request example
+- Response example
+- Errors
+- Relevant constraints or limitations
+
+## 4. Using unrealistic examples
+
+Examples should help developers understand how the API is actually used.
+
+Using values such as:
+
+```json
+{
+  "name": "foo",
+  "id": 123
+}
+```
+
+may demonstrate syntax, but it provides little context.
+
+A realistic example is often more useful:
+
+```json
+{
+  "name": "The Matrix",
+  "id": 603
+}
+```
+
+The example gives the reader a better understanding of what kind of information the API expects.
+
+### Better approach
+
+Choose values that:
+
+- Represent realistic API usage.
+- Follow the required format.
+- Demonstrate meaningful behavior.
+- Don't introduce unnecessary complexity.
+
+If an example value is fictional, make sure it still accurately represents the format and type of data the API accepts.
+
+## 5. Copying responses without explaining them
+
+A response can contain dozens of fields, nested objects, and arrays.
+
+Simply placing the entire response in a code block doesn't necessarily help developers understand it.
+
+For example:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ]
+}
+```
+
+A developer may understand `title`, but what does `genres` contain? Is it a string, an object, or an array?
+
+### Better approach
+
+Explain important or less obvious fields separately.
+
+| Field | Type | Description |
+|------|------|-------------|
+| `id` | Integer | Unique identifier of the movie. |
+| `title` | String | Title of the movie. |
+| `genres` | Array | List of genres associated with the movie. |
+| `genres[].id` | Integer | Unique identifier of the genre. |
+| `genres[].name` | String | Name of the genre. |
+
+The goal isn't to explain every obvious field. It's to provide enough information for developers to understand and use the response.
+
+## 6. Documenting outdated information
+
+APIs change.
+
+An endpoint may gain a new parameter, an existing parameter may be renamed, or a response field may be removed.
+
+If the documentation isn't updated alongside these changes, developers may follow instructions that no longer work.
+
+### Signs of outdated documentation
+
+Look for:
+
+- Examples that no longer work.
+- Parameters that no longer exist.
+- Incorrect endpoint URLs.
+- Old authentication methods.
+- Response fields that the API no longer returns.
+- References to previous API versions.
+
+### Better approach
+
+Treat documentation as part of the product lifecycle.
+
+When an API changes, determine whether the documentation needs to change as well.
+
+Where possible, test affected examples against the updated API before publishing the changes.
+
+## 7. Making assumptions about API behavior
+
+Technical writers sometimes encounter behavior that isn't clearly documented and fill the gap with an assumption.
+
+For example, if an API accepts an undocumented parameter during testing, it may be tempting to document it immediately.
+
+Don't.
+
+An observed behavior doesn't necessarily mean the behavior is officially supported.
+
+### Better approach
+
+Verify uncertain behavior with an authoritative source, such as:
+
+- API specifications
+- Source code, when appropriate
+- Product documentation
+- A developer or subject matter expert
+- Direct API testing
+
+If you cannot verify a behavior, don't present an assumption as a documented feature.
+
+## 8. Documenting only successful scenarios
+
+A common mistake is to document what happens when everything works and ignore what happens when something goes wrong.
+
+Developers also need to know what happens when:
+
+- Authentication fails
+- A parameter is missing
+- A parameter contains an invalid value
+- A resource doesn't exist
+- The request exceeds a limit
+- The server encounters an unexpected problem
+
+### Better approach
+
+Identify the errors developers are most likely to encounter and document them alongside the endpoint or in a dedicated error reference.
+
+For each important error, explain what happened and provide actionable guidance when possible.
+
+## 9. Using inconsistent terminology
+
+Inconsistent terminology can make technically accurate documentation confusing.
+
+For example, suppose one section calls a credential an **access token**, another calls it an **API token**, and another calls it an **authentication token**.
+
+If these terms refer to the same thing, switching between them creates unnecessary uncertainty.
+
+### Better approach
+
+Create and follow a consistent terminology style.
+
+Before choosing a term, check:
+
+- Existing product terminology
+- API specifications
+- UI terminology
+- Internal style guides
+- How developers and subject matter experts refer to the concept
+
+Once you've selected the appropriate term, use it consistently.
+
+## 10. Over-documenting
+
+More information doesn't automatically mean better documentation.
+
+A page can become difficult to use when it contains:
+
+- Long explanations of concepts the reader already understands.
+- Internal implementation details.
+- Irrelevant response fields.
+- Repeated explanations.
+- Examples that don't contribute anything new.
+
+### Better approach
+
+Ask whether each piece of information helps the reader accomplish their task.
+
+If it doesn't, consider removing it, shortening it, or moving it to a more appropriate section.
+
+Good documentation is not about saying everything you know. It's about providing the information the reader needs.
+
+## 11. Under-documenting
+
+The opposite problem is providing too little information.
+
+For example:
+
+> `GET /movies/{movie_id}`
+> Retrieves a movie.
+
+This tells the developer almost nothing about how to use the endpoint.
+
+### Better approach
+
+Provide enough information for a developer to construct and understand a request.
+
+This may include:
+
+- Authentication requirements
+- Parameters
+- Parameter types
+- Required and optional values
+- Request examples
+- Response examples
+- Errors
+- Constraints
+
+The goal is to make the endpoint usable without requiring the developer to search for essential information elsewhere.
+
+## 12. Hiding important information in prose
+
+Important technical details can be difficult to find when they're buried inside paragraphs.
+
+For example:
+
+> The endpoint accepts a page parameter and this parameter is optional, but when it isn't specified, the API returns the first page, and the maximum number of pages available is 500.
+
+A table is easier to scan:
+
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| `page` | Integer | No | `1` | Specifies the page of results to return. Values range from `1` to `500`. |
+
+### Better approach
+
+Use the format that best communicates the information.
+
+Use:
+
+- Tables for structured information
+- Code blocks for requests and responses
+- Lists for related items
+- Prose for explanations and context
+
+Don't force every type of information into paragraphs.
+
+## 13. Failing to distinguish examples from real values
+
+Documentation often contains values that developers must replace with their own information.
+
+For example:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+Here, `YOUR_ACCESS_TOKEN` is a placeholder, not a value the developer should copy literally.
+
+### Better approach
+
+Make placeholders obvious and explain what developers should replace.
+
+For example:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+Replace `YOUR_ACCESS_TOKEN` with a valid access token.
+
+Use consistent placeholder conventions throughout the documentation.
+
+## 14. Publishing unverified examples
+
+An example that looks correct isn't necessarily correct.
+
+For example:
+
+```http
+GET https://api.example.com/movies/550
+```
+
+may look perfectly reasonable, but if it hasn't been tested, there's no guarantee that:
+
+- The URL is correct
+- The endpoint exists
+- The parameter is valid
+- The authentication method is correct
+- The response matches the documented example
+
+### Better approach
+
+Treat examples as testable documentation.
+
+Whenever possible, execute the example before publishing it and verify that the result matches what the documentation claims.
+
+## 15. Forgetting the reader's context
+
+Not every reader has the same level of technical knowledge.
+
+A developer who works with APIs every day may understand terms that are unfamiliar to someone documenting an API for the first time.
+
+At the same time, explaining every basic concept repeatedly can make documentation unnecessarily long for experienced readers.
+
+### Better approach
+
+Understand your audience before writing.
+
+Explain concepts when they are necessary to complete the reader's task, and link to deeper explanations when additional context is useful.
+
+Good documentation meets the reader where they are without talking down to them.
+
+## A final review checklist
+
+Before publishing an API documentation page, review it for the mistakes covered in this chapter.
+
+Ask:
+
+- Have I tested the endpoint?
+- Are the examples accurate?
+- Are all required parameters documented?
+- Are parameter descriptions clear?
+- Are the response fields explained?
+- Are important errors documented?
+- Am I making any assumptions about API behavior?
+- Is the terminology consistent?
+- Is any important information missing?
+- Is there unnecessary information that could be removed?
+- Can a developer follow the documentation without guessing?
+
+If the answer to any of these questions is no, revise the documentation before publishing it.
+
+## Why this matters
+
+Technical writing isn't only about adding information to a page. It's also about identifying any one that is missing, misleading, outdated, or unnecessarily difficult to understand.
+
+Learning to recognize these problems is what turns API documentation from a collection of technical details into useful developer content.
+
+A strong technical writer continually asks:
+
+> **Can the developer accomplish their task using this documentation without having to guess?**
+
+If the answer is yes, the documentation is doing its job.
+
+## Key takeaways
+
+- Test API behavior before documenting it whenever possible.
+- Provide enough information for developers to use an endpoint without guessing.
+- Use realistic, accurate, and clearly identified examples.
+- Explain important response fields and error scenarios.
+- Verify assumptions before presenting them as API behavior.
+- Maintain consistent terminology and formatting.
+- Remove unnecessary information without omitting information developers need.
+- Review documentation from the developer's perspective before publishing.
+
+## Next steps
+
+You've now covered the core skills involved in writing API documentation, from documenting parameters and requests to explaining responses, errors, and common documentation problems.
+
+In the next part, you'll move from **writing documentation** to **managing documentation as a project**.
+
+You'll learn how docs-as-code workflows use tools such as Markdown, Git, GitHub, and Docusaurus to write, review, manage, and publish documentation.

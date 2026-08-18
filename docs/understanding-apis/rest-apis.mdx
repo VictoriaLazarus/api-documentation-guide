@@ -1,0 +1,182 @@
+---
+title: REST APIs
+sidebar_position: 3
+---
+
+# REST APIs
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what a REST API is.
+- Describe the architectural principles that define REST.
+- Understand how resources are identified and manipulated.
+- Recognize why REST is widely used for web APIs.
+- Explain why understanding REST is important when writing API documentation.
+
+## What is REST?
+
+REST (**Representational State Transfer**) is an architectural style for designing web APIs. It was introduced by **Roy Fielding** in his doctoral dissertation in 2000 as a set of principles for building scalable, reliable, and maintainable distributed systems.
+
+REST is not a programming language, framework, or set of instructions that developers must follow strictly. Instead, it provides a set of principles that guide how an API is structured and how clients and servers communicate.
+
+Additionally, REST is the most widely adopted style for web APIs. Many of the APIs you'll encounter as a technical writer—including the TMDB API used throughout this guide—follow REST principles.
+
+## Why REST is widely used
+
+REST has become the standard for many web APIs because it offers several advantages.
+
+It:
+
+- Uses familiar web technologies such as HTTP.
+- Encourages consistent API design.
+- Supports scalability.
+- Promotes separation between clients and servers.
+- Makes APIs easier to understand, implement, and maintain.
+
+These characteristics make REST APIs easier to document because they tend to follow predictable patterns.
+
+## REST architectural principles
+
+REST is built on a set of constraints that define how REST APIs should behave.
+
+### Client-server architecture
+
+REST separates the client from the server. The **client** is responsible for sending requests and displaying information to users, while the **server** processes requests, applies business logic, and returns responses.
+
+This separation allows both sides to evolve independently. For example, a company can redesign its mobile application without changing the API, or update the server without changing the client application.
+
+:::tip
+
+As a technical writer, your documentation should focus on the API contract—the requests developers send and the responses they receive—not the server's internal implementation. Developers need to know how to interact with the API, not how the server is built.
+
+:::
+
+### Statelessness
+
+Statelessness in REST API implies that every request sent to an API must contain all the information needed to process it.
+
+The server does not remember previous requests or store any information about earlier interactions.
+
+For example, if an endpoint requires authentication, every request must include the required authentication credentials. The server cannot assume that a client has already authenticated in a previous request.
+
+This behaviour makes REST APIs more reliable and easier to scale because each request can be processed independently.
+
+:::note
+
+This is also why it is important that you clearly describe all required headers, parameters, authentication requirements, and request bodies when documenting an API. Developers should never have to guess what information must be included in a request.
+
+:::
+
+### Cacheability
+
+REST APIs can indicate whether responses should be stored temporarily and reused instead of requesting the same information repeatedly.
+
+For example, information that changes infrequently, such as movie genres or country lists, may be cached by clients or intermediary servers.
+
+Caching improves performance, reduces server load, and decreases network traffic.
+
+
+### Uniform interface
+
+One of REST's most important principles is consistency.
+
+REST APIs should expose resources in a predictable way. It uses standard HTTP methods consistently, and return responses in a consistent format.
+
+For example:
+
+- `GET /movies` retrieves a collection of movies.
+- `GET /movies/550` retrieves a specific movie.
+- `POST /movies` creates a new movie.
+- `DELETE /movies/550` removes a movie.
+
+Because similar operations follow same patterns, developers can understand new endpoints without learning an entirely new design.
+
+### Layered system
+
+Clients don't always communicate directly with an API server.
+
+A request may pass through several intermediary components before reaching its destination, such as:
+
+- API gateways
+- Load balancers
+- Authentication services
+- Proxy servers
+- Caching servers
+
+These layers improve security, reliability, and scalability without changing how clients interact with the API.
+
+## Resources in REST APIs
+
+REST APIs organize information into **resources**.
+
+A resource is a collection of data that an API makes available.
+
+Examples:
+
+- Movies
+- Users
+- Products
+- Orders
+- Accounts
+
+Each resource is identified by a unique URL, often called a **resource URI**.
+
+For example:
+
+```http
+GET /movies
+```
+
+retrieves a collection of movies, while:
+
+```http
+GET /movies/550
+```
+
+retrieves information about a specific movie.
+
+Resources form the foundation of REST API design and influence how documentation is organized.
+
+## REST and HTTP methods
+
+REST APIs use standard HTTP methods to define the action performed on a resource.
+
+| Method | Purpose |
+|---------|---------|
+| **GET** | Retrieve a resource. |
+| **POST** | Create a new resource. |
+| **PUT** | Replace an existing resource. |
+| **PATCH** | Partially update an existing resource. |
+| **DELETE** | Remove a resource. |
+
+You'll explore each of these methods in detail in the next chapter.
+
+## REST and JSON
+
+Although REST doesn't require a specific data format, most REST APIs exchange data using **JSON (JavaScript Object Notation)** because it is lightweight, easy to read, and supported by virtually every modern programming language.
+
+You'll learn more about JSON later in this guide.
+
+## Why this matter
+
+Understanding REST helps you recognize the patterns that most modern web APIs follow.
+
+Instead of documenting each endpoint as an isolated feature, you can easily see how endpoints relate to one another, organize documentation around resources, and explain API behavior more effectively.
+
+Knowing REST also helps you maintain consistency across your documentation, making it easier for developers to learn and use an API.
+
+## Key takeaways
+
+After completing this chapter, you should understand that:
+
+- REST is an architectural style for designing web APIs.
+- REST APIs follow a set of principles that promote scalability, consistency, and maintainability.
+- REST organizes data into resources that clients access using URLs.
+- Standard HTTP methods define the operations that can be performed on resources.
+- Understanding REST helps technical writers create clearer, more consistent API documentation.
+
+## Next steps
+
+Now that you understand the principles behind REST APIs, in the next chapter, you'll learn what information is included in a request, how responses are structured, and how these elements are documented.

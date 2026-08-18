@@ -1,0 +1,216 @@
+---
+title: Error handling
+sidebar_position: 5
+---
+
+# Error handling
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain why error documentation is important.
+- Identify the information developers need when an API request fails.
+- Document common API errors clearly and consistently.
+- Write useful error response examples.
+- Provide troubleshooting guidance without making assumptions.
+
+## Why error documentation matters
+
+One thing working with APIs has taught me is that not every API request succeeds.
+
+A request can fail because a required parameter is missing, authentication credentials are invalid, a requested resource doesn't exist, or the server encounters an unexpected problem.
+
+When this happens, developers need more than an error code. They need to understand:
+
+- What went wrong.
+- Why the request failed.
+- What they can do to resolve the problem.
+
+Good error documentation turns an unsuccessful request into a problem that developers can understand and troubleshoot.
+
+As a technical writer, your API documentation is incomplete without a well-explained error handling section. 
+
+## What to document for an API error
+
+For your API documentation error handling section to be complete, include the following information whenever it is available:
+
+| Information | Description |
+|---|---|
+| **HTTP status code** | Indicates the general outcome of the request. |
+| **Error code** | A more specific identifier for the error, when provided by the API. |
+| **Error message** | Explains what went wrong. |
+| **Cause** | Explains why the error occurred, when known. |
+| **Resolution** | Explains what the developer can do to correct the problem. |
+| **Response example** | Shows what the API actually returns when the error occurs. |
+
+Not every API provides all of these details. Document only what the API actually returns or what you can confidently explain.
+
+## Example of an error response
+
+Consider an endpoint that requires authentication.
+
+If a developer sends a request without valid authentication credentials, the API might return:
+
+```http
+HTTP/1.1 401 Unauthorized
+Content-Type: application/json
+```
+
+```json
+{
+  "status_code": 7,
+  "status_message": "Invalid API key: You must be granted a valid key."
+}
+```
+
+The documentation should explain what the response means and what the developer should do next.
+
+For example:
+
+> **401 Unauthorized**
+>
+> The request could not be authenticated. Verify that you are using a valid API key or access token and that it is included in the request according to the authentication requirements.
+
+The goal is not simply to reproduce the error. The goal is to help the developer recover from it.
+
+## Document errors in context
+
+Avoid presenting a long list of error codes without explaining which errors developers are likely to encounter.
+
+Instead, document errors alongside the endpoint or operation where they can occur.
+
+For example:
+
+### Get movie details
+
+**404 Not Found**
+
+The requested movie could not be found. Verify that the `movie_id` corresponds to an existing movie.
+
+```json
+{
+  "status_code": 34,
+  "status_message": "The resource you requested could not be found."
+}
+```
+
+This gives the developer the status code, meaning, response, and possible resolution in one place.
+
+## Explain the cause and resolution
+
+A status code tells developers what happened, but it doesn't always explain why it happened or what they should do next.
+
+Compare these two descriptions:
+
+**Less useful:**
+
+> `400 Bad Request` — The request is invalid.
+
+**More useful:**
+
+> `400 Bad Request` — The request could not be processed because the `page` parameter must contain a positive integer. Check the parameter value and send the request again.
+
+The second description gives the developer something actionable.
+
+When documenting an error, ask:
+
+> **What does the developer need to know to fix this?**
+
+## Avoid guessing
+
+Only document causes and resolutions that you can verify.
+
+For example, if an API returns:
+
+```json
+{
+  "error": "Invalid request"
+}
+```
+
+Don't invent a specific cause unless the API documentation or testing confirms it.
+
+Instead, document what you know:
+
+> The request was rejected by the API. Check the request parameters and compare them with the requirements for this endpoint.
+
+Accuracy is more important than providing an explanation that sounds helpful but is unsupported.
+
+## Group related errors
+
+If an API has many possible errors, organize them into logical categories.
+
+For example:
+
+### Authentication errors
+
+Errors related to missing, invalid, or expired credentials.
+
+### Validation errors
+
+Errors caused by missing, invalid, or incorrectly formatted input.
+
+### Resource errors
+
+Errors that occur when a requested resource cannot be found or accessed.
+
+### Server errors
+
+Errors caused by unexpected problems on the server.
+
+Grouping errors makes large error references easier to navigate.
+
+## Keep error messages consistent
+
+Use a consistent structure when documenting errors throughout your API documentation.
+
+For example:
+
+```text
+Status code
+Error name
+Description
+Possible cause
+Resolution
+Response example
+```
+
+Using the same structure makes error documentation easier to scan and maintain.
+
+## Test error scenarios
+
+Error documentation should be based on actual API behavior whenever possible.
+
+To verify an error example:
+
+- Send an intentionally invalid request.
+- Record the HTTP status code.
+- Examine the response body.
+- Confirm the error message.
+- Identify the condition that caused the error.
+- Verify the recommended resolution.
+
+Testing errors is especially valuable because error responses are often overlooked during documentation.
+
+## Why this matters
+
+Developers don't only read documentation when everything works.
+
+They often turn to documentation when something has gone wrong.
+
+This makes error handling section an important part of the developer experience. Clear error descriptions can reduce troubleshooting time, prevent unnecessary support requests, and help developers resolve problems independently.
+
+As a technical writer, your job is to make the path from **"Something went wrong"** to **"I know how to fix it"** as clear as possible.
+
+## Key takeaways
+
+- Explain what an API error means and why it occurred when the information is available.
+- Provide actionable guidance to help developers resolve errors.
+- Include realistic error response examples.
+- Document errors based on verified API behavior.
+- Use a consistent structure when documenting different errors.
+
+## Next steps
+
+Now that you know how to document successful responses and errors, the next chapter will bring these concepts together by looking at **API documentation best practices**.

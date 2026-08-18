@@ -1,0 +1,990 @@
+---
+title: Git
+sidebar_position: 3
+---
+
+# Git
+
+## Learning objectives
+
+By the end of this chapter, you'll be able to:
+
+- Explain what Git is and why it is used in documentation projects.
+- Describe how Git tracks changes to files.
+- Explain how branches allow contributors to work on changes independently.
+- Understand how pull requests are used to review documentation changes.
+- Use common Git commands to manage documentation files.
+- Describe how Git fits into a docs-as-code workflow.
+- Understand the relationship between a repository, working directory, staging area, and commit.
+
+## What is Git?
+
+**Git** is a version control system that tracks changes made to files over time. By version control, it means that when a file is modified, Git allow you see the change and also the previous version of the file. 
+
+Git also allows you to see what changed, when it changed, and who made the change. It provides a way for multiple people to work on the same project without having to manually keep separate copies of every version.
+
+These capabilities make Git ideal for managing many types of file, including:
+
+- Source code
+- Documentation
+- Configuration files
+- Images and other project assets
+
+For technical writers, instead of keeping multiple copies of a document such as:
+
+```text
+api-guide-final.docx
+api-guide-final-v2.docx
+api-guide-final-v2-reviewed.docx
+api-guide-final-v3.docx
+```
+
+You can use Git to record changes within the same project. Git is particularly useful because it allows documentation to be created, reviewed, and published alongside the product.
+
+## Why Git matters
+
+Althoug Git may have been primarily designed for managing software development process among developers, the good news is, you don't need to be a programmer to use it.
+
+Technical writing teams use Git because modern documentation is often treated as part of the product rather than as a separate collection of documents.
+
+For example, a technical writer might store documentation in a repository containing:
+
+```text
+docs/
+├── introduction.md
+├── getting-started.md
+├── authentication.md
+└── api-reference/
+    ├── movies.md
+    └── users.md
+```
+
+When another writer updates `authentication.md`, Git can track that change.
+
+##Benefits of Git
+
+Git provides several benefits.
+
+- Track changes: Git records changes made to files, allowing you to understand how documentation has evolved.
+
+- Review changes: Other contributors can review documentation changes before they become part of the main project.
+
+- Collaborate with others: Multiple contributors can work on different changes within the same project and combine their work.
+
+- Restore previous versions: Because Git maintains a history of changes, you can inspect or restore earlier versions when necessary.
+
+- Work alongside developers: When documentation lives in the same repository as the software it describes, technical writers can work within the same development workflow as engineers. This is one of the reasons Git is an important part of a **docs-as-code** workflow.
+
+## What is a Git repository?
+
+A **Git repository**, often called a **repo**, is a project that Git tracks. Think of this as folders on your computer.
+
+The repository contains the project's files as well as the information Git needs to track changes to those files.
+
+For example, your Docusaurus project might be stored in a Git repository with a structure like this:
+
+```text
+my-docs/
+├── docs/
+├── src/
+├── static/
+├── docusaurus.config.js
+├── package.json
+└── sidebars.js
+```
+
+Git can track changes to these files so that you can see what has been modified over time.
+
+## Local and remote repositories
+
+There are two major types of Git repository: the local and remote repo. Let's look at how these two differ.
+
+### Local repository
+
+A **local repository** is the copy of the project stored on your computer. The local repository is where you make changes. 
+
+For example, your local repo is where you:
+
+- Edit documentation
+- Create branches
+- Make commits
+- Review changes
+- Test your documentation locally
+
+### Remote repository
+
+A **remote repository** is a copy of the repository hosted on a service such as GitHub.
+
+The remote repository provides a shared location for a team to collaborate on a project.
+
+A simplified remote repo workflow might look like this:
+
+```text
+Your computer
+     |
+     | push
+     v
+Remote repository
+     |
+     | pull
+     v
+Other contributors
+```
+
+The local and remote repositories are connected, but they are not automatically identical every second.
+
+You use Git commands to transfer changes between them.
+
+## Understanding the Git workflow
+
+A basic Git workflow looks like this:
+
+```text
+Edit files
+    ↓
+Check changes
+    ↓
+Stage changes
+    ↓
+Commit changes
+    ↓
+Push changes
+    ↓
+Open a pull request
+    ↓
+Review and merge
+```
+
+Each step has a different purpose.
+
+You first make changes to your documentation in your local repo. You then tell Git which changes you want to include, record those changes in a commit, and send the commit to the remote repository.
+
+If you're contributing to a team project, you may then create a pull request so another contributor can review your changes before they are merged.
+
+To understand this workflow properly, you first need to understand three important areas: the **working directory**, **staging area**, and **repository**.
+
+## Working directory
+
+The **working directory** is the collection of files currently available on your computer for you to work on.
+
+These files reflect the branch selected in your local repository. For example, if you select the `update-authentication-docs` branch, the files in your working directory reflect the version of the project stored in that branch.
+
+Your working directory is where you make your documentation changes.
+
+For example, if you open:
+
+```text
+docs/authentication.md
+```
+
+in VS Code and change the explanation of API keys, you have modified a file in your working directory.
+
+At this point, Git knows that the file has changed, but you have not yet told Git that you want to include that change in your next commit.
+
+## Staging area
+
+The **staging area** is where you prepare changes that you want to include in your next commit.
+
+You use the `git add` command to move changes from the working directory into the staging area.
+
+For example:
+
+```bash
+git add docs/authentication.md
+```
+
+This tells Git:
+
+> Include the changes to `authentication.md` in my next commit.
+
+You can stage one file, several files, or all relevant changes.
+
+For example:
+
+```bash
+git add .
+```
+
+In this command, the period (.) tells Git to add the current directory and all of its contents, including your modifications.
+
+:::important
+
+Be careful when using `git add .` because it can stage more changes than you intended. For beginners, reviewing your changes before staging them is a good habit.
+
+:::
+
+## Repository and commits
+
+Once your changes are staged, you can create a **commit**.
+
+A commit is a saved record of changes to your project. Git stores each commit in the project's history, allowing you to see what changed and when.
+
+You create a commit using:
+
+```bash
+git commit -m "Update authentication documentation"
+```
+
+:::note
+
+Update authentication documentation is the commit message. The message describes what the commit contains.
+
+:::
+
+A good commit message should be clear and specific.
+
+For example:
+
+```bash
+git commit -m "Add API key authentication example"
+```
+
+is more useful than:
+
+```bash
+git commit -m "Changes"
+```
+
+Clear commit messages make the project history easier for other contributors to understand.
+
+## Understanding the complete flow
+
+You can think of the process this way:
+
+```text
+Working directory
+       |
+       | git add
+       v
+Staging area
+       |
+       | git commit
+       v
+Local repository
+```
+
+Each stage answers a different question:
+
+| Stage | Purpose |
+|---|---|
+| Working directory | Where you make changes |
+| Staging area | Where you prepare changes for a commit |
+| Local repository | Where Git records committed changes |
+
+This distinction is important because saving a file in VS Code does **not** automatically create a Git commit.
+
+## Checking the status of your files
+
+If you've made changes to a file and want to check the status of that file. The Git command for this functionality is `git status.` It shows you the current state of your working directory and staging area.
+
+Run:
+
+```bash
+git status
+```
+
+Git may tell you that a file has been modified:
+
+```text
+modified: docs/authentication.md
+```
+
+This means the file has changed since the last commit.
+
+After staging the file:
+
+```bash
+git add docs/authentication.md
+```
+
+running:
+
+```bash
+git status
+```
+
+will show that the file has been staged.
+
+Checking `git status` regularly is a useful habit because it helps you understand what Git is currently tracking and what will be included in your next commit.
+
+## Understanding commits
+
+A commit represents a specific point in a project's history, capturing the changes made at that stage.
+
+For example, you might have commits such as:
+
+```text
+Add authentication overview
+        ↓
+Add API key example
+        ↓
+Clarify authentication errors
+        ↓
+Fix authentication code example
+```
+
+Each commit records a set of changes and includes information like:
+
+- The person who created the commit.
+- The date and time of the commit.
+- The changes included in the commit.
+- A commit message describing the changes.
+
+This history allows contributors to understand how the project changed over time.
+
+### Write focused commits
+
+Try to keep commits focused on a logical change.
+
+For example, if you update the authentication documentation, your commit might be:
+
+```bash
+git commit -m "Update API authentication guide"
+```
+
+Avoid combining unrelated changes into a single commit when you can keep them separate.
+
+For example, changing an authentication guide, rewriting the homepage, and updating an unrelated image in one commit makes the history harder to understand.
+
+Focused commits make reviews and troubleshooting easier.
+
+## What is a branch?
+
+A **branch** is a separate version of your project where you can make and test changes without affecting the main version.
+
+Let's assume you want to update the authentication section of your API documentation that is already being used by other people. You don't want to make your changes directly to the `main` branch because the changes may not be finished or reviewed yet.
+
+Instead of working on the main branch directly, you create a new one for the changes you want to make:
+
+```text
+main
+  |
+  └── update-authentication-docs
+
+  The `update-authentication-docs` branch starts from the current state of `main`. You can then edit the documentation, test your changes, and create commits on this branch.
+
+While you work, the `main` branch remains unchanged:
+
+```text
+main
+  |
+  └── update-authentication-docs
+       ├── edit authentication page
+       ├── add examples
+       └── fix formatting
+```
+
+Once your work is complete, you can submit it for review. After the changes have been approved, the branch can be merged into `main`.
+
+In a documentation project, branches are useful because they allow you to work on new or updated content safely without affecting the published or shared version of the documentation before the changes are ready.
+
+### A simple way to think about branches
+
+Think of a branch as a **workspace for a specific piece of work**.
+
+For example, a documentation team might have:
+
+```text
+main
+├── update-authentication-docs
+├── add-api-errors
+└── fix-installation-guide
+```
+
+Each branch allows a contributor to work on a particular change independently. When the work is finished and reviewed, the changes can be merged into `main`.
+
+## Why branches matter
+
+Branches are useful when multiple contributors are working on the same documentation project.
+
+For example:
+
+- One writer can update authentication documentation.
+- Another writer can revise the getting-started guide.
+- A developer can update API reference content.
+
+Each contributor can work on a separate branch.
+
+This reduces the risk of unrelated changes interfering with one another.
+
+A branch might be named:
+
+```text
+update-authentication-docs
+```
+
+or:
+
+```text
+fix-api-example
+```
+
+Use names that describe the work being done.
+
+## Creating a branch
+
+You can create a new branch with:
+
+```bash
+git branch update-authentication-docs
+```
+
+You can then switch to that branch with:
+
+```bash
+git checkout update-authentication-docs
+```
+
+Modern versions of Git also support:
+
+```bash
+git switch -c update-authentication-docs
+```
+
+The `-c` option creates the branch and switches to it.
+
+You don't need to memorize every branch command immediately. The important concept is that a branch provides a separate workspace for a particular set of changes.
+
+## What is a pull request?
+
+A **pull request (PR)** is a request to merge changes from one branch into another. It allows others to review, discuss, and approve the changes before they are merged.
+
+For example, after updating the authentication documentation on the `update-authentication-docs` branch, you can create a pull request to merge those changes into `main`.
+
+```text
+update-authentication-docs
+            |
+            | Pull request
+            v
+           main
+```
+
+A pull request allows other contributors to review your changes before they are merged.
+
+A documentation pull request might contain:
+
+- A description of what you changed
+- The documentation files you modified
+- Comments from reviewers
+- Suggested changes
+- Automated checks
+
+For technical writers, pull requests are particularly valuable because documentation can be reviewed for:
+
+- Technical accuracy
+- Clarity
+- Completeness
+- Style
+- Consistency
+- Broken links or formatting problems
+
+:::note
+
+**“Pull Request” is the GitHub term**, while other Git platforms may use terms such as **Merge Request (MR)**. Since this guide explains Git and GitHub, **pull request (PR)** is the appropriate term here.
+
+:::
+
+## What does it mean to merge?
+
+**Merging** means combining changes from one branch into another branch.
+
+For example:
+
+```text
+update-authentication-docs
+            |
+            | merge
+            v
+           main
+```
+
+Once your documentation changes have been reviewed and approved, the branch can be merged into the main branch.
+
+The exact merge process depends on how a team has configured its repository and review workflow.
+
+As a technical writer, you may not always be responsible for performing the final merge. However, understanding what happens during a pull request helps you participate effectively in the workflow.
+
+## Cloning a repository
+
+If a project already exists in a remote repository, such as a repository on GitHub, you can **clone** it to your computer.
+
+Cloning downloads the repository and creates a local copy that includes the project's files and Git history. Once the repository is cloned, you can open the files, make changes, create commits, and work with the repository from your computer.
+
+For example, if you want to work on an existing documentation project hosted on GitHub, you can clone the repository using:
+
+```bash
+git clone https://github.com/username/documentation-project.git
+```
+
+Git creates a new directory containing the repository:
+
+```text
+documentation-project/
+├── docs/
+├── src/
+├── package.json
+└── ...
+```
+
+You can then move into the repository directory:
+
+```bash
+cd documentation-project
+```
+
+At this point, you have a local copy of the repository that you can use for development and documentation work.
+
+### Why clone a repository?
+
+Cloning is useful when you want to work with an existing project rather than start a new repository from scratch. For example, a technical writer might clone a documentation repository to:
+
+- Read and understand the existing documentation.
+- Create or update documentation files.
+- Test documentation locally.
+- Create commits for their changes.
+- Create a branch and submit a pull request for review.
+
+Think of cloning as **bringing a remote repository onto your computer so you can work with it locally**.
+
+A common workflow is:
+
+```text
+Remote repository
+       |
+       | git clone
+       v
+Local repository
+       |
+       | edit documentation
+       v
+Commit changes
+       |
+       | git push
+       v
+Remote repository
+```
+
+## Sending changes to the remote repository
+
+After creating commits locally, you can send those commits to the remote repository using `git push`.
+
+For example:
+
+```bash
+git push origin update-authentication-docs
+```
+
+This uploads your branch and its commits to the remote repository.
+
+The remote repository now has access to the changes, allowing you to create a pull request or continue collaborating with other contributors.
+
+## Getting changes from the remote repository
+
+Other contributors may make changes while you're working.
+
+Git provides several commands for retrieving changes from a remote repository.
+
+One commonly used command is:
+
+```bash
+git pull
+```
+
+This retrieves changes from the remote repository and incorporates them into your current branch.
+
+Another command you may encounter is:
+
+```bash
+git fetch
+```
+
+`git fetch` retrieves information about changes from the remote repository without automatically incorporating those changes into your current branch.
+
+For beginners, the important distinction is:
+
+- `git fetch` retrieves information about remote changes.
+- `git pull` retrieves remote changes and incorporates them into your current branch.
+
+## Common Git commands
+
+You don't need to memorize every Git command before working with a documentation project.
+
+However, the following commands are useful to know:
+
+| Command | Purpose |
+|---|---|
+| `git clone` | Create a local copy of a remote repository. |
+| `git status` | Check the current state of your working directory and staging area. |
+| `git add` | Stage changes for the next commit. |
+| `git commit` | Record staged changes in the repository history. |
+| `git branch` | Create or view branches. |
+| `git switch` | Switch between branches. |
+| `git pull` | Retrieve and incorporate changes from a remote repository. |
+| `git push` | Send local commits to a remote repository. |
+| `git log` | View commit history. |
+| `git diff` | View differences between versions of files or between working states. |
+
+Understanding what these commands accomplish is more important than memorizing their exact syntax.
+
+
+## A Git workflow for documentation
+
+Let's put the concepts together with a practical documentation example.
+
+Imagine you're working on a project that contains API documentation.
+
+You have been asked to update the authentication guide. Below are the steps you need to complete the update.
+
+### Create a branch
+
+First, make sure you are inside the local repository. Then create a branch for your work:
+
+```bash
+git switch -c update-authentication-docs
+```
+
+This command creates a new branch named `update-authentication-docs` and switches you to it.
+
+### Open the repository in VS Code
+
+After creating the branch, open the repository folder in VS Code so you can edit the documentation files.
+
+If you are already inside the repository directory in your terminal, you can open it in VS Code by running:
+
+```bash
+code .
+```
+
+The `.` represents the current directory, so this command tells VS Code to open the repository you are currently in.
+
+Alternatively, you can open VS Code, select **File > Open Folder**, and choose the local repository folder.
+
+Once the repository is open, you'll see its files and folders in the **VS Code Explorer**.
+
+For example:
+
+```text
+documentation-project/
+├── docs/
+│   ├── introduction.md
+│   ├── authentication.md
+│   └── api-reference.md
+├── src/
+├── static/
+└── package.json
+```
+
+### Edit the documentation
+
+Open the relevant documentation file in VS Code.
+
+For this example, suppose the authentication guide is located at:
+
+```text
+docs/authentication.md
+```
+
+Open `authentication.md`, make the required changes, and save the file.
+
+Because you created the `update-authentication-docs` branch before making these changes, your work is now being recorded on that branch rather than directly on `main`.
+
+### Check your changes
+
+After editing the documentation, use Git to check which files have changed:
+
+```bash
+git status
+```
+
+Git will show the files that have been modified since the last commit.
+
+### Stage your changes
+
+When you are satisfied with your changes, stage the file:
+
+```bash
+git add docs/authentication.md
+```
+
+If you want to stage all changes in the current directory, you can use:
+
+```bash
+git add .
+```
+
+The period (`.`) represents the current directory and everything inside it.
+
+### Commit your changes
+
+Create a commit to record the changes:
+
+```bash
+git commit -m "Update authentication documentation"
+```
+
+The commit now becomes part of the Git history for your branch.
+
+### Push the branch
+
+After committing your changes, push the branch to the remote repository:
+
+```bash
+git push -u origin update-authentication-docs
+```
+
+This makes your branch available on the remote repository so that other contributors can review your work.
+
+### Create a pull request
+
+Once the branch has been pushed, create a pull request to propose merging your changes into `main`. Describe what you changed and provide any relevant context for reviewers.
+
+The pull request allows other contributors to review the documentation, suggest changes, and approve the work before it is merged.
+
+### Address review comments
+
+Reviewers may suggest changes.
+
+Make the requested updates on your branch, commit them, and push them again.
+
+The pull request will then include the additional commits.
+
+### Merge the changes
+
+Once the changes have been reviewed and approved, the branch can be merged according to the team's workflow.
+
+The updated documentation is now part of the main project.
+
+The complete workflow looks like this:
+
+```text
+Create a branch
+      ↓
+Open the repository in VS Code
+      ↓
+Edit the documentation
+      ↓
+Check your changes
+      ↓
+Stage the changes
+      ↓
+Create a commit
+      ↓
+Push the branch
+      ↓
+Create a pull request
+      ↓
+Review and merge
+```
+
+This is a simplified example of how a technical writer might use Git as part of a docs-as-code workflow.
+
+## Common Git mistakes
+
+Git can feel confusing at first. Many beginner mistakes come from misunderstanding what Git is doing rather than from the commands themselves. Therefore, when you start working with Git, take note of the following errors.
+
+### Editing the wrong branch
+
+You may accidentally make changes on the wrong branch.
+
+Before starting work, check your current branch:
+
+```bash
+git branch
+```
+
+Make sure you're working on the branch intended for your task.
+
+### Forgetting to check your changes
+
+It is easy to stage or commit a file without reviewing what changed.
+
+Use:
+
+```bash
+git status
+```
+
+and:
+
+```bash
+git diff
+```
+
+before committing.
+
+This is especially important for documentation because an accidental change to formatting, configuration, or another file can affect the project.
+
+### Writing vague commit messages
+
+Avoid messages such as:
+
+```bash
+git commit -m "Update"
+```
+
+or:
+
+```bash
+git commit -m "Changes"
+```
+
+Instead, describe what you changed:
+
+```bash
+git commit -m "Clarify API authentication steps"
+```
+
+### Committing unrelated changes together
+
+Try to keep commits focused.
+
+If you are updating an authentication guide, avoid including unrelated changes to the homepage or another chapter unless there is a good reason to do so.
+
+### Forgetting to push
+
+A commit created on your local machine does not automatically appear in the remote repository.
+
+After committing your work, you may need to push the branch:
+
+```bash
+git push
+```
+
+### Working with an outdated branch
+
+If other contributors have changed the project while you're working, your branch may become out of date.
+
+Before beginning work or submitting a pull request, follow your team's process for bringing your branch up to date.
+
+### Treating Git as a backup system
+
+Git records project history, but it should not be treated simply as a file backup service.
+
+Git is designed to track changes and support collaboration and version control.
+
+## Git and docs-as-code
+
+Git is one of the technologies that makes a docs-as-code workflow possible.
+
+In a traditional documentation workflow, you'll create content in a word processor and send files to reviewers by email.
+
+A docs-as-code workflow look very different:
+
+```text
+Write documentation
+        ↓
+Store Markdown files in Git
+        ↓
+Create a branch
+        ↓
+Make changes
+        ↓
+Commit changes
+        ↓
+Open a pull request
+        ↓
+Review documentation
+        ↓
+Merge changes
+        ↓
+Build and publish documentation
+```
+
+This workflow allows documentation to go through many of the same processes used to manage software.
+
+For a technical writer, this means Git becomes more than a developer tool. It becomes part of the environment in which documentation is written, reviewed, maintained, and published.
+
+## Git and Docusaurus
+
+The Docusaurus project you've been building can also be managed with Git.
+
+For example, your project might contain:
+
+```text
+my-docs/
+├── docs/
+├── src/
+├── static/
+├── docusaurus.config.js
+├── package.json
+└── sidebars.js
+```
+
+You can use Git to track changes to your documentation files and project configuration.
+
+For example, if you add a new chapter:
+
+```text
+docs/
+└── documentation-as-code/
+    └── git.md
+```
+
+Git can record the addition of that file.
+
+You can then commit the change:
+
+```bash
+git add docs/documentation-as-code/git.md
+
+git commit -m "Add Git documentation chapter"
+```
+
+This gives you a record of when the chapter was added and what it was intended to accomplish.
+
+## Git is a tool, not the workflow itself
+
+It is useful to distinguish between Git and the broader docs-as-code workflow.
+
+**Git** is the version control system.
+
+**Docs-as-code** is a broader approach to creating and maintaining documentation using tools and practices commonly associated with software development.
+
+Git may be part of that workflow alongside tools such as:
+
+- Markdown
+- GitHub
+- Docusaurus
+- Continuous integration and deployment tools
+- Code review workflows
+- Automated documentation checks
+
+Understanding this distinction will help you see how the tools you've learned throughout this guide fit together.
+
+## Why Git matters
+
+For a technical writer, learning Git is not about becoming a software engineer.
+
+It is about becoming comfortable working in the environment where modern technical documentation is often created and maintained.
+
+Understanding Git helps you to:
+
+- Understand where documentation is stored.
+- Create and work on a branch.
+- Review your changes.
+- Stage and commit documentation.
+- Push your work to a remote repository.
+- Participate in pull request reviews.
+- Understand how your changes move from a local file to published documentation.
+
+You may eventually encounter more advanced Git concepts, but these fundamentals provide a strong starting point.
+
+## Key takeaways
+
+- Git tracks changes to files and maintains a history of those changes.
+- Git repositories provide a structured environment for managing documentation projects.
+- The working directory contains the files you are currently editing.
+- The staging area contains changes prepared for the next commit.
+- Commits record selected changes in the repository history.
+- Branches provide separate lines of development for individual changes.
+- Pull requests allow contributors to review changes before they are merged.
+- Remote repositories provide a shared location for collaboration.
+- Git supports the version control and collaboration practices used in docs-as-code workflows.
+
+## Next steps
+
+Now that you understand how Git tracks and manages documentation changes, it's time to look at **GitHub**.
+
+Git and GitHub are related, but they are not the same thing. Git is the version control system, while GitHub is a platform that provides a place to host Git repositories and collaborate on projects.
+
+In the next chapter, you'll learn how GitHub fits into a documentation workflow, including repositories, issues, pull requests, and collaboration.

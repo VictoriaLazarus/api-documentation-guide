@@ -1,0 +1,775 @@
+# Document your first API
+
+You've reached the final part of the guide.
+
+In the previous chapters, you learned what APIs are, how they communicate, how to work with requests and responses, how authentication works, how to test endpoints with Postman, and how to write API documentation.
+
+You've also learned how Markdown, Git, GitHub, and Docusaurus fit into a docs-as-code workflow.
+
+Now it's time to put everything together.
+
+In this chapter, you'll apply the skills you've already learned from this guide to write practical API documentation.
+
+To complete the project, choose a public API that you can access and test.
+
+### Suggested APIs
+
+If you don't have an API in mind, consider one of the following:
+
+- **PokéAPI** — Pokémon data and resources.
+- **Open-Meteo** — Weather and forecast data.
+- **Open Library API** — Book and bibliographic data.
+- **JSONPlaceholder** — A simple REST API for testing and learning.
+- **REST Countries** — Country and geographic information.
+- **NASA APIs** — APIs providing access to NASA data.
+- **Google AI Studio (Gemini API)** — A great introduction to working with generative AI.
+
+You can also choose another public API if it meets the requirements below.
+
+:::note
+
+You don't need to document the entire API. Choose a manageable set of endpoints that allows you to demonstrate what you've learned throughout this guide.
+
+:::
+
+## What you'll build
+
+By the end of this project, you'll have created documentation that explains how developers can work with selected endpoints.
+
+Your documentation will include concepts you've already learned, such as:
+
+- API authentication
+- HTTP methods
+- Endpoints
+- Path parameters
+- Query parameters
+- Requests
+- Responses
+- JSON
+- HTTP status codes
+- Error handling
+- Code examples
+- Markdown
+- Docusaurus
+
+You'll also apply a docs-as-code workflow to manage and build the documentation.
+
+The goal is is to demonstrate that you can take an unfamiliar API, understand how it works, test it, and turn that understanding into useful developer documentation.
+
+## Project objectives
+
+By completing this project, you'll be able to:
+
+- Explore an API and identify the information developers need.
+- Authenticate with an API.
+- Test API endpoints using Postman.
+- Analyze API requests and responses.
+- Identify parameters and their purpose.
+- Document successful responses.
+- Document common errors.
+- Create useful request and response examples.
+- Structure API documentation for developers.
+- Write API documentation using Markdown.
+- Organize documentation in Docusaurus.
+- Apply a docs-as-code workflow to a documentation project.
+- Review your documentation for accuracy, clarity, and usability.
+
+## Before you begin
+
+Before starting the project, make sure you have the tools you need.
+
+You should have:
+
+- Access to the API
+- Postman installed
+- Visual Studio Code or another code editor
+- Node.js installed
+- A Docusaurus project
+- Git installed
+- A GitHub account if you plan to publish the project to GitHub
+
+You should also be comfortable with:
+
+- Basic Markdown
+- Basic Git commands
+- HTTP requests and responses
+- JSON
+- API authentication
+- Docusaurus basics
+
+Use the earlier chapters as a reference whenever you need a refresher.
+
+### Explore the API
+
+Before documenting an API, you need to understand how it works. Explore the API yourself and find the answers to the following questions:
+
+- What does the endpoint do?
+- What HTTP method does it use?
+- What URL is used?
+- Does it require authentication?
+- What parameters does it accept?
+- Which parameters are required?
+- Which parameters are optional?
+- What does a successful response look like?
+- What errors can occur?
+- Are there limits or restrictions developers should know about?
+
+This investigation gives you the information you need to create accurate documentation.
+
+### Set up authentication
+
+Before testing protected endpoints, you'll need the appropriate authentication details.
+
+Create or access your chosen API account and obtain the credential required to test the endpoints.
+
+However, make sure to keep your credentials private.
+
+Do not commit API keys, access tokens, or other secrets to Git.
+
+For example, avoid writing a real credential directly into a documentation file:
+
+```http
+Authorization: Bearer your-real-token-here
+```
+
+Instead, use a placeholder:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+Placeholders make examples safe to share while still showing developers where their credentials belong.
+
+### Create a Postman collection
+
+Create a Postman collection for the endpoints you'll document.
+
+For example:
+
+```text
+TMDB API Documentation
+├── Authentication
+├── Account
+├── Movies
+├── TV Shows
+├── Search
+└── Networks
+```
+
+The goal is to organize the endpoints so that you can easily find and test them.
+
+### Test each endpoint
+
+Testing is one of the most important parts of API documentation.
+
+Do not document an endpoint based on only the API reference or description.
+
+Send the request yourself whenever possible.
+
+For example:
+
+```http
+GET https://api.themoviedb.org/3/movie/550
+```
+
+Examine the response carefully.
+
+A simplified response might look like:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "vote_average": 8.4
+}
+```
+
+From this response, you can identify information that developers may need to understand, such as:
+
+- The response format
+- Field names
+- Data types
+- Returned values
+- Nested objects or arrays, when present
+- Information that may be useful to the developer
+
+### Test different scenarios
+
+A successful request is only one part of understanding an API.
+
+You should also consider what happens when something goes wrong.
+
+Therefore, during your API documentation, make sure to test scenarios such as:
+
+- Valid request: Send a correctly formatted request with valid authentication and parameters. Then observe the successful response.
+
+- Invalid resource: Change the resource identifier to a value that does not exist. Observe the response and status code.
+
+- Missing required information: If the endpoint requires a parameter, test what happens when it is omitted.
+
+- Invalid authentication: Where appropriate and safe to test, examine how the API responds when authentication information is missing or invalid. The purpose is not to deliberately break the API. The purpose is to understand the behavior developers need to know.
+
+### Record what you discover
+
+As you test the endpoints, record information such as:
+
+```text
+Endpoint:
+HTTP method:
+Purpose:
+Authentication:
+Path parameters:
+Query parameters:
+Request headers:
+Request body:
+Successful response:
+Error responses:
+Notes:
+```
+
+For example:
+
+```text
+Endpoint: /movie/{movie_id}
+HTTP method: GET
+Purpose: Retrieve information about a movie.
+Authentication: Required
+Path parameters: movie_id
+Query parameters: language
+Successful response: JSON
+```
+
+This information becomes the foundation for your documentation.
+
+### Plan the documentation structure
+
+Once you've explored the API, decide how your documentation should be organized.
+
+A developer should be able to find information without having to search through a large block of unrelated content.
+
+A simple structure might look like:
+
+```text
+TMDB API Documentation
+│
+├── Getting Started
+│   ├── Introduction
+│   └── Authentication
+│
+├── Movies
+│   ├── Get Movie Details
+│   └── Get Movie Ratings
+│
+├── TV Shows
+│   └── Get TV Show Details
+│
+├── Search
+│   └── Search Movies
+│
+└── Errors
+    └── Error Handling
+```
+
+The exact structure depends on the scope of your project.
+
+The important thing is to organize related information logically.
+
+### Write an introduction
+
+Start your documentation with a short introduction.
+
+The introduction should help developers understand:
+
+- What the API provides
+- What they can use it for
+- Who the documentation is for
+- What they need before getting started
+
+Keep the introduction focused.
+
+Developers usually want to get to the information they need quickly.
+
+### Document authentication
+
+Explain how developers authenticate their requests.
+
+Your authentication documentation should answer questions such as:
+
+- What authentication method does the API use?
+- Where can developers obtain their credentials?
+- Where should credentials be included?
+- What happens when authentication fails?
+
+Use placeholders instead of real credentials.
+
+For example:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+:::note
+
+Explain what the placeholder represents. Do not assume the developers should know.
+
+:::
+
+
+### Document an endpoint
+
+Now you're ready to document the individual endpoints you selected for your API doc.
+
+A useful endpoint description should contain:
+
+1. Endpoint name
+2. Description
+3. HTTP method
+4. URL
+5. Authentication requirements
+6. Parameters
+7. Request example
+8. Response example
+9. Response field descriptions
+10. Errors
+
+For example: 
+```markdown
+## Get Movie Details
+
+Retrieves information about a movie using its movie ID.
+
+### Request
+
+```http
+GET https://api.themoviedb.org/3/movie/{movie_id}
+```
+
+### Authentication
+
+Authentication is required.
+
+### Path parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `movie_id` | Integer | Yes | The ID of the movie to retrieve. |
+
+### Query parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `language` | String | No | Specifies the language of the response. |
+
+### Example request
+
+```http
+GET https://api.themoviedb.org/3/movie/550?language=en-US
+```
+
+### Example response
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "vote_average": 8.4
+}
+```
+
+This example brings together many of the concepts you've learned throughout the guide.
+
+### Explain parameters clearly
+
+In your API doc, don't simply list parameters. Explain what each parameter does and how developers should use it.
+
+For example:
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `movie_id` | Integer | Yes | Identifies the movie to retrieve. |
+| `language` | String | No | Specifies the language used in the response. |
+
+Make the distinction between parameter types clear.
+
+A **path parameter** is part of the URL path:
+
+```text
+/movie/{movie_id}
+```
+
+A **query parameter** is added after a `?`:
+
+```text
+/movie/550?language=en-US
+```
+
+If multiple query parameters are used, separate them with `&`:
+
+```text
+/movie/550?language=en-US&append_to_response=credits
+```
+
+The goal is to make it clear where each parameter belongs and what effect it has on the request.
+
+### Document the request
+
+A request example should show developers how to construct a valid request.
+
+For example:
+
+```http
+GET https://api.themoviedb.org/3/movie/550?language=en-US
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+The example should be realistic enough for a developer to understand what to send.
+
+Avoid examples that contain unnecessary complexity.
+
+When appropriate, explain each important part of the request.
+
+For example:
+
+```text
+GET
+ ↓
+HTTP method
+
+https://api.themoviedb.org/3/movie/550
+ ↓
+Endpoint URL
+
+?language=en-US
+ ↓
+Query parameter
+
+Authorization: Bearer YOUR_ACCESS_TOKEN
+ ↓
+Authentication information
+```
+
+### Document the response
+
+A response example should show what developers can expect after making the request.
+
+For example:
+
+```json
+{
+  "id": 550,
+  "title": "Fight Club",
+  "release_date": "1999-10-15",
+  "vote_average": 8.4
+}
+```
+
+Don't assume that showing the JSON is enough.
+
+Explain important fields when the response contains information that may not be immediately obvious.
+
+For example:
+
+| Field | Type | Description |
+|------|------|-------------|
+| `id` | Integer | Unique identifier for the movie. |
+| `title` | String | Movie title. |
+| `release_date` | String | Release date for the movie. |
+| `vote_average` | Number | Average user rating for the movie. |
+
+:::note
+
+The response example shows developers what the data looks like. The field descriptions explain what that data means.
+
+::: 
+
+### Document errors
+
+Good API documentation should explain what happens when requests fail.
+
+Where appropriate, document common errors and explain how developers can resolve them.
+
+For example:
+
+| Status code | Meaning | Possible cause |
+|-------------|---------|----------------|
+| `401` | Unauthorized | Authentication information is missing or invalid. |
+| `404` | Not Found | The requested resource could not be found. |
+
+During error handling, don't just document an error simply because you know the HTTP status code exists. Document the errors that are relevant to the API endpoint and that developers are likely to encounter.
+
+### Review the documentation
+
+Once you've completed the documentation for each endpoint, review your work from the perspective of the developer who will use it.
+
+Ask yourself:
+
+#### Can the reader find what they need?
+
+Check the navigation and page structure.
+
+#### Can the reader understand the endpoint?
+
+Make sure the purpose of the endpoint is clear.
+
+#### Can the reader construct a request?
+
+Check that the method, URL, parameters, headers, and authentication requirements are documented.
+
+#### Can the reader understand the response?
+
+Check that important response fields are explained.
+
+#### Can the reader troubleshoot errors?
+
+Make sure common problems and relevant error responses are documented.
+
+#### Are the examples accurate?
+
+Test your examples instead of assuming they work.
+
+### Review for consistency
+
+Consistency becomes particularly important when documenting multiple endpoints.
+
+Check that you use the same terminology, structure, and formatting throughout the documentation.
+
+For example, if one endpoint uses:
+
+```markdown
+### Request
+```
+
+avoid using:
+
+```markdown
+### Example request
+```
+
+for another endpoint unless there is a reason for the difference.
+
+Similarly, keep table structures consistent.
+
+For example:
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+
+Use the same column structure across endpoints whenever possible.
+
+Consistency reduces the amount of cognitive effort required for developers to navigate the documentation.
+
+### Build the documentation
+
+Once your documentation is complete, build the Docusaurus site.
+
+Run:
+
+```bash
+npm run build
+```
+
+If the build succeeds, review the generated documentation.
+
+If it fails, read the error message and identify the source of the problem.
+
+Check for common issues such as:
+
+- Broken links
+- Incorrect file paths
+- Invalid Markdown or MDX
+- Missing documents
+- Incorrect sidebar references
+- Configuration errors
+
+Fix the problem and run the build again.
+
+### Review the published experience
+
+Don't stop at the source files.
+
+Open the rendered documentation and review it as a reader would.
+
+Check:
+
+- Page titles
+- Headings
+- Navigation
+- Code blocks
+- Tables
+- Links
+- Images
+- Examples
+- Mobile layout, when possible
+- Search functionality, if available
+
+Ask yourself:
+
+> If I were a developer seeing this API for the first time, could I successfully make a request using only this documentation?
+
+This is one of the most useful questions you can ask when reviewing API documentation.
+
+## A documentation checklist
+
+Before considering your project complete, use the following checklist.
+
+### API understanding
+
+- [ ] I understand what the API does.
+- [ ] I understand the endpoints I documented.
+- [ ] I tested the endpoints myself.
+- [ ] I understand the authentication requirements.
+- [ ] I understand the parameters.
+- [ ] I understand the responses.
+- [ ] I identified relevant errors.
+
+### Documentation quality
+
+- [ ] Each endpoint has a clear description.
+- [ ] HTTP methods are documented.
+- [ ] Endpoint URLs are correct.
+- [ ] Authentication requirements are clear.
+- [ ] Path parameters are documented.
+- [ ] Query parameters are documented.
+- [ ] Request examples are included.
+- [ ] Response examples are included.
+- [ ] Important response fields are explained.
+- [ ] Relevant errors are documented.
+- [ ] Examples have been tested.
+- [ ] Terminology is consistent.
+
+### Documentation structure
+
+- [ ] Pages are logically organized.
+- [ ] Navigation is clear.
+- [ ] Headings follow a consistent hierarchy.
+- [ ] Code blocks use appropriate language identifiers.
+- [ ] Tables are used appropriately.
+- [ ] Links work.
+- [ ] Images load correctly.
+- [ ] The documentation renders correctly in Docusaurus.
+
+### Docs-as-code workflow
+
+- [ ] Changes are tracked with Git.
+- [ ] Changes are committed with useful commit messages.
+- [ ] The documentation has been reviewed.
+- [ ] The Docusaurus site builds successfully.
+- [ ] The final documentation has been reviewed in its rendered form.
+
+## What you've accomplished
+
+By completing this project, you've gone beyond simply learning about API documentation.
+
+You've practiced the actual process of creating it.
+
+You started by exploring an API and testing its endpoints.
+
+You then used what you discovered to structure and write documentation.
+
+You documented requests, responses, parameters, authentication, and errors.
+
+You wrote the content in Markdown, organized it in Docusaurus, and applied a docs-as-code workflow to manage your changes.
+
+The process can be summarized as:
+
+```text
+Explore
+  ↓
+Test
+  ↓
+Understand
+  ↓
+Plan
+  ↓
+Write
+  ↓
+Review
+  ↓
+Build
+  ↓
+Publish
+```
+
+This is the foundation of practical API documentation.
+
+## Beyond your first API
+
+Documenting one API is only the beginning.
+
+The more APIs you work with, the more comfortable you'll become with identifying patterns, asking the right questions, testing unfamiliar endpoints, and translating technical behavior into useful documentation.
+
+You may eventually encounter:
+
+- More complex authentication systems
+- Webhooks
+- Asynchronous APIs
+- GraphQL APIs
+- SDK documentation
+- OpenAPI specifications
+- API reference generators
+- Versioned APIs
+- Automated documentation pipelines
+
+You don't need to master all of these topics at once.
+
+The foundation you've built in this guide gives you a starting point for learning them.
+
+## Final thoughts
+
+Writing API documentation is not about knowing every programming language or understanding every detail of an application's implementation.
+
+It is about understanding enough of the technology to explain how developers can use it successfully.
+
+A strong technical writer asks questions such as:
+
+- What does this API do?
+- Who will use it?
+- What does the developer need to know?
+- What happens when they send this request?
+- What response should they expect?
+- What could go wrong?
+- Can they follow the documentation without needing additional help?
+
+The tools will continue to change.
+
+APIs will evolve.
+
+Documentation platforms will change.
+
+But the fundamental skill remains the same:
+
+**Understand the technology, then make it easier for someone else to use.**
+
+## Key takeaways
+
+- Documenting an API begins with understanding and testing the API.
+- Accurate API documentation is based on observed and verified behavior.
+- Clear documentation explains how developers can authenticate, construct requests, understand responses, and troubleshoot errors.
+- Request and response examples help developers understand how an API behaves in practice.
+- Consistent structure and terminology make documentation easier to navigate and maintain.
+- Testing your examples is essential for producing trustworthy API documentation.
+- Docusaurus provides a way to build and review the documentation as a website.
+- Git and GitHub support version control, collaboration, and review.
+- A docs-as-code workflow connects research, writing, testing, review, building, and publishing.
+- The skills developed in this project provide a foundation for documenting more complex APIs and developer technologies.
+
+## Next steps
+
+You've now completed the practical project and reached the end of this guide.
+
+But your learning doesn't have to end here.
+
+The best way to strengthen your API documentation skills is to continue practicing.
+
+Choose an API that interests you, explore its endpoints, test its requests, and try documenting it from a developer's perspective.
+
+Pay attention to what makes good documentation easy to use and what makes poor documentation frustrating.
+
+Keep building.
+
+Keep testing.
+
+Keep learning.
+
+And most importantly, keep documenting.
