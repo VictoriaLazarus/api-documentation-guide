@@ -1,248 +1,166 @@
 .features {
-  padding: 7rem 0;
-  background: #202424;
+  padding: 6rem 0;
+  background: var(--ifm-background-color);
 }
 
 .sectionHeading {
-  margin-bottom: 3rem;
-  max-width: 700px;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  text-align: center;
 }
 
-.sectionHeading p {
-  margin-bottom: 0.8rem;
-
-  color: #36b7a3;
+.eyebrow {
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
   font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  font-weight: 800;
+  letter-spacing: 0.12em;
 }
 
 .sectionHeading h2 {
-  margin: 0;
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  letter-spacing: -0.03em;
+}
 
-  color: #f3f2ee;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1.1;
-  letter-spacing: -0.035em;
+.sectionHeading h2 span {
+  color: var(--ifm-color-primary);
+}
+
+.sectionHeading p:last-child {
+  margin: 0;
+  line-height: 1.7;
+  opacity: 0.7;
 }
 
 .featureGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
+  gap: 1.25rem;
 }
 
 .featureCard {
-  min-height: 330px;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 1.5rem;
-
-  border: 1px solid #343a39;
-  border-radius: 18px;
-
-  background: #272c2b;
-
-  color: inherit;
-  text-decoration: none;
-
+  position: relative;
+  min-height: 320px;
+  padding: 1.75rem;
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(0, 200, 180, 0.1),
+      transparent 35%
+    ),
+    var(--ifm-background-surface-color);
   transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    background 0.2s ease;
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.featureCard:nth-child(2) {
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(255, 130, 70, 0.12),
+      transparent 35%
+    ),
+    var(--ifm-background-surface-color);
+}
+
+.featureCard:nth-child(3) {
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(125, 90, 255, 0.12),
+      transparent 35%
+    ),
+    var(--ifm-background-surface-color);
 }
 
 .featureCard:hover {
-  transform: translateY(-5px);
-
-  border-color: #36b7a3;
-
-  background: #2b3231;
-
-  color: inherit;
-  text-decoration: none;
+  transform: translateY(-6px);
+  border-color: var(--ifm-color-primary);
 }
 
-.cardTop {
-  display: flex;
-  justify-content: space-between;
-
-  color: #7e8986;
-
-  font-family: monospace;
-  font-size: 0.8rem;
-}
-
-.arrow {
-  font-size: 1rem;
-}
-
-.cardContent {
-  margin-top: auto;
-}
-
-.numberBadge {
-  width: 52px;
-  height: 52px;
-
+.featureIllustration {
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(0, 200, 180, 0.35);
+  border-radius: 18px;
+  background: rgba(0, 200, 180, 0.08);
+}
 
-  margin-bottom: 1.5rem;
+.featureCard:nth-child(2) .featureIllustration {
+  border-color: rgba(255, 130, 70, 0.4);
+  background: rgba(255, 130, 70, 0.08);
+}
 
-  border: 1px solid #3a4543;
-  border-radius: 12px;
+.featureCard:nth-child(3) .featureIllustration {
+  border-color: rgba(125, 90, 255, 0.4);
+  background: rgba(125, 90, 255, 0.08);
+}
 
-  background: #303735;
-
-  color: #d9dfdc;
-
+.featureIllustration span {
+  color: var(--ifm-color-primary);
   font-family: monospace;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.featureCard:nth-child(2) .featureIllustration span {
+  color: #ff8754;
+}
+
+.featureCard:nth-child(3) .featureIllustration span {
+  color: #9a7cff;
+}
+
+.featureNumber {
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
 }
 
 .featureCard h3 {
-  margin-bottom: 0.8rem;
-
-  color: #f3f2ee;
-
-  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.35rem;
 }
 
 .featureCard p {
+  max-width: 330px;
   margin: 0;
-
-  color: #aeb7b4;
-
-  line-height: 1.7;
+  line-height: 1.65;
+  opacity: 0.68;
 }
 
-/* Light theme */
-
-[data-theme='light'] .features {
-  background: #eef3f1;
+.cardArrow {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  color: #07151b;
+  font-weight: 800;
 }
-
-[data-theme='light'] .sectionHeading h2 {
-  color: #18211f;
-}
-
-[data-theme='light'] .featureCard {
-  border-color: #d9e2df;
-  background: #ffffff;
-}
-
-[data-theme='light'] .featureCard:hover {
-  border-color: #279f8d;
-  background: #fbfdfc;
-}
-
-[data-theme='light'] .numberBadge {
-  border-color: #d9e2df;
-  background: #f1f6f4;
-  color: #40504c;
-}
-
-[data-theme='light'] .featureCard h3 {
-  color: #18211f;
-}
-
-[data-theme='light'] .featureCard p {
-  color: #5b6763;
-}
-
-[data-theme='light'] .cardTop {
-  color: #71807b;
-}
-
-/* Final CTA */
-
-.finalCta {
-  padding: 7rem 1.5rem;
-
-  background: #181b1c;
-}
-
-.finalCtaContent {
-  max-width: 750px;
-  margin: 0 auto;
-
-  text-align: center;
-}
-
-.finalCta h2 {
-  margin: 0 0 1.2rem;
-
-  color: #f3f2ee;
-
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.finalCta p:not(.eyebrow) {
-  max-width: 550px;
-  margin: 0 auto 2rem;
-
-  color: #adb6b3;
-
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-.finalCta .eyebrow {
-  margin-bottom: 1rem;
-
-  color: #36b7a3;
-
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-}
-
-/* Light theme */
-
-[data-theme='light'] .finalCta {
-  background: #e3ece9;
-}
-
-[data-theme='light'] .finalCta h2 {
-  color: #18211f;
-}
-
-[data-theme='light'] .finalCta p:not(.eyebrow) {
-  color: #596662;
-}
-
-/* Responsive */
 
 @media screen and (max-width: 996px) {
-  .features {
-    padding: 5rem 1.5rem;
-  }
-
-  .featureGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .features {
-    padding: 4rem 1.25rem;
-  }
-
   .featureGrid {
     grid-template-columns: 1fr;
   }
 
   .featureCard {
-    min-height: 280px;
-  }
-
-  .finalCta {
-    padding: 5rem 1.25rem;
+    min-height: auto;
   }
 }

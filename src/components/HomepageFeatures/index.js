@@ -1,4 +1,3 @@
-import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 
 import styles from './styles.module.css';
@@ -6,64 +5,42 @@ import styles from './styles.module.css';
 const FeatureList = [
   {
     number: '01',
-    title: 'Understanding APIs',
+    icon: '</>',
+    title: 'Understand APIs',
     description:
-      'Build a foundation in APIs, HTTP, JSON, authentication, and common API concepts.',
-    link: '/docs/understanding-apis',
+      'Learn how APIs work, including HTTP methods, REST, JSON, authentication, requests, and responses.',
   },
   {
     number: '02',
-    title: 'Testing APIs',
+    icon: '✎',
+    title: 'Write better documentation',
     description:
-      'Learn how to test endpoints and understand requests, responses, and errors.',
-    link: '/docs/testing-apis',
+      'Document endpoints, parameters, examples, errors, and common API workflows clearly and effectively.',
   },
   {
     number: '03',
-    title: 'API Documentation',
+    icon: '◆',
+    title: 'Work with docs-as-code',
     description:
-      'Learn how to document endpoints, parameters, authentication, examples, and errors.',
-    link: '/docs/writing-api-documentation',
-  },
-  {
-    number: '04',
-    title: 'Git & Docs-as-Code',
-    description:
-      'Learn the Git concepts and workflow used to manage documentation as code.',
-    link: '/docs/git-and-docs-as-code',
-  },
-  {
-    number: '05',
-    title: 'Docusaurus',
-    description:
-      'Build and organize a documentation website with Docusaurus.',
-    link: '/docs/docusaurus',
-  },
-  {
-    number: '06',
-    title: 'Publishing',
-    description:
-      'Understand how documentation websites are built, hosted, and made available to readers.',
-    link: '/docs/publishing',
+      'Use Markdown, Git, GitHub, and Docusaurus to create and manage documentation like a modern documentation team.',
   },
 ];
 
-function Feature({number, title, description, link}) {
+function Feature({number, icon, title, description}) {
   return (
-    <Link to={link} className={styles.featureCard}>
-      <div className={styles.cardTop}>
-        <span>{number}</span>
-        <span className={styles.arrow}>↗</span>
+    <article className={styles.featureCard}>
+      <div className={styles.featureIllustration}>
+        <span>{icon}</span>
       </div>
 
-      <div className={styles.cardContent}>
-        <div className={styles.numberBadge}>{number}</div>
+      <div className={styles.featureNumber}>{number}</div>
 
-        <Heading as="h3">{title}</Heading>
+      <Heading as="h3">{title}</Heading>
 
-        <p>{description}</p>
-      </div>
-    </Link>
+      <p>{description}</p>
+
+      <span className={styles.cardArrow}>→</span>
+    </article>
   );
 }
 
@@ -72,8 +49,17 @@ export default function HomepageFeatures() {
     <section className={styles.features}>
       <div className="container">
         <div className={styles.sectionHeading}>
-          <p>INSIDE THE GUIDE</p>
-          <h2>Six parts. One practical learning path.</h2>
+          <p className={styles.eyebrow}>WHAT YOU'LL LEARN</p>
+
+          <Heading as="h2">
+            Build the skills to create documentation developers can{' '}
+            <span>trust</span>
+          </Heading>
+
+          <p>
+            Learn the concepts, tools, and workflows you need to create useful
+            API documentation.
+          </p>
         </div>
 
         <div className={styles.featureGrid}>
