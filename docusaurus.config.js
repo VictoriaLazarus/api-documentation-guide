@@ -94,11 +94,56 @@ import {themes as prismThemes} from 'prism-react-renderer';
 },
 
     footer: {
-      style: 'dark',
-      copyright: `© ${new Date().getFullYear()} Victoria Lazarus. All rights reserved.`,
+  style: 'dark',
+  links: [
+    {
+      title: 'Documentation',
+      items: [
+        {
+          label: 'Getting started',
+          to: '/docs/getting-started/introduction',
+        },
+        {
+          label: 'Understanding APIs',
+          to: '/docs/understanding-apis/what-is-an-api',
+        },
+        {
+          label: 'Writing API documentation',
+          to: '/docs/writing-api-documentation/endpoint-structure',
+        },
+      ],
     },
+    {
+      title: 'Resources',
+      items: [
+        {
+          label: 'Documentation as code',
+          to: '/docs/documentation-as-code/introduction-to-doc-as-code',
+        },
+        {
+          label: 'Final project',
+          to: '/docs/final-project/document-your-first-api',
+        },
+      ],
+    },
+    {
+      title: 'Connect',
+      items: [
+        {
+          label: 'GitHub',
+          href: 'https://github.com/VictoriaLazarus',
+        },
+        {
+          label: 'LinkedIn',
+          href: 'https://www.linkedin.com/in/victoria-lazarus/',
+        },
+      ],
+    },
+  ],
+  copyright: `© ${new Date().getFullYear()} Victoria Lazarus. All rights reserved.`,
+},
 
-    prism: {
+prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
