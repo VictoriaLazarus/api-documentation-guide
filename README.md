@@ -1,43 +1,34 @@
-# Website
+# The Beginner's Guide to API Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+A practical guide to writing clear, accurate, and user-focused API documentation.
 
-## Installation
+## About the project
 
-```bash
-npm install
-```
+**The Beginner's Guide to API Documentation** introduces the fundamentals of API documentation and provides practical guidance for documenting APIs effectively.
 
-**Note**: feel free to use the package manager of your choice.
+The guide covers topics such as:
 
-## Local Development
+* API fundamentals
+* HTTP and JSON
+* Authentication
+* Requests and responses
+* Parameters
+* API examples
+* Error handling
+* Documentation best practices
 
-```bash
-npm run start
-```
+## Built with
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+* [Docusaurus](https://docusaurus.io/)
+* Markdown and MDX
+* Git and GitHub
 
-## Build
+## Project status
 
-```bash
-npm run build
-```
+This guide is actively being developed and refined.
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## Author
 
-## Deployment
+**Victoria Lazarus**
 
-Using SSH:
-
-```bash
-USE_SSH=true npm run deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> npm run deploy
-```
-
-If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Technical Writer specializing in API documentation, developer documentation, and documentation engineering.
