@@ -32,3 +32,18 @@ This guide is actively being developed and refined.
 **Victoria Lazarus**
 
 Technical Writer specializing in API documentation, developer documentation, and documentation engineering.
+
+## Copyright and Usage
+
+© 2026 Victoria Lazarus. All rights reserved.
+
+This repository contains original documentation, examples, configuration,
+and other materials created by Victoria Lazarus.
+
+The repository is publicly available for viewing and educational reference.
+However, the original written content and other original materials may not
+be copied, republished, redistributed, modified for republication, or
+presented as another person's work without prior written permission.
+
+Third-party software and dependencies remain subject to their respective
+licenses.
