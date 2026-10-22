@@ -63,7 +63,7 @@ const sidebars = {
       label: 'Part V: Documentation as code',
       collapsed: false,
       items: [
-        'documentation-as-code/introduction-to-doc-as-code',
+        'documentation-as-code/introduction-to-docs-as-code',
         'documentation-as-code/markdown',
         'documentation-as-code/git',
         'documentation-as-code/github',
