@@ -120,6 +120,6 @@ After completing this chapter, you should understand that:
 
 ## Next steps
 
-Congratulations! You've completed Part III of this guide.
+Congratulations, you've completed Part III of this guide.
 
 In the next part, you'll begin writing API documentation by learning how to document endpoints, parameters, requests, responses, and error handling using industry best practices.

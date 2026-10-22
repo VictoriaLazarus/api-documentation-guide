@@ -165,7 +165,7 @@ Testing each endpoint reduces the risk of publishing incorrect documentation.
 
 ## Build a testing habit
 
-This point is very important. When working with APIs, avoid relying solely on existing documentation.
+This point is crucial. When working with APIs, avoid relying solely on existing documentation.
 
 Whenever possible:
 
